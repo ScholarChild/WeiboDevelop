@@ -1,5 +1,5 @@
 #import "PersonalPageController.h"
-#import "PersonalCenterViewController.h"
+#import "PersonalCenterController.h"
 #import "DataManager.h"
 #import "HomePageTableViewCell.h"
 #import "UserInfoTableView.h"
@@ -101,7 +101,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0&&indexPath.row ==0) {
-        PersonalCenterViewController *personalCenterVC = [PersonalCenterViewController new];
+        PersonalCenterController *personalCenterVC = [PersonalCenterController new];
         personalCenterVC.userData = userData;
         [self.navigationController pushViewController:personalCenterVC animated:YES];
     }
