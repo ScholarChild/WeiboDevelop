@@ -1,11 +1,3 @@
-//
-//  HomePageController.m
-//  WeiboMainPage
-//
-//  Created by Ibokan on 15/11/25.
-//  Copyright (c) 2015年 Zero. All rights reserved.
-//
-
 #import "HomePageController.h"
 #import "WeiboCell.h"
 #import "WBCellPreparer.h"
