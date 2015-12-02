@@ -4,7 +4,7 @@
 #import "WBURLAnalyser.h"
 
 
-@interface HomePageController()
+@interface HomePageController()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* _cellPrepareres;
     NSArray* _statusesList;
@@ -30,12 +30,20 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+    [self initTableView];
     [self updateStatusList];
     [self prepareForStatus];
 }
 
-
+- (void)initTableView
+{
+    CGRect PageFrame = self.view.frame;
+    
+    UITableView* table = [[UITableView alloc]initWithFrame:PageFrame style:UITableViewStylePlain];
+    table.delegate = self;
+    table.dataSource = self;
+    [self.view addSubview:table];
+}
 
 - (void)updateStatusList
 {
