@@ -46,6 +46,7 @@
     
     UITabBarController* tabBarC =[UITabBarController new];
     //    传入数组。数组元素是各个视图控制器对象
+   
     tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
     //    设置被选中的视图控制器
     tabBarC.selectedViewController=homeNavi;
