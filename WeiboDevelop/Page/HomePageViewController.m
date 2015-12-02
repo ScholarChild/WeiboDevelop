@@ -1,17 +1,15 @@
 #import "HomePageViewController.h"
-
-#import "ArrInfo.h"
+#import "PersonalCenterViewController.h"
+#import "DataManager.h"
 #import "HomePageTableViewCell.h"
 #import "UserInfoTableView.h"
-
-#import "WBURLAnalyser.h"
 #import "WBUser.h"
+#import "AddFriendViewController.h"
+
 @interface HomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_tableview;
     NSArray *_dataArr;
-
-    
     WBUser * userData;
 }
 @end
@@ -19,14 +17,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.frame = [UIScreen mainScreen].bounds;
+    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     self.view.backgroundColor = [UIColor lightGrayColor];
-    _dataArr = [ArrInfo getPlistArr:@"HomePageInfo"];
+    _dataArr = [DataManager getPlistDataWithName:@"HomePageInfo"];
+    userData = [DataManager dataJson:@"真小寒"];
     _tableview = [[UserInfoTableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
-    WBURLAnalyser *analyser = [WBURLAnalyser new];
-    userData = [analyser userInfoWithUserName:@"真小寒"];
+    
+    [[UIBarButtonItem appearance]setBackButtonBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_return@3x.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)forBarMetrics:UIBarMetricsDefault];
+    
+    self.title = @"我";
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加好友" style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
+    leftBtn.tintColor = [UIColor blackColor];
+    self.navigationItem.leftBarButtonItem = leftBtn;
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:nil];
+    rightBtn.tintColor = [UIColor blackColor];
+    self.navigationItem.rightBarButtonItem = rightBtn;
     [self.view addSubview:_tableview];
 }
 
@@ -37,45 +45,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HomePageTableViewCell *cell = [[HomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    NSDictionary * dic = [[_dataArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-
     
     if (indexPath.section == 0 ) {
         if (indexPath.row == 0) {
-            cell.userImageName = userData.profile_image_url;
-            cell.userName = userData.name;
-            if (userData.descriptionText!=nil) {
-                cell.userDetail = [@"简介: "  stringByAppendingString: userData.descriptionText];
-            }
-            cell.level = 2;
-            
-            [cell setHeadCell];
+            [cell initHeadSubviews];
+            cell.headUserData = userData;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
         }
-
         else{
-            [cell.userInfoNumArr addObject:userData.statuses_count.description];
-            [cell.userInfoNumArr addObject:userData.friends_count.description];
-            [cell.userInfoNumArr addObject:userData.followers_count.description];
-            
-            [cell setNeckCell];
-            [cell addBtnTarget:self action:@selector(homePagePushUserInfoNum:)];
-
+            [cell initNeckSubviews];
+            cell.neckUserData = userData;
         }
     }
     else{
-        cell.iconName = [dic objectForKey:@"typeIcon"];
-        cell.name = [dic objectForKey:@"name"];
-        cell.detail = [dic objectForKey:@"detail"];
-        
-        [cell setBodyCell];
-        
+        //本地
+        NSDictionary * dic = [[_dataArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+        [cell initBodySubviews];
+        cell.dataDic = dic;  
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.selectedBackgroundView = [[UIView alloc]initWithFrame:cell.frame];
-    cell.selectedBackgroundView.backgroundColor =[UIColor redColor];
-    //NSAttributedString*
     return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -109,20 +97,24 @@
     NSLog(@"%@",btn.titleLabel.text);
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0&&indexPath.row ==0) {
+        PersonalCenterViewController *personalCenterVC = [PersonalCenterViewController new];
+        [self.navigationController pushViewController:personalCenterVC animated:YES];
+    }
+}
+- (void)addFriend
+{
+    AddFriendViewController *addFriendVC = [AddFriendViewController new];
+    
+    [self.navigationController pushViewController:addFriendVC animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

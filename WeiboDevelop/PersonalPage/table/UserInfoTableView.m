@@ -17,7 +17,7 @@
         self.backgroundColor = [UIColor colorWithRed:((Byte)(0xD4D4D4 >> 16))/255.0 green:((Byte)(0xD4D4D4 >> 8))/255.0 blue:((Byte)0xD4D4D4)/255.0 alpha:1];
         self.showsVerticalScrollIndicator = NO;
         self.bounces = NO;
-        self.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
+        self.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     }
     return self;
 }

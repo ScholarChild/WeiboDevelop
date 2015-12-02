@@ -11,10 +11,7 @@
 @property(nonatomic,assign)BOOL recommended;
 
 @property(nonatomic,assign)NSInteger adCount;
-//@property(nonatomic,assign)BOOL timerClose;
+@property(nonatomic,strong)NSDictionary *headDataDic;
+@property(nonatomic,strong)NSDictionary *neckDataDic;
 
-
-
-- (void)addBtnTarget:(id)target action:(SEL)action;
-- (void)imgAction:(id)target action:(SEL)action;
 @end
