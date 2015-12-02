@@ -89,10 +89,6 @@
 		0F482EE71C0ECE7F00299E8C /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482EC11C0ECE7F00299E8C /* AddFriendViewController.m */; };
 		0F482EE81C0ECE7F00299E8C /* HomePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482EC41C0ECE7F00299E8C /* HomePageTableViewCell.m */; };
 		0F482EE91C0ECE7F00299E8C /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482EC61C0ECE7F00299E8C /* DataManager.m */; };
-		0F482EEA1C0ECE7F00299E8C /* PersonalCenerThirdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482EC91C0ECE7F00299E8C /* PersonalCenerThirdView.m */; };
-		0F482EEB1C0ECE7F00299E8C /* PersonalCenterFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482ECB1C0ECE7F00299E8C /* PersonalCenterFirstView.m */; };
-		0F482EEC1C0ECE7F00299E8C /* PersonalCenterSecondView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482ECE1C0ECE7F00299E8C /* PersonalCenterSecondView.m */; };
-		0F482EED1C0ECE7F00299E8C /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482ED01C0ECE7F00299E8C /* PersonalCenterViewController.m */; };
 		0F482EEE1C0ECE7F00299E8C /* PersonalNaviView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482ED21C0ECE7F00299E8C /* PersonalNaviView.m */; };
 		0F482EEF1C0ECE7F00299E8C /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F482ED41C0ECE7F00299E8C /* a.png */; };
 		0F482EF01C0ECE7F00299E8C /* advertisement1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F482ED51C0ECE7F00299E8C /* advertisement1.png */; };
@@ -109,6 +105,9 @@
 		0F482EFB1C0ECE7F00299E8C /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482EE11C0ECE7F00299E8C /* UserHeaderView.m */; };
 		0F482EFC1C0ECE7F00299E8C /* UserInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482EE41C0ECE7F00299E8C /* UserInfoTableView.m */; };
 		0F482EFD1C0ECE7F00299E8C /* UserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482EE61C0ECE7F00299E8C /* UserInfoTableViewCell.m */; };
+		0F482F341C0F0A7C00299E8C /* PersonalCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482F331C0F0A7C00299E8C /* PersonalCenterController.m */; };
+		0F482F371C0F127300299E8C /* PersonalCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482F361C0F127300299E8C /* PersonalCenterDataManager.m */; };
+		0F482F3A1C0F1AFE00299E8C /* PersonalCenterPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482F391C0F1AFE00299E8C /* PersonalCenterPhotoCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,15 +287,7 @@
 		0F482EC41C0ECE7F00299E8C /* HomePageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageTableViewCell.m; sourceTree = "<group>"; };
 		0F482EC51C0ECE7F00299E8C /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		0F482EC61C0ECE7F00299E8C /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		0F482EC81C0ECE7F00299E8C /* PersonalCenerThirdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenerThirdView.h; sourceTree = "<group>"; };
-		0F482EC91C0ECE7F00299E8C /* PersonalCenerThirdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenerThirdView.m; sourceTree = "<group>"; };
-		0F482ECA1C0ECE7F00299E8C /* PersonalCenterFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterFirstView.h; sourceTree = "<group>"; };
-		0F482ECB1C0ECE7F00299E8C /* PersonalCenterFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterFirstView.m; sourceTree = "<group>"; };
 		0F482ECC1C0ECE7F00299E8C /* PersonalCenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterProtocol.h; sourceTree = "<group>"; };
-		0F482ECD1C0ECE7F00299E8C /* PersonalCenterSecondView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterSecondView.h; sourceTree = "<group>"; };
-		0F482ECE1C0ECE7F00299E8C /* PersonalCenterSecondView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterSecondView.m; sourceTree = "<group>"; };
-		0F482ECF1C0ECE7F00299E8C /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
-		0F482ED01C0ECE7F00299E8C /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		0F482ED11C0ECE7F00299E8C /* PersonalNaviView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNaviView.h; sourceTree = "<group>"; };
 		0F482ED21C0ECE7F00299E8C /* PersonalNaviView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNaviView.m; sourceTree = "<group>"; };
 		0F482ED41C0ECE7F00299E8C /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a.png; sourceTree = "<group>"; };
@@ -317,6 +308,12 @@
 		0F482EE41C0ECE7F00299E8C /* UserInfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableView.m; sourceTree = "<group>"; };
 		0F482EE51C0ECE7F00299E8C /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
 		0F482EE61C0ECE7F00299E8C /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
+		0F482F321C0F0A7C00299E8C /* PersonalCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterController.h; sourceTree = "<group>"; };
+		0F482F331C0F0A7C00299E8C /* PersonalCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterController.m; sourceTree = "<group>"; };
+		0F482F351C0F127300299E8C /* PersonalCenterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterDataManager.h; sourceTree = "<group>"; };
+		0F482F361C0F127300299E8C /* PersonalCenterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterDataManager.m; sourceTree = "<group>"; };
+		0F482F381C0F1AFE00299E8C /* PersonalCenterPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterPhotoCell.h; sourceTree = "<group>"; };
+		0F482F391C0F1AFE00299E8C /* PersonalCenterPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterPhotoCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -706,14 +703,12 @@
 		0F482EC71C0ECE7F00299E8C /* PersonalCenter */ = {
 			isa = PBXGroup;
 			children = (
-				0F482EC81C0ECE7F00299E8C /* PersonalCenerThirdView.h */,
-				0F482EC91C0ECE7F00299E8C /* PersonalCenerThirdView.m */,
-				0F482ECA1C0ECE7F00299E8C /* PersonalCenterFirstView.h */,
-				0F482ECB1C0ECE7F00299E8C /* PersonalCenterFirstView.m */,
-				0F482ECD1C0ECE7F00299E8C /* PersonalCenterSecondView.h */,
-				0F482ECE1C0ECE7F00299E8C /* PersonalCenterSecondView.m */,
-				0F482ECF1C0ECE7F00299E8C /* PersonalCenterViewController.h */,
-				0F482ED01C0ECE7F00299E8C /* PersonalCenterViewController.m */,
+				0F482F321C0F0A7C00299E8C /* PersonalCenterController.h */,
+				0F482F331C0F0A7C00299E8C /* PersonalCenterController.m */,
+				0F482F381C0F1AFE00299E8C /* PersonalCenterPhotoCell.h */,
+				0F482F391C0F1AFE00299E8C /* PersonalCenterPhotoCell.m */,
+				0F482F351C0F127300299E8C /* PersonalCenterDataManager.h */,
+				0F482F361C0F127300299E8C /* PersonalCenterDataManager.m */,
 				0F482ED11C0ECE7F00299E8C /* PersonalNaviView.h */,
 				0F482ED21C0ECE7F00299E8C /* PersonalNaviView.m */,
 				0F482ECC1C0ECE7F00299E8C /* PersonalCenterProtocol.h */,
@@ -881,10 +876,8 @@
 				0F429F6A1C0E9D8A0003AE0C /* WBVisible.m in Sources */,
 				0F429F831C0E9D8A0003AE0C /* NSObject+MJKeyValue.m in Sources */,
 				0F429F7A1C0E9D8A0003AE0C /* ToSubscriptionViewController.m in Sources */,
-				0F482EED1C0ECE7F00299E8C /* PersonalCenterViewController.m in Sources */,
 				0F429F5E1C0E9D8A0003AE0C /* HotWeiboViewController.m in Sources */,
 				0F429F9B1C0E9D8A0003AE0C /* OneViewController.m in Sources */,
-				0F482EEC1C0ECE7F00299E8C /* PersonalCenterSecondView.m in Sources */,
 				0F429F871C0E9D8A0003AE0C /* NSData+ImageContentType.m in Sources */,
 				0F429F6E1C0E9D8A0003AE0C /* UserInfoView.m in Sources */,
 				0F482EE91C0ECE7F00299E8C /* DataManager.m in Sources */,
@@ -896,6 +889,7 @@
 				0F429F5C1C0E9D8A0003AE0C /* Find_SearchViewController.m in Sources */,
 				0F429F6B1C0E9D8A0003AE0C /* BodyView.m in Sources */,
 				0F429F7C1C0E9D8A0003AE0C /* MJExtensionConst.m in Sources */,
+				0F482F3A1C0F1AFE00299E8C /* PersonalCenterPhotoCell.m in Sources */,
 				0F429F8E1C0E9D8A0003AE0C /* SDWebImagePrefetcher.m in Sources */,
 				0F482EFC1C0ECE7F00299E8C /* UserInfoTableView.m in Sources */,
 				0F429F9A1C0E9D8A0003AE0C /* MessagePageController.m in Sources */,
@@ -904,12 +898,12 @@
 				0F429F6D1C0E9D8A0003AE0C /* ImageContext.m in Sources */,
 				0F429F641C0E9D8A0003AE0C /* WBPrivary.m in Sources */,
 				0F429F601C0E9D8A0003AE0C /* ImageSizeDownLoader.m in Sources */,
-				0F482EEA1C0ECE7F00299E8C /* PersonalCenerThirdView.m in Sources */,
 				0F429F801C0E9D8A0003AE0C /* MJPropertyType.m in Sources */,
 				0F429F781C0E9D8A0003AE0C /* ToGoodViewController.m in Sources */,
 				0F429F8A1C0E9D8A0003AE0C /* SDWebImageDecoder.m in Sources */,
 				0F429F981C0E9D8A0003AE0C /* PersonalPageController.m in Sources */,
 				0F429F7F1C0E9D8A0003AE0C /* MJPropertyKey.m in Sources */,
+				0F482F341C0F0A7C00299E8C /* PersonalCenterController.m in Sources */,
 				0F482EE71C0ECE7F00299E8C /* AddFriendViewController.m in Sources */,
 				0F482EFB1C0ECE7F00299E8C /* UserHeaderView.m in Sources */,
 				0F429F711C0E9D8A0003AE0C /* ToConnet.m in Sources */,
@@ -929,7 +923,6 @@
 				0F429F671C0E9D8A0003AE0C /* WBURLAnalyser.m in Sources */,
 				0F429F631C0E9D8A0003AE0C /* WBGeo.m in Sources */,
 				0F429F971C0E9D8A0003AE0C /* HomePageController.m in Sources */,
-				0F482EEB1C0ECE7F00299E8C /* PersonalCenterFirstView.m in Sources */,
 				0F429F901C0E9D8A0003AE0C /* UIImage+GIF.m in Sources */,
 				0F429F841C0E9D8A0003AE0C /* NSObject+MJProperty.m in Sources */,
 				0F429F651C0E9D8A0003AE0C /* WBRemind.m in Sources */,
@@ -951,6 +944,7 @@
 				0F429F8C1C0E9D8A0003AE0C /* SDWebImageDownloaderOperation.m in Sources */,
 				0F429F861C0E9D8A0003AE0C /* MKAnnotationView+WebCache.m in Sources */,
 				0F429F6F1C0E9D8A0003AE0C /* WBCellPreparer.m in Sources */,
+				0F482F371C0F127300299E8C /* PersonalCenterDataManager.m in Sources */,
 				0F429F7E1C0E9D8A0003AE0C /* MJProperty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

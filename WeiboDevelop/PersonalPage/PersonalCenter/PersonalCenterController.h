@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "PersonalCenterProtocol.h"
 #import "DataManager.h"
-@interface PersonalCenterViewController : UIViewController<PersonalCenterProtocol>
+@interface PersonalCenterController : UIViewController<PersonalCenterProtocol>
 @property(nonatomic,strong)WBUser *userData;
 @end

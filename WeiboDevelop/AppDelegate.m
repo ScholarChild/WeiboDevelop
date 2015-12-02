@@ -41,21 +41,25 @@
     UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
     
     MainMenuController* mainMenu=[MainMenuController new];
-    mainMenu.tabBarItem.title=@"+";
+
     mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_more" ofType:@"png" ]];
     
     UITabBarController* tabBarC =[UITabBarController new];
     //    传入数组。数组元素是各个视图控制器对象
+   
     tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
     //    设置被选中的视图控制器
     tabBarC.selectedViewController=homeNavi;
     //默认选中
+
     tabBarC.selectedIndex=0;
     //选中时的颜色
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     //背景颜色
-    tabBarC.tabBar.barTintColor=[UIColor blackColor];
+    tabBarC.tabBar.barTintColor=[UIColor whiteColor];
+    
     self.window.rootViewController = tabBarC;
+
 
     return YES;
 }
