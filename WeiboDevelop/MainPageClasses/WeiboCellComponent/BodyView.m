@@ -12,7 +12,7 @@
 
 @interface BodyView()
 {
-    UILabel* _textLabel;
+    UITextView* _textLabel;
     UIView<LayoutHeight> *_exBody;
 }
 
@@ -63,19 +63,39 @@
 
 - (void)addTextLabel
 {
-    _textLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    _textLabel.numberOfLines = 0;
-    _textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _textLabel = [[UITextView alloc]initWithFrame:CGRectZero];
+    [_textLabel setEditable:NO];
+    [_textLabel setSelectable:NO];
+    //_textLabel.numberOfLines = 0;
+    //_textLabel.lineBreakMode = NSLineBreakByCharWrapping;
     [self addSubview:_textLabel];
 }
 
 
 
 #pragma mark setBody
-- (void)setBodyText:(NSString*)text
+
+- (void)setBodyText:(NSString *)text retweetText:(NSString*)retweetText retweetUser:(NSString*)userName
 {
-    _textLabel.text = text;;
+    [self setBodyText:text retweetText:retweetText retweetUser:userName imagesAtRetweetBody:nil];
 }
+
+- (void)setBodyText:(NSString *)text retweetText:(NSString *)retweetText retweetUser:(NSString *)userName imagesAtRetweetBody:(NSArray *)urlArray
+{
+    [self setBodyText:text];
+    if (retweetText && userName) {
+        NSString* exText = [NSString stringWithFormat:@"@%@ :%@",userName,retweetText];
+        BodyView* retweetBody = [[BodyView alloc]initWithFrame:CGRectZero];
+        [retweetBody setBodyText:exText URLOfImagesAtBody:urlArray];
+        [self setExBody:retweetBody];
+        
+        [retweetBody setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+        for (UIView* subviews in [retweetBody subviews]) {
+            [subviews setBackgroundColor:[UIColor clearColor]];
+        }
+    }
+}
+
 - (void)setBodyText:(NSString *)text URLOfImagesAtBody:(NSArray *)urlArray
 {
     [self setBodyText:text];
@@ -86,28 +106,14 @@
     }
 }
 
-- (void)setBodyText:(NSString *)text retweetText:(NSString*)retweetText retweetUser:(NSString*)userName
+- (void)setBodyText:(NSString*)text
 {
-    [self setBodyText:text retweetText:retweetText retweetUser:userName imagesAtRetweetBody:nil];
+    _textLabel.attributedText = [self attributeTextFromText:text];
 }
 
-- (void)setBodyText:(NSString *)text retweetText:(NSString *)retweetText retweetUser:(NSString *)userName imagesAtRetweetBody:(NSArray *)urlArray
+- (NSAttributedString*)attributeTextFromText:(NSString*)text
 {
-    [self setBodyText:text];
-    
-    if (retweetText && userName) {
-        NSString* exText = [NSString stringWithFormat:@"@%@ :%@",userName,retweetText];
-        BodyView* retweetBody = [[BodyView alloc]initWithFrame:CGRectZero];
-        [retweetBody setBodyText:exText];
-        [retweetBody setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
-        [self setExBody:retweetBody];
-        
-        if (urlArray) {
-            ImageContext* context = [[ImageContext alloc]initWithFrame:CGRectZero];
-            [context setImagesWithUrlArr:urlArray];
-            [retweetBody setExBody:context];
-        }
-    }
+    return [[NSAttributedString alloc]initWithString:text];
 }
 
 - (void)setExBody:(UIView<LayoutHeight> *)exBody
@@ -118,6 +124,8 @@
     _exBody = exBody;
     [self addSubview:_exBody];
 }
+
+
 
 
 @end

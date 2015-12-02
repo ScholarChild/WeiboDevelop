@@ -19,10 +19,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     HomePageController* home=[HomePageController new];
     //TabBar按钮的名字
-    home.tabBarItem.title=@"主页";
-    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_home" ofType:@"png" ]];
-    UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
-    
+//    home.tabBarItem.title=@"主页";
+//    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_home" ofType:@"png" ]];
+//    UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
+//    
     
     MessagePageController* message=[MessagePageController new];
     message.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_message" ofType:@"png" ]];
@@ -46,9 +46,9 @@
     
     UITabBarController* tabBarC =[UITabBarController new];
     //    传入数组。数组元素是各个视图控制器对象
-    tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
+    tabBarC.viewControllers=@[home,messageNavi,mainMenu,findNavi,personalNavi];
     //    设置被选中的视图控制器
-    tabBarC.selectedViewController=homeNavi;
+    tabBarC.selectedViewController=home;
     //默认选中
     tabBarC.selectedIndex=0;
     //选中时的颜色

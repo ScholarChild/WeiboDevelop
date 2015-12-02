@@ -7,6 +7,7 @@
 //
 
 #import "ImageSizeDownLoader.h"
+#import "SDImageCache.h"
 
 @implementation ImageSizeDownLoader
 
