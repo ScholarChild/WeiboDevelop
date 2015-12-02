@@ -12,8 +12,6 @@
 #import "WBComment.h"
 #import "MJExtension.h"
 
-
-
 @interface WBURLAnalyser()
 {
     NSMutableArray* _infoList;
@@ -50,12 +48,12 @@
 }
 
 
-- (NSArray *)latestStatuses
+- (NSArray *)latestHomeStatuses
 {
-    return [self latestStatusesWithCount:20];
+    return [self latestHomeStatusesWithCount:20];
 }
 
-- (NSArray *)latestStatusesWithCount:(NSInteger)count;
+- (NSArray *)latestHomeStatusesWithCount:(NSInteger)count;
 {
     NSString* urlStr = [NSString stringWithFormat:@"https://api.weibo.com/2/statuses/home_timeline.json?%@&count=%lu",[self requestkey],count];
     
@@ -64,6 +62,32 @@
     NSArray* statuses = [self statusesFromDicArray:stuatusDataArr];
     return statuses;
 }
+
+- (NSArray*)lastestPersonalStatus
+{
+    NSString* request = [[NSString stringWithFormat:@"https://api.weibo.com/2/statuses/user_timeline.json?%@&screen_name=%@",[self requestkey],PersonalUserName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary* jsonDic = [self jsonDicWithURL:[NSURL URLWithString:request]];
+    NSArray* stuatusDataArr = [jsonDic objectForKey:@"statuses"];
+    NSArray* statuses = [self statusesFromDicArray:stuatusDataArr];
+    return statuses;
+}
+
+- (WBUser*)personalInfo
+{
+    return [self personalInfoWithUserName:PersonalUserName];
+}
+
+
+- (WBUser*)personalInfoWithUserName:(NSString*)userName
+{
+    NSString* request = [[NSString stringWithFormat:@"https://api.weibo.com/2/users/show.json?%@&screen_name=%@",[self requestkey],userName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary* jsonDic = [self jsonDicWithURL:[NSURL URLWithString:request]];
+    WBUser* user = [WBUser mj_objectWithKeyValues:jsonDic];
+    return user;
+}
+
 
 - (NSString*)requestkey
 {
@@ -79,17 +103,6 @@
         key = [NSString stringWithFormat:@"access_token=%@&source=%@",access_token,appKey];
     }
     return key;
-}
-
-- (WBUser*)userInfoWithUserName:(NSString*)userName
-{
-
-    NSString* request = [[NSString stringWithFormat:@"https://api.weibo.com/2/users/show.json?%@&screen_name=%@",[self requestkey],userName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSDictionary* jsonDic = [self jsonDicWithURL:[NSURL URLWithString:request]];
-//    WBUser* user = [[WBUser alloc]initWithDictionary:jsonDic];
-    WBUser* user = [WBUser mj_objectWithKeyValues:jsonDic];
-    return user;
 }
 
 - (NSDictionary*)jsonDicWithURL:(NSURL*)url

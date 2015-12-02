@@ -10,6 +10,7 @@
 
 FOUNDATION_EXTERN NSString* const access_token;
 FOUNDATION_EXTERN NSString* const appKey;
+FOUNDATION_EXTERN NSString* const PersonalUserName;
 FOUNDATION_EXTERN NSString* const NULLString;
 
 FOUNDATION_EXTERN CGFloat const weiboCellviewInterval;

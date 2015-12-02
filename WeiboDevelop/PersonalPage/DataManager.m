@@ -13,7 +13,7 @@
 {
     //
     WBURLAnalyser *analyser = [WBURLAnalyser new];
-    WBUser * userData = [analyser userInfoWithUserName:@"真小寒"];
+    WBUser * userData = [analyser personalInfoWithUserName:@"真小寒"];
    
     return userData;
 }
