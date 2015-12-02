@@ -1,4 +1,4 @@
-#import "HomePageViewController.h"
+#import "PersonalPageController.h"
 #import "PersonalCenterViewController.h"
 #import "DataManager.h"
 #import "HomePageTableViewCell.h"
@@ -6,14 +6,14 @@
 #import "WBUser.h"
 #import "AddFriendViewController.h"
 
-@interface HomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface PersonalPageController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_tableview;
     NSArray *_dataArr;
     WBUser * userData;
 }
 @end
-@implementation HomePageViewController
+@implementation PersonalPageController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

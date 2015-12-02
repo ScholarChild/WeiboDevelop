@@ -80,7 +80,7 @@
 		0F429F951C0E9D8A0003AE0C /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F3A1C0E9D8A0003AE0C /* UIView+WebCacheOperation.m */; };
 		0F429F961C0E9D8A0003AE0C /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F3D1C0E9D8A0003AE0C /* FindViewController.m */; };
 		0F429F971C0E9D8A0003AE0C /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F3F1C0E9D8A0003AE0C /* HomePageController.m */; };
-		0F429F981C0E9D8A0003AE0C /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F411C0E9D8A0003AE0C /* HomePageViewController.m */; };
+		0F429F981C0E9D8A0003AE0C /* PersonalPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F411C0E9D8A0003AE0C /* PersonalPageController.m */; };
 		0F429F991C0E9D8A0003AE0C /* MainMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F431C0E9D8A0003AE0C /* MainMenuController.m */; };
 		0F429F9A1C0E9D8A0003AE0C /* MessagePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F451C0E9D8A0003AE0C /* MessagePageController.m */; };
 		0F429F9B1C0E9D8A0003AE0C /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429F471C0E9D8A0003AE0C /* OneViewController.m */; };
@@ -272,8 +272,8 @@
 		0F429F3D1C0E9D8A0003AE0C /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
 		0F429F3E1C0E9D8A0003AE0C /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
 		0F429F3F1C0E9D8A0003AE0C /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageController.m; sourceTree = "<group>"; };
-		0F429F401C0E9D8A0003AE0C /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
-		0F429F411C0E9D8A0003AE0C /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		0F429F401C0E9D8A0003AE0C /* PersonalPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPageController.h; sourceTree = "<group>"; };
+		0F429F411C0E9D8A0003AE0C /* PersonalPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPageController.m; sourceTree = "<group>"; };
 		0F429F421C0E9D8A0003AE0C /* MainMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuController.h; sourceTree = "<group>"; };
 		0F429F431C0E9D8A0003AE0C /* MainMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuController.m; sourceTree = "<group>"; };
 		0F429F441C0E9D8A0003AE0C /* MessagePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePageController.h; sourceTree = "<group>"; };
@@ -651,8 +651,8 @@
 				0F429F3D1C0E9D8A0003AE0C /* FindViewController.m */,
 				0F429F3E1C0E9D8A0003AE0C /* HomePageController.h */,
 				0F429F3F1C0E9D8A0003AE0C /* HomePageController.m */,
-				0F429F401C0E9D8A0003AE0C /* HomePageViewController.h */,
-				0F429F411C0E9D8A0003AE0C /* HomePageViewController.m */,
+				0F429F401C0E9D8A0003AE0C /* PersonalPageController.h */,
+				0F429F411C0E9D8A0003AE0C /* PersonalPageController.m */,
 				0F429F421C0E9D8A0003AE0C /* MainMenuController.h */,
 				0F429F431C0E9D8A0003AE0C /* MainMenuController.m */,
 				0F429F441C0E9D8A0003AE0C /* MessagePageController.h */,
@@ -908,7 +908,7 @@
 				0F429F801C0E9D8A0003AE0C /* MJPropertyType.m in Sources */,
 				0F429F781C0E9D8A0003AE0C /* ToGoodViewController.m in Sources */,
 				0F429F8A1C0E9D8A0003AE0C /* SDWebImageDecoder.m in Sources */,
-				0F429F981C0E9D8A0003AE0C /* HomePageViewController.m in Sources */,
+				0F429F981C0E9D8A0003AE0C /* PersonalPageController.m in Sources */,
 				0F429F7F1C0E9D8A0003AE0C /* MJPropertyKey.m in Sources */,
 				0F482EE71C0ECE7F00299E8C /* AddFriendViewController.m in Sources */,
 				0F482EFB1C0ECE7F00299E8C /* UserHeaderView.m in Sources */,
