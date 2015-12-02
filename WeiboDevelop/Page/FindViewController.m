@@ -12,7 +12,7 @@
 #import "FindModal.h"
 #import "HotWeiboViewController.h"
 
-#import "ArrInfo.h"
+#import "DataManager.h"
 
 #import "FindPageTableViewCell.h"
 #import "UserInfoTableView.h"
@@ -188,10 +188,8 @@
 
 - (void)initTableView
 {
-    _dataArr = [NSMutableArray arrayWithArray:[ArrInfo getPlistArr:@"FindPageInfo"]];
-    CGRect myFrame = CGRectOffset(self.view.frame, 0, 44);
-    
-    _tableview = [[UserInfoTableView alloc]initWithFrame:myFrame style:UITableViewStyleGrouped];
+    _dataArr = [NSMutableArray arrayWithArray:[DataManager getPlistDataWithName:@"FindPageInfo"]];
+    _tableview = [[UserInfoTableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-114) style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     [self.view addSubview:_tableview];}
@@ -203,49 +201,29 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary * dic = [[_dataArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-    
     FindPageTableViewCell*cell = [[FindPageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    
-    
+    NSDictionary * dic = [[_dataArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
     if (indexPath.section == 0 ) {
         if (indexPath.row == 0) {
-            for (int i = 0; i < 4; i++) {
-                NSString *imageName = [dic objectForKey:[NSString stringWithFormat:@"image%d",i+1]];
-                [cell.popularizeImgNameArr addObject:imageName] ;
-                cell.adCount = [dic allKeys].count;
-            }
             
-            [cell setHeadCell];
-            [cell imgAction:self action:@selector(adPushAction:)];
+            [cell initHeadSubviews];
+            cell.headDataDic = dic;
+            
         }
     }
     else if(indexPath.section == 1)
     {
-        for (int i = 0; i < 4; i++) {
-            NSString *newsText = [dic objectForKey:[NSString stringWithFormat:@"news%d",i+1]];
-            [cell.newsArr addObject:newsText];
-        }
-        
-        [cell setNeckCell];
-        //        cell.pushNewsDelegate = self;
-        //        _newsTextArr = cell.newsArr;
-        [cell addBtnTarget:self action:@selector(findPagePushNews:)];
-        
+        [cell initNeckSubviews];
+        cell.neckDataDic = dic;
         
     }
     else
     {
-        cell.iconName = [dic objectForKey:@"typeIcon"];
-        cell.name = [dic objectForKey:@"name"];
-        cell.detail = [dic objectForKey:@"detail"];
-        [cell setBodyCell];
+        [cell initBodySubviews];
+        cell.dataDic = dic;
+        
         
     }
-    
-    cell.selectedBackgroundView = [[UIView alloc]initWithFrame:cell.frame];
-    cell.selectedBackgroundView.backgroundColor =[UIColor redColor];
-    //NSAttributedString*
     return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -295,7 +273,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSArray *aroundInfoArr = [ArrInfo getPlistArr:@"Arround"];
+    NSArray *aroundInfoArr = [DataManager getPlistDataWithName:@"Arround"];
     int value = arc4random() % 4;
     NSString *str = [aroundInfoArr objectAtIndex:value];
     NSMutableArray * dataArr = [[NSMutableArray alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FindPageInfo" ofType:@"plist"]];
@@ -308,8 +286,6 @@
     
     [_dataArr replaceObjectAtIndex:3 withObject:SectionArr];
 }
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

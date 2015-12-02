@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UserInfoTableViewCell : UITableViewCell
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSString *detail;
-@property(nonatomic,strong)NSString *iconName;
 
-
-- (void)setBodyCell;
-- (void)setHeadCell;
-- (void)setNeckCell;
+@property(nonatomic,strong)NSDictionary *dataDic;
+- (void)initBodySubviews;
+- (void)initHeadSubviews;
+- (void)initNeckSubviews;
 @end
