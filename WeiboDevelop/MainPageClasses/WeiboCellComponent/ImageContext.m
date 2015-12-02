@@ -74,28 +74,28 @@
 
 - (CGFloat)onePicModeWithURLString:(NSString *)urlString
 {
-    NSURL* imgURL = [NSURL URLWithString:urlString];
-    
-    CGSize imgSize = [ImageSizeDownLoader downloadImageSizeWithURL:imgURL];
-    CGFloat contextWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - weiboCellviewInterval*2.0f;
-    CGFloat imgPrintWidth = 0;
-    CGFloat imgPrintHeight = 0;
-    CGFloat pantograph = 1;
-    
-    if (imgSize.width / imgSize.height < 1.05) {
-        imgPrintWidth = contextWidth * 1/2;
-    }else {
-        imgPrintWidth = contextWidth * 2/3;
-    }
-    pantograph = imgSize.width / imgPrintWidth;
-    imgPrintHeight = imgSize.height / pantograph;
-    
-    CGRect imgPrintFrame = CGRectMake(weiboCellviewInterval, weiboCellviewInterval, imgPrintWidth, imgPrintHeight);
-    UIImageView* imgView = [[UIImageView alloc]initWithFrame:imgPrintFrame];
-    [imgView setBackgroundColor:[UIColor yellowColor]];
-    [imgView sd_setImageWithURL:imgURL];
-    [self addSubview:imgView];
-    return imgPrintHeight;
+//    NSURL* imgURL = [NSURL URLWithString:urlString];
+//    
+//    CGSize imgSize = [ImageSizeDownLoader downloadImageSizeWithURL:imgURL];
+//    CGFloat contextWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - weiboCellviewInterval*2.0f;
+//    CGFloat imgPrintWidth = 0;
+//    CGFloat imgPrintHeight = 0;
+//    CGFloat pantograph = 1;
+//    
+//    if (imgSize.width / imgSize.height < 1.05) {
+//        imgPrintWidth = contextWidth * 1/2;
+//    }else {
+//        imgPrintWidth = contextWidth * 2/3;
+//    }
+//    pantograph = imgSize.width / imgPrintWidth;
+//    imgPrintHeight = imgSize.height / pantograph;
+//    
+//    CGRect imgPrintFrame = CGRectMake(weiboCellviewInterval, weiboCellviewInterval, imgPrintWidth, imgPrintHeight);
+//    UIImageView* imgView = [[UIImageView alloc]initWithFrame:imgPrintFrame];
+//    [imgView setBackgroundColor:[UIColor yellowColor]];
+//    [imgView sd_setImageWithURL:imgURL];
+//    [self addSubview:imgView];
+    return 60;
 }
 
 //////////////

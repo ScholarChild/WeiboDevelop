@@ -63,7 +63,7 @@
 
 - (void)setAvatarImgWithURL:(NSURL *)imgURL
 {
-    [_avatar sd_setImageWithURL:imgURL placeholderImage:[UIImage imageNamed:@""]];
+    [_avatar sd_setImageWithURL:imgURL];
 }
 
 - (void)setUserName:(NSString*)userName
