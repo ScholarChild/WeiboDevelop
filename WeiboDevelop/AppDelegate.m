@@ -1,16 +1,8 @@
-//
-//  AppDelegate.m
-//  微博开发1
-//
-//  Created by Ibokan on 15/11/23.
-//  Copyright (c) 2015年 eoe. All rights reserved.
-//
-
 #import "AppDelegate.h"
 #import "HomePageController.h"
 #import "MessagePageController.h"
 #import "FindViewController.h"
-#import "HomePageViewController.h"
+#import "PersonalPageController.h"
 
 #import "MainMenuController.h"
 
@@ -43,7 +35,7 @@
     findView.tabBarItem.title=@"搜索";
     findView.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_search_n" ofType:@"png" ]];
     
-    HomePageViewController* personal=[HomePageViewController new];
+    PersonalPageController* personal=[PersonalPageController new];
     personal.tabBarItem.title=@"个人信息";
     personal.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_selfinfo" ofType:@"png" ]];
     UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
@@ -63,7 +55,7 @@
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     //背景颜色
     tabBarC.tabBar.barTintColor=[UIColor blackColor];
-    self.window.rootViewController = personalNavi;
+    self.window.rootViewController = tabBarC;
 
     return YES;
 }
