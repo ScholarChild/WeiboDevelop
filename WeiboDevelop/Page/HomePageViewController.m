@@ -99,8 +99,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0&&indexPath.row ==0) {
         PersonalCenterViewController *personalCenterVC = [PersonalCenterViewController new];
+        personalCenterVC.userData = userData;
         [self.navigationController pushViewController:personalCenterVC animated:YES];
     }
 }

@@ -63,7 +63,7 @@
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     //背景颜色
     tabBarC.tabBar.barTintColor=[UIColor blackColor];
-    self.window.rootViewController=tabBarC;
+    self.window.rootViewController = personalNavi;
 
     return YES;
 }

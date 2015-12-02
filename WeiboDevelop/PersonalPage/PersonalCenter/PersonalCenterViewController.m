@@ -1,5 +1,5 @@
 #import "PersonalCenterViewController.h"
-#import "DataManager.h"
+
 #import "UserHeaderView.h"
 #import "PersonalCenterFirstView.h"
 #import "PersonalNaviView.h"
@@ -20,7 +20,7 @@
 
     CGFloat contentHeight;
     
-    WBUser *userData;
+//    WBUser *userData;
 }
 @end
 
@@ -35,7 +35,7 @@
 
     
     headerView = [[UserHeaderView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, 200)];
-    headerView.userData = [DataManager dataJson:@"真小寒"];
+    headerView.userData = _userData;
 
     [headerView layoutSubviews];
     naviView = [[PersonalNaviView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(headerView.frame), Width, 40)];
