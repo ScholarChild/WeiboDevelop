@@ -32,7 +32,7 @@
 		0F429F651C0E9D8A0003AE0C /* WBRemind.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429ED01C0E9D8A0003AE0C /* WBRemind.m */; };
 		0F429F661C0E9D8A0003AE0C /* WBStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429ED21C0E9D8A0003AE0C /* WBStatus.m */; };
 		0F429F671C0E9D8A0003AE0C /* WBURLAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429ED41C0E9D8A0003AE0C /* WBURLAnalyser.m */; };
-		0F429F681C0E9D8A0003AE0C /* WBURLShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429ED61C0E9D8A0003AE0C /* WBURLShort.m */; };
+		0F429F681C0E9D8A0003AE0C /* WBURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429ED61C0E9D8A0003AE0C /* WBURL.m */; };
 		0F429F691C0E9D8A0003AE0C /* WBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429ED81C0E9D8A0003AE0C /* WBUser.m */; };
 		0F429F6A1C0E9D8A0003AE0C /* WBVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EDA1C0E9D8A0003AE0C /* WBVisible.m */; };
 		0F429F6B1C0E9D8A0003AE0C /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EDD1C0E9D8A0003AE0C /* BodyView.m */; };
@@ -108,6 +108,7 @@
 		0F482F341C0F0A7C00299E8C /* PersonalCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482F331C0F0A7C00299E8C /* PersonalCenterController.m */; };
 		0F482F371C0F127300299E8C /* PersonalCenterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482F361C0F127300299E8C /* PersonalCenterDataManager.m */; };
 		0F482F3A1C0F1AFE00299E8C /* PersonalCenterPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F482F391C0F1AFE00299E8C /* PersonalCenterPhotoCell.m */; };
+		0F819DD91C10517400C90920 /* TextAttributeTranster.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F819DD81C10517400C90920 /* TextAttributeTranster.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,8 +173,8 @@
 		0F429ED21C0E9D8A0003AE0C /* WBStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatus.m; sourceTree = "<group>"; };
 		0F429ED31C0E9D8A0003AE0C /* WBURLAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBURLAnalyser.h; sourceTree = "<group>"; };
 		0F429ED41C0E9D8A0003AE0C /* WBURLAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBURLAnalyser.m; sourceTree = "<group>"; };
-		0F429ED51C0E9D8A0003AE0C /* WBURLShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBURLShort.h; sourceTree = "<group>"; };
-		0F429ED61C0E9D8A0003AE0C /* WBURLShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBURLShort.m; sourceTree = "<group>"; };
+		0F429ED51C0E9D8A0003AE0C /* WBURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBURL.h; sourceTree = "<group>"; };
+		0F429ED61C0E9D8A0003AE0C /* WBURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBURL.m; sourceTree = "<group>"; };
 		0F429ED71C0E9D8A0003AE0C /* WBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUser.h; sourceTree = "<group>"; };
 		0F429ED81C0E9D8A0003AE0C /* WBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUser.m; sourceTree = "<group>"; };
 		0F429ED91C0E9D8A0003AE0C /* WBVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBVisible.h; sourceTree = "<group>"; };
@@ -314,6 +315,8 @@
 		0F482F361C0F127300299E8C /* PersonalCenterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterDataManager.m; sourceTree = "<group>"; };
 		0F482F381C0F1AFE00299E8C /* PersonalCenterPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterPhotoCell.h; sourceTree = "<group>"; };
 		0F482F391C0F1AFE00299E8C /* PersonalCenterPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterPhotoCell.m; sourceTree = "<group>"; };
+		0F819DD71C10517400C90920 /* TextAttributeTranster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAttributeTranster.h; sourceTree = "<group>"; };
+		0F819DD81C10517400C90920 /* TextAttributeTranster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAttributeTranster.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,8 +456,8 @@
 		0F429EBF1C0E9D8A0003AE0C /* MainPageClasses */ = {
 			isa = PBXGroup;
 			children = (
-				0F429EC01C0E9D8A0003AE0C /* CalculaterUtility */,
 				0F429EC51C0E9D8A0003AE0C /* WBDataObject */,
+				0F429EC01C0E9D8A0003AE0C /* CalculaterUtility */,
 				0F429EDB1C0E9D8A0003AE0C /* WeiboCellComponent */,
 			);
 			path = MainPageClasses;
@@ -467,6 +470,8 @@
 				0F429EC21C0E9D8A0003AE0C /* DateTransformer.m */,
 				0F429EC31C0E9D8A0003AE0C /* ImageSizeDownLoader.h */,
 				0F429EC41C0E9D8A0003AE0C /* ImageSizeDownLoader.m */,
+				0F819DD71C10517400C90920 /* TextAttributeTranster.h */,
+				0F819DD81C10517400C90920 /* TextAttributeTranster.m */,
 			);
 			path = CalculaterUtility;
 			sourceTree = "<group>";
@@ -489,8 +494,8 @@
 				0F429ED21C0E9D8A0003AE0C /* WBStatus.m */,
 				0F429ED31C0E9D8A0003AE0C /* WBURLAnalyser.h */,
 				0F429ED41C0E9D8A0003AE0C /* WBURLAnalyser.m */,
-				0F429ED51C0E9D8A0003AE0C /* WBURLShort.h */,
-				0F429ED61C0E9D8A0003AE0C /* WBURLShort.m */,
+				0F429ED51C0E9D8A0003AE0C /* WBURL.h */,
+				0F429ED61C0E9D8A0003AE0C /* WBURL.m */,
 				0F429ED71C0E9D8A0003AE0C /* WBUser.h */,
 				0F429ED81C0E9D8A0003AE0C /* WBUser.m */,
 				0F429ED91C0E9D8A0003AE0C /* WBVisible.h */,
@@ -929,9 +934,10 @@
 				0F429F791C0E9D8A0003AE0C /* ToMessageboxViewController.m in Sources */,
 				0F429F751C0E9D8A0003AE0C /* SearchViewController.m in Sources */,
 				0F429F561C0E9D8A0003AE0C /* Constant.m in Sources */,
+				0F819DD91C10517400C90920 /* TextAttributeTranster.m in Sources */,
 				0F482EFD1C0ECE7F00299E8C /* UserInfoTableViewCell.m in Sources */,
 				0F429F581C0E9D8A0003AE0C /* FindPageNewsVIew.m in Sources */,
-				0F429F681C0E9D8A0003AE0C /* WBURLShort.m in Sources */,
+				0F429F681C0E9D8A0003AE0C /* WBURL.m in Sources */,
 				0F429F911C0E9D8A0003AE0C /* UIImage+MultiFormat.m in Sources */,
 				0F429F701C0E9D8A0003AE0C /* WeiboCell.m in Sources */,
 				0F429F5D1C0E9D8A0003AE0C /* HotWeiboCatalogueView.m in Sources */,

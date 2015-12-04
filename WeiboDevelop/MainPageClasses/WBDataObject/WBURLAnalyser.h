@@ -40,9 +40,11 @@
  *
  * @result WBUser 存储个人信息的对象
  */
-- (WBUser*)personalInfo;
+- (WBUser*)personalInfoOfCurrentUser;
 /*!
  * @discussion 返回当前指定用户的个人信息
+ *
+ * @param userName 用户名
  *
  * @warning : 查询非当前用户的信息时，将无法获取其个人简介、认证原因、粉丝数、关注数、微博数及最近一条微博内容。
  *
@@ -50,5 +52,33 @@
  */
 - (WBUser*)personalInfoWithUserName:(NSString*)userName;
 
+/*!
+ * @discussion 构建一个访问个人信息的请求URL
+ *
+ * @param userName 用户名
+ *
+ * @warning : 查询非当前用户的信息时，将无法获取其个人简介、认证原因、粉丝数、关注数、微博数及最近一条微博内容。
+ *
+ * @result 构建好请求的URL对象
+ */
+- (NSURL*)personalRequestWithUserName:(NSString*)userName;
+/*!
+ * @discussion 构建一个搜索话题的请求URL
+ *
+ * @param keyWord 搜索的话题关键字，只能是＃＃之间的关键字
+ *
+ * @warning : 该请求为高级接口，目前可以构建请求，但是返回的是错误信息的json
+ *
+ * @result 构建好请求的URL对象
+ */
+- (NSURL*)topicSearchRequestWithSearchKeyword:(NSString*)keyWord;
+/*!
+ * @discussion 将传入的短链字符转化为长链接，并将其封装成URL对象
+ *
+ * @param shortURL 短链接的文本；
+ *
+ * @result 长链接的URL对象
+ */
+- (NSURL*)longURLFromShortURLString:(NSString*)shortURLString;
 
 @end

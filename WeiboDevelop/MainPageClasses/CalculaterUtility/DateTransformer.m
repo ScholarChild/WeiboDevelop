@@ -33,7 +33,7 @@
         if (dayInterval < 2) {
             timeString = [NSString stringWithFormat:@"昨天 %@",[dateString substringWithRange:NSMakeRange(11, 5)]];
         }else{
-            timeString = [dateString substringWithRange:NSMakeRange(5, 5)];
+            timeString = [dateString substringWithRange:NSMakeRange(5, 11)];
         }
     }else{
         int hour = timeInterval / 3600;

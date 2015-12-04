@@ -8,7 +8,7 @@
 
 #import "WBDataObject.h"
 
-@interface WBURLShort : WBDataObject
+@interface WBURL : WBDataObject
 
 @property (nonatomic,retain)NSString*	url_short;//短链接
 @property (nonatomic,retain)NSString*	url_long;//原始长链接

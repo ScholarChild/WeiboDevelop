@@ -19,46 +19,46 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     HomePageController* home=[HomePageController new];
     //TabBar按钮的名字
-    home.tabBarItem.title=@"主页";
-    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_home" ofType:@"png" ]];
-    UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
+//    home.tabBarItem.title=@"主页";
+//    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_home" ofType:@"png" ]];
+//    UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
+//    
+//    
+//    MessagePageController* message=[MessagePageController new];
+//    message.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_message" ofType:@"png" ]];
+//    message.tabBarItem.title=@"消息";
+//    UINavigationController *messageNavi=[[UINavigationController alloc]initWithRootViewController:message];
+//    
+//    
+//    FindViewController* findView = [FindViewController new];
+//    UINavigationController *findNavi = [[UINavigationController alloc] initWithRootViewController:findView];
+//    findView.tabBarItem.title=@"搜索";
+//    findView.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_search_n" ofType:@"png" ]];
+//    
+//    PersonalPageController* personal=[PersonalPageController new];
+//    personal.tabBarItem.title=@"个人信息";
+//    personal.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_selfinfo" ofType:@"png" ]];
+//    UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
+//    
+//    MainMenuController* mainMenu=[MainMenuController new];
+//
+//    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_more" ofType:@"png" ]];
+//    
+//    UITabBarController* tabBarC =[UITabBarController new];
+//    //    传入数组。数组元素是各个视图控制器对象
+//   
+//    tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
+//    //    设置被选中的视图控制器
+//    tabBarC.selectedViewController=homeNavi;
+//    //默认选中
+//
+//    tabBarC.selectedIndex=0;
+//    //选中时的颜色
+//    tabBarC.tabBar.tintColor=[UIColor orangeColor];
+//    //背景颜色
+//    tabBarC.tabBar.barTintColor=[UIColor whiteColor];
     
-    
-    MessagePageController* message=[MessagePageController new];
-    message.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_message" ofType:@"png" ]];
-    message.tabBarItem.title=@"消息";
-    UINavigationController *messageNavi=[[UINavigationController alloc]initWithRootViewController:message];
-    
-    
-    FindViewController* findView = [FindViewController new];
-    UINavigationController *findNavi = [[UINavigationController alloc] initWithRootViewController:findView];
-    findView.tabBarItem.title=@"搜索";
-    findView.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_search_n" ofType:@"png" ]];
-    
-    PersonalPageController* personal=[PersonalPageController new];
-    personal.tabBarItem.title=@"个人信息";
-    personal.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_selfinfo" ofType:@"png" ]];
-    UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
-    
-    MainMenuController* mainMenu=[MainMenuController new];
-
-    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_more" ofType:@"png" ]];
-    
-    UITabBarController* tabBarC =[UITabBarController new];
-    //    传入数组。数组元素是各个视图控制器对象
-   
-    tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
-    //    设置被选中的视图控制器
-    tabBarC.selectedViewController=homeNavi;
-    //默认选中
-
-    tabBarC.selectedIndex=0;
-    //选中时的颜色
-    tabBarC.tabBar.tintColor=[UIColor orangeColor];
-    //背景颜色
-    tabBarC.tabBar.barTintColor=[UIColor whiteColor];
-    
-    self.window.rootViewController = tabBarC;
+    self.window.rootViewController = home;
 
 
     return YES;

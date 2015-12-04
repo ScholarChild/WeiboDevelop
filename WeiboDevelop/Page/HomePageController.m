@@ -30,28 +30,11 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self addNavi];
     [self initTableView];
     [self updateStatusList];
     [self prepareForStatus];
 }
 
-- (void)addNavi
-{
-#pragma mark 改页面
-    //页面跳转使用模态跳转,自定义navigationBar
-    UINavigationBar* bar=[[UINavigationBar alloc]initWithFrame:CGRectMake(0, 20,CGRectGetWidth(self.view.frame), 44)];//定义一个NavigationBar，距离屏幕20，一个屏幕宽，44高度
-    UINavigationItem* item=[[UINavigationItem alloc]initWithTitle:@"标题"];
-    UIBarButtonItem* leftBar=[[UIBarButtonItem alloc]initWithTitle:@"后退" style:UIBarButtonItemStylePlain  target:self action:@selector(leftAction)];
-    item.leftBarButtonItem=leftBar;
-    [bar pushNavigationItem:item animated:NO];//设置好BarButtonItem之后将Item绑定到Bar中
-    [self.view addSubview:bar];
-}
-
-- (void)leftAction
-{
-    
-}
 
 
 - (void)initTableView
@@ -89,7 +72,7 @@
     
     WBCellPreparer* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
     [preparer constructCell:cell];
-    
+
     return cell;
 }
 
