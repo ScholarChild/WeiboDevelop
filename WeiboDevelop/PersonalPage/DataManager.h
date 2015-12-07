@@ -2,7 +2,7 @@
 #import "WBURLAnalyser.h"
 #import "WBUser.h"
 @interface DataManager : NSObject
-+ (WBUser *)dataJson:(NSString *)name;
++ (WBUser *)dataJson;
 
 + (NSArray *)getPlistDataWithName:(NSString *)plistName;
 

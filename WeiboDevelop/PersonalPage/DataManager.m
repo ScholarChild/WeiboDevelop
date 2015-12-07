@@ -9,11 +9,11 @@
 
     return dataArr;
 }
-+ (WBUser *)dataJson:(NSString *)name
++ (WBUser *)dataJson
 {
     //
     WBURLAnalyser *analyser = [WBURLAnalyser new];
-    WBUser * userData = [analyser personalInfoWithUserName:@"真小寒"];
+    WBUser * userData = [analyser personalInfoWithUserName:PersonalUserName];
    
     return userData;
 }

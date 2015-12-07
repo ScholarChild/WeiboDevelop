@@ -710,11 +710,11 @@
 		0F482EBE1C0ECE7F00299E8C /* PersonalPage */ = {
 			isa = PBXGroup;
 			children = (
+				0F482EC71C0ECE7F00299E8C /* PersonalCenter */,
 				0F482EBF1C0ECE7F00299E8C /* addFriends */,
 				0F482EC21C0ECE7F00299E8C /* Cell */,
 				0F482EC51C0ECE7F00299E8C /* DataManager.h */,
 				0F482EC61C0ECE7F00299E8C /* DataManager.m */,
-				0F482EC71C0ECE7F00299E8C /* PersonalCenter */,
 				0F482EE21C0ECE7F00299E8C /* table */,
 			);
 			path = PersonalPage;
@@ -750,9 +750,9 @@
 				0F482ED11C0ECE7F00299E8C /* PersonalNaviView.h */,
 				0F482ED21C0ECE7F00299E8C /* PersonalNaviView.m */,
 				0F482ECC1C0ECE7F00299E8C /* PersonalCenterProtocol.h */,
-				0F482ED31C0ECE7F00299E8C /* tmpResource */,
 				0F482EE01C0ECE7F00299E8C /* UserHeaderView.h */,
 				0F482EE11C0ECE7F00299E8C /* UserHeaderView.m */,
+				0F482ED31C0ECE7F00299E8C /* tmpResource */,
 			);
 			path = PersonalCenter;
 			sourceTree = "<group>";

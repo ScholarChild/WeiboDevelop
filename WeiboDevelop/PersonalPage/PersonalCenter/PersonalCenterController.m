@@ -3,30 +3,46 @@
 #import "PersonalNaviView.h"
 #import "PersonalCenterDataManager.h"
 #import "PersonalCenterPhotoCell.h"
+#import "AFNetworking.h"
+#import "WeiboCell.h"
+#import "WBCellPreparer.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
 @interface PersonalCenterController()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_tableview;
-    
-    NSArray *_dataArr;
+    NSMutableArray *_dataArr;
     NSMutableArray *_dataContainer;
     
     UserHeaderView *_headerView;
     PersonalNaviView *_naviView;
     NSInteger pageNum;
     UIView *_tabeheaderView;
+    
+    NSMutableArray* _cellPrepareres;
+    WBURLAnalyser* _manager;
+    
+    UIRefreshControl *_control;
 }
 @end
 @implementation PersonalCenterController
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _cellPrepareres = [NSMutableArray new];
+        _manager = [WBURLAnalyser new];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateStatusList];
     _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, -44, 375, 667+44) style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
-    _dataArr = [PersonalCenterDataManager getPersonalInfoData];
+    _dataArr = [NSMutableArray arrayWithObjects:_cellPrepareres, nil];
     _dataContainer = [NSMutableArray arrayWithObjects:@"",@"",@"", nil];
     pageNum = 0;
     [self.view addSubview:_tableview];
@@ -42,6 +58,36 @@
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"touming.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    [self setupRefresh];
+}
+-(void)setupRefresh
+{
+    //1.添加刷新控件
+    _control=[[UIRefreshControl alloc]init];
+    [_control addTarget:self action:@selector(updateStatusList) forControlEvents:UIControlEventValueChanged];
+    [_tableview addSubview:_control];
+    
+    //2.马上进入刷新状态，并不会触发UIControlEventValueChanged事件
+    [_control beginRefreshing];
+    
+    // 3.加载数据
+    [self updateStatusList];
+}
+
+
+- (void)updateStatusList
+{
+    __block NSInteger insertPosition = 0;
+    [_manager latestHomeStatusesWithCount:20 didReiceverStatus:^(WBStatus* status){
+        WBCellPreparer* preparer = [[WBCellPreparer alloc]initWithStatus:status];
+        [_cellPrepareres insertObject:preparer atIndex:insertPosition];
+        insertPosition++;
+    } finish:^{
+        [_tableview reloadData];
+        [_control endRefreshing];
+    } fail:^(NSError* err){
+        [_control endRefreshing];
+    }];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -62,20 +108,29 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"section：%ld",_dataArr.count);
     return _dataArr.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
     NSArray *arr = [_dataArr objectAtIndex:section];
-    NSLog(@"row：%ld",arr.count);
     return arr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id returnCell;
-    if (pageNum != 2) {
+    if (pageNum == 0) {
+        NSString* iden = [NSString stringWithFormat:@"iden %lu",([indexPath row] % 6)];
+        WeiboCell* cell = [tableView dequeueReusableCellWithIdentifier:iden];
+        if (!cell) {
+            cell = [[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        }
+        WBCellPreparer* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
+        [preparer constructCell:cell];
+        
+        returnCell = cell;
+    }
+    else if (pageNum == 1) {
         static NSString *CellIdentifier = @"Cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
@@ -86,15 +141,13 @@
         returnCell = cell;
     }
     else{
-  
+        
         PersonalCenterPhotoCell *cell = [[PersonalCenterPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         NSArray *arr = [_dataArr objectAtIndex:indexPath.section];
         NSDictionary *dic =arr[indexPath.row];
         [cell addPhotoWithArray:dic];
         returnCell = cell;
     }
-
-    
     return returnCell;
 }
 - (void)changeView:(NSInteger)index
@@ -104,33 +157,31 @@
         return;
     }
     pageNum = index;
-
-        if (index == 0) {
-            _dataArr = [PersonalCenterDataManager getPersonalInfoData];
-        }
-        if (index == 1) {
-            _dataArr = [PersonalCenterDataManager getWBStatusData];
-        }
-        if (index == 2) {
-            _dataArr = [PersonalCenterDataManager getPersonalPhotoesData];
-        }
-        [_dataContainer replaceObjectAtIndex:index withObject:_dataArr];
+    
+    if (index == 0) {
+        _dataArr = [NSMutableArray arrayWithObjects:_cellPrepareres, nil];
+    }
+    if (index == 1) {
+        _dataArr = [NSMutableArray arrayWithArray:[PersonalCenterDataManager getWBStatusData]];
+    }
+    if (index == 2) {
+        _dataArr = [NSMutableArray arrayWithArray:[PersonalCenterDataManager getPersonalPhotoesData]];
+    }
+    [_dataContainer replaceObjectAtIndex:index withObject:_dataArr];
     
     [_tableview reloadData];
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (pageNum == 0) {
+        WBCellPreparer* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
+        return preparer.heightOfCell;
+    }
     if (pageNum == 2) {
         return 667-240;
     }
     return 40;
 }
-//UIButton *backBtn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-//backBtn1.frame = CGRectMake(0, 0, 60, 40);
-//[backBtn1 setImage:[UIImage imageNamed:@"tabbar_compose_background_icon_return@3x.png"] forState:UIControlStateNormal];
-//[backBtn1 addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-//backBtn1.imageEdgeInsets = UIEdgeInsetsMake(0, -40, 0, 0);
-//UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithCustomView:backBtn1];
-//[self.navigationItem setLeftBarButtonItem:backBtn];
+
 @end
