@@ -18,7 +18,7 @@
 #import "WBComment.h"
 #import "WBPrivary.h"
 #import "WBRemind.h"
-#import "WBURLShort.h"
+#import "WBURL.h"
 #import "WBVisible.h"
 #import "WBDataObject.h"
 

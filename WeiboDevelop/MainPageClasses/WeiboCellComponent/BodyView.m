@@ -7,12 +7,13 @@
 //
 
 #import "BodyView.h"
+#import "WBURLAnalyser.h"
+#import "TextAttributeTranster.h"
 
 
-
-@interface BodyView()
+@interface BodyView()<UITextViewDelegate>
 {
-    UITextView* _textLabel;
+    UITextView* _textView;
     UIView<LayoutHeight> *_exBody;
 }
 
@@ -32,7 +33,7 @@
     [self layoutTextLabel];
     CGFloat exBodyHeight =  (_exBody) ? _exBody.height : weiboCellviewInterval;
     
-    CGFloat headHeight = weiboCellviewInterval + CGRectGetHeight(_textLabel.frame);
+    CGFloat headHeight = CGRectGetHeight(_textView.frame);
     CGFloat bodyHeight = headHeight + exBodyHeight;
     
     CGRect remainder = CGRectMake(0, 0, CGRectGetWidth(self.frame), bodyHeight);
@@ -44,11 +45,11 @@
 
 - (void)layoutTextLabel
 {
-    CGFloat textWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - weiboCellviewInterval*2;
-    CGSize textSize = [_textLabel sizeThatFits:CGSizeMake(textWidth, CGFLOAT_MAX)];
+    CGFloat textWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    CGSize textSize = [_textView sizeThatFits:CGSizeMake(textWidth, CGFLOAT_MAX)];
     CGFloat textHeight = textSize.height;
-    CGRect textFrame = CGRectMake(weiboCellviewInterval, weiboCellviewInterval, textWidth, textHeight);
-    _textLabel.frame = CGRectIntegral(textFrame);
+    CGRect textFrame = CGRectMake(0, 0, textWidth, textHeight);
+    _textView.frame = CGRectIntegral(textFrame);
 }
 
 
@@ -63,12 +64,14 @@
 
 - (void)addTextLabel
 {
-    _textLabel = [[UITextView alloc]initWithFrame:CGRectZero];
-    [_textLabel setEditable:NO];
-    [_textLabel setSelectable:NO];
-    //_textLabel.numberOfLines = 0;
-    //_textLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    [self addSubview:_textLabel];
+    _textView = [[UITextView alloc]initWithFrame:CGRectZero];
+    [_textView setEditable:NO];
+    _textView.delegate = self;
+    _textView.backgroundColor = [UIColor yellowColor];
+    
+    
+    
+    [self addSubview:_textView];
 }
 
 
@@ -108,13 +111,18 @@
 
 - (void)setBodyText:(NSString*)text
 {
-    _textLabel.attributedText = [self attributeTextFromText:text];
+    
+    _textView.attributedText = [[[TextAttributeTranster alloc]initWithString:text] attrubuteText];
 }
 
-- (NSAttributedString*)attributeTextFromText:(NSString*)text
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
 {
-    return [[NSAttributedString alloc]initWithString:text];
+    NSLog(@"url:%@ ,range:%@",URL,[NSValue valueWithRange:characterRange]);
+    
+    return NO;
 }
+
 
 - (void)setExBody:(UIView<LayoutHeight> *)exBody
 {
@@ -125,13 +133,7 @@
     [self addSubview:_exBody];
 }
 
-
-
-
 @end
-
-
-
 
 
 

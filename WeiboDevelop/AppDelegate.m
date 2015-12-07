@@ -22,7 +22,7 @@
     home.tabBarItem.title=@"主页";
     home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_home" ofType:@"png" ]];
     UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
-    
+
     
     MessagePageController* message=[MessagePageController new];
     message.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_message" ofType:@"png" ]];
@@ -49,10 +49,10 @@
    
     tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
     //    设置被选中的视图控制器
-    tabBarC.selectedViewController=homeNavi;
+    tabBarC.selectedViewController=messageNavi;
     //默认选中
 
-    tabBarC.selectedIndex=0;
+    tabBarC.selectedIndex=1;
     //选中时的颜色
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     //背景颜色

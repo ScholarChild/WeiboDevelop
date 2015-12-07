@@ -17,3 +17,4 @@
 - (void)setImagesWithUrlArr:(NSArray*)urlArray;
 
 @end
+
