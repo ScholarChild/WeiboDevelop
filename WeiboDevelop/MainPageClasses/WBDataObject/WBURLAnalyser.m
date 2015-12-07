@@ -13,6 +13,8 @@
 #import "WBComment.h"
 
 #import "MJExtension.h"
+#import "AFNetworking.h"
+
 
 @interface WBURLAnalyser()
 {
@@ -48,12 +50,7 @@
                  };
     }];
 }
-#pragma mark 外部接口实现
-
-- (NSArray *)latestHomeStatuses
-{
-    return [self latestHomeStatusesWithCount:20];
-}
+#pragma mark 同步请求处理，返回对象
 
 - (NSArray *)latestHomeStatusesWithCount:(NSInteger)count;
 {
@@ -66,8 +63,8 @@
 - (NSArray*)lastestPersonalStatus
 {
     NSString* request = [NSString stringWithFormat:
-                          @"https://api.weibo.com/2/statuses/user_timeline.json?%@&screen_name=%@",
-                          [self requestKey],PersonalUserName];
+                         @"https://api.weibo.com/2/statuses/user_timeline.json?%@&screen_name=%@",
+                         [self requestKey],PersonalUserName];
     return [self statusesWithRequest:request];
 }
 
@@ -83,6 +80,8 @@
     WBUser* user = [WBUser mj_objectWithKeyValues:jsonDic];
     return user;
 }
+
+#pragma mark 请求构建
 
 - (NSURL*)personalRequestWithUserName:(NSString*)userName
 {
@@ -112,6 +111,58 @@
     NSString* longURLString = URL.url_long;
     return [self requestURLFromString:longURLString];
 }
+
+#pragma mark 异步请求
+
+
+- (void)latestHomeStatusesWithCount:(NSInteger)count didReiceverStatus:(void (^)(WBStatus*))handleStatus
+                             finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
+{
+    NSString* request = @"https://api.weibo.com/2/statuses/home_timeline.json";
+    NSMutableDictionary* parametersTmp = [NSMutableDictionary dictionaryWithCapacity:3];
+    [parametersTmp setDictionary:[self tokenDic]];
+    [parametersTmp setObject:[NSNumber numberWithInteger:count] forKey:@"count"];
+    NSDictionary* parameters = [NSDictionary dictionaryWithDictionary:parametersTmp];
+    
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    [manager GET:request parameters:parameters
+         success:^(NSURLSessionDataTask* task ,id responseObeject){
+             NSArray* stuatusDataArr = [responseObeject objectForKey:@"statuses"];
+             NSArray* statuses = [self statusesFromDicArray:stuatusDataArr];
+             if (handleStatus) {
+                 for (WBStatus* status in statuses) {
+                     handleStatus(status);
+                 }
+             }
+             if (finishHandle) {
+                 finishHandle();
+             }
+         }
+         failure:^(NSURLSessionDataTask* task ,NSError* error){
+             if (failHandle) {
+                 failHandle(error);
+             }
+         }
+     ];
+}
+
+- (NSDictionary*)tokenDic
+{
+    NSDictionary* tokenDic = @{};
+    BOOL hasToken = (access_token != NULLString);
+    BOOL hasSource = (appKey != NULLString);
+    
+    if (hasToken) {
+        tokenDic = @{@"access_token":access_token};
+    }else if (hasSource) {
+        tokenDic = @{@"source":appKey};
+    }else if (hasSource&&hasToken) {
+        tokenDic = @{@"access_token":access_token,
+                     @"source":appKey};
+    }
+    return tokenDic;
+}
+
 
 #pragma mark 内部公用函数
 

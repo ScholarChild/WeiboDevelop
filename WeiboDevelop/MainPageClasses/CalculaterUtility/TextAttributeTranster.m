@@ -82,7 +82,6 @@
 - (void)transTopic
 {
     NSArray* transRangeArr = [self rangValuesInTextWithRegular:@"#[^#]+#"];
-    NSInteger count = [_searchText length];
     
     for (NSValue* value in transRangeArr) {
         NSRange transRange = [value rangeValue];
@@ -96,7 +95,7 @@
 
 - (void)transUserName
 {
-    NSArray* transRangeArr = [self rangValuesInTextWithRegular:@"@\\S+(?= |@|$)"];
+    NSArray* transRangeArr = [self rangValuesInTextWithRegular:@"[@@][a-zA-Z0-9_-\\u4e00-\\u9fa5]+"];
     
     for (NSValue* value in transRangeArr) {
         NSRange transRange = [value rangeValue];
@@ -130,13 +129,17 @@
     return [NSArray arrayWithArray:tmpArr];
 }
 
-
-
-
-
-
-
-
-
-
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+

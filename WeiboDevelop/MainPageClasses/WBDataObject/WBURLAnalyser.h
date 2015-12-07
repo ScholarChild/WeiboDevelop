@@ -15,17 +15,25 @@
 /*!
  * @discussion 返回当前授权用户所有关注的最新公共微博
  *
- * @result 以WBStatus 为元素的数组，数量为20条
- */
-- (NSArray*)latestHomeStatuses;
-/*!
- * @discussion 返回当前授权用户所有关注的最新公共微博
- *
  * @param count 返回微博的数量，不超过100
  *
  * @result 以WBStatus 为元素的数组，数量为count所指定数量
  */
 - (NSArray*)latestHomeStatusesWithCount:(NSInteger)count;
+/*!
+ * @discussion 返回当前授权用户所有关注的最新公共微博
+ *
+ * @param count 返回微博的数量，不超过100
+ *
+ * @param handleStatus 请求成功返回时会回调该block处理每个WBStatus对象
+ *
+ * @param finishHandle 请求成功返回并完成处理后，调用此模块进行后续处理
+ *
+ * @param failHandle 请求失败时回调该block进行错误处理
+ *
+ */
+- (void)latestHomeStatusesWithCount:(NSInteger)count didReiceverStatus:(void (^)(WBStatus*))handleStatus
+                             finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle;
 /*!
  * @discussion 返回当前授权用户的最新个人微博，数量为5条
  *
