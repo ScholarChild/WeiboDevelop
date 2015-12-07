@@ -57,7 +57,7 @@
             
             UIImageView* imgView = [[UIImageView alloc]initWithFrame:CGRectMake(positionInterval*col + weiboCellviewInterval, positionInterval*row + weiboCellviewInterval, imgEdgeLength, imgEdgeLength)];
             NSURL* imgURL = [NSURL URLWithString:[urlStrArr objectAtIndex:index]];
-            [imgView sd_setImageWithURL:imgURL placeholderImage:[UIImage imageNamed:@"def.png"]];
+            [self setGeneralOptionToImageView:imgView imgURL:imgURL placeholderImg:nil];
             [self addSubview:imgView];
             index++;
         }
@@ -90,17 +90,34 @@
     }else {
         imgPrintWidth = contextWidth * 1.0f / 2.0f;
     }
-    imgPrintHeight = imgPrintWidth / aspectRatio;
+    
+    BOOL isLongImg = NO;
+    if (aspectRatio >= 0.3f) {
+        isLongImg = NO;
+        imgPrintHeight = imgPrintWidth / aspectRatio;
+    } else {
+        isLongImg = YES;
+        imgPrintHeight = imgPrintWidth * 4.0f / 3.0f;
+    }
+    
     
     CGRect imgPrintFrame = CGRectMake(weiboCellviewInterval, weiboCellviewInterval, imgPrintWidth, imgPrintHeight);
     UIImageView* imgView = [[UIImageView alloc]initWithFrame:CGRectIntegral(imgPrintFrame)];
-    [imgView setBackgroundColor:[UIColor yellowColor]];
-    [imgView sd_setImageWithURL:imgURL];
+    [self setGeneralOptionToImageView:imgView imgURL:imgURL placeholderImg:nil];
     [self addSubview:imgView];
     return imgPrintHeight;
 }
 
+- (void)setGeneralOptionToImageView:(UIImageView *)imgView imgURL:(NSURL *)url placeholderImg:(UIImage *)img
+{
+    [imgView setContentMode:UIViewContentModeScaleAspectFill];
+    [imgView setClipsToBounds:YES];
+    [imgView setContentScaleFactor:[[UIScreen mainScreen] scale]];
+    [imgView sd_setImageWithURL:url placeholderImage:img];
+}
+
 @end
+
 
 
 

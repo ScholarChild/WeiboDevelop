@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Zero. All rights reserved.
 //
 
-#import "WBURLShort.h"
+#import "WBURL.h"
 
-@implementation WBURLShort
+@implementation WBURL
 
 @end

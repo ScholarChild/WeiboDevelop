@@ -7,8 +7,8 @@
 @interface HomePageController()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* _cellPrepareres;
-    NSArray* _statusesList;
     WBURLAnalyser* _manager;
+    UITableView* _table;
 }
 @end
 
@@ -20,7 +20,6 @@
     if (self = [super init]) {
         _cellPrepareres = [NSMutableArray new];
         _manager = [WBURLAnalyser new];
-        _statusesList = [NSArray new];
     }
     return self;
 }
@@ -30,39 +29,38 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self initTableView];
     [self updateStatusList];
-    [self prepareForStatus];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self initTableView];
+    [super viewWillAppear:animated];
 }
 
 - (void)initTableView
 {
-    CGRect PageFrame = self.view.frame;
+    CGRect PageFrame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
     
-    UITableView* table = [[UITableView alloc]initWithFrame:PageFrame style:UITableViewStylePlain];
-    table.delegate = self;
-    table.dataSource = self;
-    [self.view addSubview:table];
+    _table = [[UITableView alloc]initWithFrame:PageFrame style:UITableViewStylePlain];
+    _table.delegate = self;
+    _table.dataSource = self;
+    [self.view addSubview:_table];
 }
 
 - (void)updateStatusList
 {
-    _statusesList = [_manager latestStatusesWithCount:20];
-}
-
-- (void)prepareForStatus
-{
-    for (WBStatus* status in _statusesList) {
+    [_manager latestHomeStatusesWithCount:20 didReiceverStatus:^(WBStatus* status){
         WBCellPreparer* preparer = [[WBCellPreparer alloc]initWithStatus:status];
         [_cellPrepareres addObject:preparer];
-    }
+    } finish:^{
+        [_table reloadData];
+    } fail:nil];
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* iden = [NSString stringWithFormat:@"iden %lu",([indexPath row] % 10)];
+    NSString* iden = [NSString stringWithFormat:@"iden %lu",([indexPath row] % 6)];
     WeiboCell* cell = [tableView dequeueReusableCellWithIdentifier:iden];
     if (!cell) {
         cell = [[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
@@ -70,7 +68,7 @@
     
     WBCellPreparer* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
     [preparer constructCell:cell];
-    
+
     return cell;
 }
 
@@ -78,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return [_cellPrepareres count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
