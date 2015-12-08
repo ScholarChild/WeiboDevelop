@@ -74,7 +74,6 @@
     [self updateStatusList];
 }
 
-
 - (void)updateStatusList
 {
     __block NSInteger insertPosition = 0;
