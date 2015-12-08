@@ -1,5 +1,6 @@
 
 #import "UserHeaderView.h"
+#import "UIImageView+WebCache.h"
 
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 @interface UserHeaderView  ()
@@ -63,7 +64,16 @@
 - (void)setUserData:(WBUser *)userData
 {
     backgroundImgv.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    backgroundImgv.image = [UIImage imageNamed:@"userBackground.jpg"];
+    if (userData.cover_image_phone == nil) {
+        backgroundImgv.image = [UIImage imageNamed:@"userBackground.jpg"];
+    }
+    else{
+    NSURL *url  = [NSURL URLWithString:userData.cover_image_phone];
+        [backgroundImgv sd_setImageWithURL:url];
+    }
+    NSLog(@"--%@",userData.cover_image_phone);
+    
+
     
     userImgV.frame=CGRectMake(0, 0, 70, 70);
     userImgV.layer.cornerRadius= userImgV.frame.size.width/2+0.5;

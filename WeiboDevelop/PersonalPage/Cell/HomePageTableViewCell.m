@@ -1,5 +1,5 @@
 #import "HomePageTableViewCell.h"
-
+#import "UIImageView+WebCache.h"
 #define lineSpace 10.0 //间距
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 #define screenHeight [UIScreen mainScreen].bounds.size.height
@@ -66,9 +66,13 @@
     if (headUserData.descriptionText!=nil) {
         _userDetailLabel.text = [@"简介: "  stringByAppendingString: headUserData.descriptionText ];
     }
-    NSData *picData = [NSData dataWithContentsOfURL:[NSURL URLWithString:headUserData.profile_image_url]];
-    _userImageView.image = [UIImage imageWithData:picData];
+
+
+//    NSData *picData = [NSData dataWithContentsOfURL:[NSURL URLWithString:headUserData.profile_image_url]];
+//    _userImageView.image = [UIImage imageWithData:picData];
     _userImageView.frame = CGRectMake(10, 10, 60, 60);
+    NSURL *url  = [NSURL URLWithString:headUserData.profile_image_url];
+    [_userImageView sd_setImageWithURL:url];
     _userImageView.layer.cornerRadius=_userImageView.frame.size.width/2;
     _userImageView.layer.masksToBounds=YES;
     
