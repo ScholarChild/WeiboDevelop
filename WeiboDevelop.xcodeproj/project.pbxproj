@@ -119,6 +119,7 @@
 		0F83821B1C13C6AA00EF8FFA /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8382121C13C6AA00EF8FFA /* AFURLSessionManager.m */; };
 		0F8382211C13DC3B00EF8FFA /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8382201C13DC3B00EF8FFA /* AFSecurityPolicy.m */; };
 		0F8382231C13DC9800EF8FFA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F8382221C13DC9800EF8FFA /* Security.framework */; };
+		C92322CA1C16CA4800F7A336 /* DeletePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C92322C91C16CA4800F7A336 /* DeletePoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -347,6 +348,8 @@
 		0F83821F1C13DC3B00EF8FFA /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
 		0F8382201C13DC3B00EF8FFA /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
 		0F8382221C13DC9800EF8FFA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C92322C81C16CA4700F7A336 /* DeletePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletePoint.h; sourceTree = "<group>"; };
+		C92322C91C16CA4800F7A336 /* DeletePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeletePoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,6 +480,8 @@
 		0F429EB91C0E9D8A0003AE0C /* SecondPage */ = {
 			isa = PBXGroup;
 			children = (
+				C92322C81C16CA4700F7A336 /* DeletePoint.h */,
+				C92322C91C16CA4800F7A336 /* DeletePoint.m */,
 				0F429EBA1C0E9D8A0003AE0C /* HotWeiboCatalogueView.h */,
 				0F429EBB1C0E9D8A0003AE0C /* HotWeiboCatalogueView.m */,
 				0F429EBC1C0E9D8A0003AE0C /* HotWeiboViewController.h */,
@@ -944,6 +949,7 @@
 				0F429F7A1C0E9D8A0003AE0C /* ToSubscriptionViewController.m in Sources */,
 				0F429F5E1C0E9D8A0003AE0C /* HotWeiboViewController.m in Sources */,
 				0F429F9B1C0E9D8A0003AE0C /* OneViewController.m in Sources */,
+				C92322CA1C16CA4800F7A336 /* DeletePoint.m in Sources */,
 				0F429F871C0E9D8A0003AE0C /* NSData+ImageContentType.m in Sources */,
 				0F429F6E1C0E9D8A0003AE0C /* UserInfoView.m in Sources */,
 				0F8382191C13C6AA00EF8FFA /* AFURLRequestSerialization.m in Sources */,

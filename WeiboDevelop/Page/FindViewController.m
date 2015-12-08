@@ -42,11 +42,6 @@
     //初始化
     isPush = NO;
     
-    NSDictionary *scrolldic = @{@"message_voice_background@2x.png":@"",@"message_voice_background@2x":@""};
-    NSDictionary *buttondic = @{@"#点击领金条#":@"",
-                                @"#老干妈配雪糕":@"",
-                                @"#新疆美女特警#":@"",
-                                @"#热门话题#":@""};
     
     //构建模型
     FindModal *findModal = [[FindModal alloc] init];
@@ -76,10 +71,7 @@
 //监听说话按钮
 - (void)BtnTalk
 {
-    HotWeiboViewController *hotWeibo = [[HotWeiboViewController alloc] init];
-    hotWeibo.delegate = self;
-    self.searchBar.hidden = YES;
-    [self.navigationController pushViewController:hotWeibo animated:YES];
+    
 }
 
 
@@ -192,6 +184,13 @@
     _tableview = [[UserInfoTableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-114) style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
+    _tableview.delaysContentTouches = NO;
+    for (UIView *currentView in _tableview.subviews) {
+        if([currentView isKindOfClass:[UIScrollView class]]) {
+            ((UIScrollView *)currentView).delaysContentTouches = NO;
+            break;
+        }  
+    }
     [self.view addSubview:_tableview];}
 
 
@@ -286,6 +285,18 @@
     
     [_dataArr replaceObjectAtIndex:3 withObject:SectionArr];
 }
+
+#pragma mrak - 添加部分二级界面
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2 && indexPath.row == 0) {
+        HotWeiboViewController *hotWeibo = [[HotWeiboViewController alloc] init];
+        hotWeibo.delegate = self;
+        self.searchBar.hidden = YES;
+        [self.navigationController pushViewController:hotWeibo animated:YES];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

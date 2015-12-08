@@ -143,6 +143,8 @@
     pageControl.currentPage = offset.x/headSV.frame.size.width;
 }
 
-
-
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    
+}
 @end

@@ -51,6 +51,7 @@
     self.bodyScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topScroll.frame)+10, [UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height - (CGRectGetMaxY(self.topScroll.frame)+10))];
     self.bodyScroll.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bodyScroll];
+    
 }
 
 //返回按钮触发事件
