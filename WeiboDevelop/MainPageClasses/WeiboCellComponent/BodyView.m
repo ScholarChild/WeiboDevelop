@@ -7,12 +7,13 @@
 //
 
 #import "BodyView.h"
+#import "WBURLAnalyser.h"
+#import "TextAttributeTranster.h"
 
 
-
-@interface BodyView()
+@interface BodyView()<UITextViewDelegate>
 {
-    UILabel* _textLabel;
+    UITextView* _textView;
     UIView<LayoutHeight> *_exBody;
 }
 
@@ -32,7 +33,7 @@
     [self layoutTextLabel];
     CGFloat exBodyHeight =  (_exBody) ? _exBody.height : weiboCellviewInterval;
     
-    CGFloat headHeight = weiboCellviewInterval + CGRectGetHeight(_textLabel.frame);
+    CGFloat headHeight = CGRectGetHeight(_textView.frame);
     CGFloat bodyHeight = headHeight + exBodyHeight;
     
     CGRect remainder = CGRectMake(0, 0, CGRectGetWidth(self.frame), bodyHeight);
@@ -44,11 +45,11 @@
 
 - (void)layoutTextLabel
 {
-    CGFloat textWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) - weiboCellviewInterval*2;
-    CGSize textSize = [_textLabel sizeThatFits:CGSizeMake(textWidth, CGFLOAT_MAX)];
+    CGFloat textWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    CGSize textSize = [_textView sizeThatFits:CGSizeMake(textWidth, CGFLOAT_MAX)];
     CGFloat textHeight = textSize.height;
-    CGRect textFrame = CGRectMake(weiboCellviewInterval, weiboCellviewInterval, textWidth, textHeight);
-    _textLabel.frame = CGRectIntegral(textFrame);
+    CGRect textFrame = CGRectMake(0, 0, textWidth, textHeight);
+    _textView.frame = CGRectIntegral(textFrame);
 }
 
 
@@ -63,19 +64,41 @@
 
 - (void)addTextLabel
 {
-    _textLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    _textLabel.numberOfLines = 0;
-    _textLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    [self addSubview:_textLabel];
+    _textView = [[UITextView alloc]initWithFrame:CGRectZero];
+    [_textView setEditable:NO];
+    _textView.delegate = self;
+    _textView.backgroundColor = [UIColor yellowColor];
+    
+    
+    
+    [self addSubview:_textView];
 }
 
 
 
 #pragma mark setBody
-- (void)setBodyText:(NSString*)text
+
+- (void)setBodyText:(NSString *)text retweetText:(NSString*)retweetText retweetUser:(NSString*)userName
 {
-    _textLabel.text = text;;
+    [self setBodyText:text retweetText:retweetText retweetUser:userName imagesAtRetweetBody:nil];
 }
+
+- (void)setBodyText:(NSString *)text retweetText:(NSString *)retweetText retweetUser:(NSString *)userName imagesAtRetweetBody:(NSArray *)urlArray
+{
+    [self setBodyText:text];
+    if (retweetText && userName) {
+        NSString* exText = [NSString stringWithFormat:@"@%@ :%@",userName,retweetText];
+        BodyView* retweetBody = [[BodyView alloc]initWithFrame:CGRectZero];
+        [retweetBody setBodyText:exText URLOfImagesAtBody:urlArray];
+        [self setExBody:retweetBody];
+        
+        [retweetBody setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+        for (UIView* subviews in [retweetBody subviews]) {
+            [subviews setBackgroundColor:[UIColor clearColor]];
+        }
+    }
+}
+
 - (void)setBodyText:(NSString *)text URLOfImagesAtBody:(NSArray *)urlArray
 {
     [self setBodyText:text];
@@ -86,29 +109,20 @@
     }
 }
 
-- (void)setBodyText:(NSString *)text retweetText:(NSString*)retweetText retweetUser:(NSString*)userName
+- (void)setBodyText:(NSString*)text
 {
-    [self setBodyText:text retweetText:retweetText retweetUser:userName imagesAtRetweetBody:nil];
+    
+    _textView.attributedText = [[[TextAttributeTranster alloc]initWithString:text] attrubuteText];
 }
 
-- (void)setBodyText:(NSString *)text retweetText:(NSString *)retweetText retweetUser:(NSString *)userName imagesAtRetweetBody:(NSArray *)urlArray
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
 {
-    [self setBodyText:text];
+    NSLog(@"url:%@ ,range:%@",URL,[NSValue valueWithRange:characterRange]);
     
-    if (retweetText && userName) {
-        NSString* exText = [NSString stringWithFormat:@"@%@ :%@",userName,retweetText];
-        BodyView* retweetBody = [[BodyView alloc]initWithFrame:CGRectZero];
-        [retweetBody setBodyText:exText];
-        [retweetBody setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
-        [self setExBody:retweetBody];
-        
-        if (urlArray) {
-            ImageContext* context = [[ImageContext alloc]initWithFrame:CGRectZero];
-            [context setImagesWithUrlArr:urlArray];
-            [retweetBody setExBody:context];
-        }
-    }
+    return NO;
 }
+
 
 - (void)setExBody:(UIView<LayoutHeight> *)exBody
 {
@@ -119,11 +133,7 @@
     [self addSubview:_exBody];
 }
 
-
 @end
-
-
-
 
 
 

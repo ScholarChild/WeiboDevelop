@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomePageController.h"
+#import "MessagePageController.h"
+#import "FindViewController.h"
+#import "PersonalPageController.h"
+
+#import "MainMenuController.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
