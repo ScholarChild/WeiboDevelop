@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MessagePageController : UIViewController
+@property (weak, nonatomic) IBOutlet UINavigationItem *Item;
+ 
+ 
 
 @end

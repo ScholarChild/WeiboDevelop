@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
-
+     
     self.searchView = [[Find_SearchView alloc] init];
     self.searchView.delegate = self.delegate;
     self.searchView.frame = [UIScreen mainScreen].bounds;
