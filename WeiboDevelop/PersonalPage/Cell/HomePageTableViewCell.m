@@ -66,8 +66,7 @@
     if (headUserData.descriptionText!=nil) {
         _userDetailLabel.text = [@"简介: "  stringByAppendingString: headUserData.descriptionText ];
     }
-
-
+    
 //    NSData *picData = [NSData dataWithContentsOfURL:[NSURL URLWithString:headUserData.profile_image_url]];
 //    _userImageView.image = [UIImage imageWithData:picData];
     _userImageView.frame = CGRectMake(10, 10, 60, 60);
