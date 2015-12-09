@@ -100,6 +100,7 @@
         UIButton * btnTmp = [btnArr objectAtIndex:i];
         btnTmp.frame = CGRectMake(i * [UIScreen mainScreen].bounds.size.width/3.0, 0, [UIScreen mainScreen].bounds.size.width/3.0, 40);
         [btnTmp setBackgroundImage:[UIImage imageNamed:@"btn_gray_backgroud.png"] forState:UIControlStateHighlighted];
+
         [self addSubview:btnTmp];
         btnTmp.contentEdgeInsets = UIEdgeInsetsMake(18, 0, 0, 0);
         [btnTmp setTintColor:[UIColor lightGrayColor]];
