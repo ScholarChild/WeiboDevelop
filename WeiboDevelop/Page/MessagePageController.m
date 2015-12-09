@@ -20,14 +20,14 @@
 #define Height self.view.frame.size.height
 @interface MessagePageController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
-    UITableView* _tableView;
+    
     NSMutableArray* _imgarr;//储存图片数组
     NSMutableArray* _textarr;//储存文字数组
-    
+    NSIndexPath* index;
     UISearchBar *_searchBar;
     NSArray* arr;
 }
-
+@property(nonatomic,retain)UITableView* tableView;
 @end
 
 @implementation MessagePageController
@@ -100,6 +100,8 @@
    
     cell.textLabel.text=[_textarr objectAtIndex:indexPath.row];
     cell.imageView.image=[UIImage imageNamed:[_imgarr objectAtIndex:indexPath.row]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     return cell;
     
 }
@@ -113,17 +115,21 @@
 {
     return 0.1;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   
+   [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+   
+}
 //点击tableView触发
 #pragma mark 待改进
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if (indexPath.row==0) {
         ToAtViewController* toAt=[ToAtViewController new];
         toAt.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:toAt animated:YES];
     }
-    
     if (indexPath.row==1) {
     ToCommentViewController* toCommet=[ToCommentViewController new];
     toCommet.hidesBottomBarWhenPushed=YES;
@@ -147,11 +153,15 @@
     toSub.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:toSub animated:YES];
     }
+
 }
 #pragma mark -----------------tebleView的代理方法结束----------------------------
-
-
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:index animated:NO];
+    [self.tableView reloadData];
+}
 
 #pragma mark 点击搜索框触发  页面跳转
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -159,9 +169,13 @@
     NSLog(@"开始");
     SearchViewController *controller =[[SearchViewController alloc]initName:arr];
        controller.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
-    [controller.searchController.searchBar becomeFirstResponder];
     
-    [self presentViewController:controller animated:YES completion:nil];
+    [self presentViewController:controller animated:NO completion:^(){
+        [controller animationAction];
+        [UIView commitAnimations];
+        [controller becomAction];
+
+    }];
     return NO;
 }
 
@@ -176,7 +190,17 @@
 -(void)rightAction{
     
 }
-
+//改变视图间切换动画
+- (CATransition *)setCATransition
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    transition.subtype = kCATransitionFade;
+    transition.delegate = self;
+    return transition;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

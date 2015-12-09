@@ -1,0 +1,13 @@
+//
+//  CM_CommentData.h
+//  测试微博开发
+//
+//  Created by Ibokan on 15/12/3.
+//  Copyright (c) 2015年 eoe. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface CM_CommentData : NSObject
+-(NSArray*)dicCommentData;
+@end
