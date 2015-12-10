@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>tabbar_home</string>
+		<string>tabbar_message_center</string>
+		<string>tabbar_discover</string>
+		<string>tabbar_profile</string>
+		<string>tabbar_compose_background_icon_add</string>
+	</array>
+	<array>
+		<string>tabbar_compose_idea.png</string>
+		<string>文字</string>
+	</array>
+	<array>
+		<string>tabbar_compose_voice.png</string>
+		<string>照片/视频</string>
+		<string>tabbar_message_center</string>
+	</array>
+	<array>
+		<string>tabbar_compose_weibo.png</string>
+		<string>长微博</string>
+		<string>tabbar_compose_background_icon_add</string>
+	</array>
+	<array>
+		<string>tabbar_compose_lbs.png</string>
+		<string>签到</string>
+		<string>tabbar_discover</string>
+	</array>
+	<array>
+		<string>tabbar_compose_review.png</string>
+		<string>点评</string>
+	</array>
+	<array>
+		<string>tabbar_compose_more.png</string>
+		<string>更多</string>
+	</array>
+</array>
+</plist>

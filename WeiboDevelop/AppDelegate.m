@@ -6,7 +6,7 @@
 
 #import "MainMenuController.h"
 
-
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -41,14 +41,28 @@
     findView.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_discover_highlighted@2x.png"];
     
     PersonalPageController* personal=[PersonalPageController new];
+//<<<<<<< Updated upstream
     personal.tabBarItem.title=@"个人信息";
     personal.tabBarItem.image=[UIImage imageNamed:@"tabbar_profile@2x.png"];
     personal.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_profile_highlighted@2x.png"];
+//=======
+//    personal.tabBarItem.title=@"我";
+//    personal.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_selfinfo" ofType:@"png" ]];
+//>>>>>>> Stashed changes
     UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
     
     MainMenuController* mainMenu=[MainMenuController new];
-
+//<<<<<<< HEAD
+//
+//<<<<<<< Updated upstream
     mainMenu.tabBarItem.image=[UIImage imageNamed:@"tabbar_compose_background_icon_add@2x.png"];
+//=======
+//    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_more" ofType:@"png" ]];
+//=======
+   
+//    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@" " ofType:@"png" ]];
+//>>>>>>> message
+//>>>>>>> Stashed changes
     
     UITabBarController* tabBarC =[UITabBarController new];
     //    传入数组。数组元素是各个视图控制器对象
@@ -62,14 +76,32 @@
     //选中时的颜色
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     //背景颜色
-    tabBarC.tabBar.barTintColor=[UIColor whiteColor];
+//<<<<<<< HEAD
+//    tabBarC.tabBar.barTintColor=[UIColor whiteColor];
+//    
+//=======
+    tabBarC.tabBar.barTintColor=[UIColor blackColor];
     
+    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(self.window.frame.size.width*2/5,0, self.window.frame.size.width/5, 48)];
+    [btn setImage:[UIImage imageNamed:@"tabbar_compose_background_icon_add.png"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
+    [tabBarC.tabBar addSubview:btn];
+//>>>>>>> message
     self.window.rootViewController = tabBarC;
 
 
     return YES;
 }
-
+-(void)btnAction{
+    ViewController* view=[[ViewController alloc]init];
+    [view setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self.window.rootViewController presentViewController:view animated:NO completion:^(){
+        [view animationAction];//播放View动画
+        [UIView commitAnimations];//结束动画
+        [view btnAnimation];
+        [UIView commitAnimations];
+    }];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
