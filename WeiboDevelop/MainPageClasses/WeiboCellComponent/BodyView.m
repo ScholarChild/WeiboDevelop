@@ -7,7 +7,7 @@
 //
 
 #import "BodyView.h"
-#import "WBURLAnalyser.h"
+#import "WBRequestManager.h"
 #import "TextAttributeTranster.h"
 
 
@@ -27,6 +27,7 @@
     [self layoutSubviews];
     return _height;
 }
+
 
 - (void)layoutSubviews
 {
@@ -52,6 +53,7 @@
     _textView.frame = CGRectIntegral(textFrame);
 }
 
+#pragma mark init
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -65,13 +67,18 @@
 - (void)addTextLabel
 {
     _textView = [[UITextView alloc]initWithFrame:CGRectZero];
-    [_textView setEditable:NO];
+    _textView.editable = NO;
     _textView.delegate = self;
-    _textView.backgroundColor = [UIColor yellowColor];
-    
-    
-    
     [self addSubview:_textView];
+}
+
+#pragma mark textViewDelegate -- URLLink
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+//    NSLog(@"url:%@ ,range:%@",URL,[NSValue valueWithRange:characterRange]);
+    
+    return NO;
 }
 
 
@@ -92,7 +99,7 @@
         [retweetBody setBodyText:exText URLOfImagesAtBody:urlArray];
         [self setExBody:retweetBody];
         
-        [retweetBody setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+        [retweetBody setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:0.35]];
         for (UIView* subviews in [retweetBody subviews]) {
             [subviews setBackgroundColor:[UIColor clearColor]];
         }
@@ -102,7 +109,7 @@
 - (void)setBodyText:(NSString *)text URLOfImagesAtBody:(NSArray *)urlArray
 {
     [self setBodyText:text];
-    if (urlArray) {
+    if ([urlArray count] > 0) {
         ImageContext* context = [[ImageContext alloc]initWithFrame:CGRectZero];
         [context setImagesWithUrlArr:urlArray];
         [self setExBody:context];
@@ -116,12 +123,7 @@
 }
 
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
-{
-    NSLog(@"url:%@ ,range:%@",URL,[NSValue valueWithRange:characterRange]);
-    
-    return NO;
-}
+
 
 
 - (void)setExBody:(UIView<LayoutHeight> *)exBody

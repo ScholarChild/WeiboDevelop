@@ -13,9 +13,6 @@
 
 @implementation AppDelegate
 
-//add to test 
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     HomePageController* home=[HomePageController new];
     //TabBar按钮的名字
@@ -69,10 +66,10 @@
    
     tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
     //    设置被选中的视图控制器
-    tabBarC.selectedViewController=messageNavi;
+    tabBarC.selectedViewController=homeNavi;
     //默认选中
 
-    tabBarC.selectedIndex=1;
+    tabBarC.selectedIndex=0;
     //选中时的颜色
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     //背景颜色
@@ -88,8 +85,7 @@
     [tabBarC.tabBar addSubview:btn];
 //>>>>>>> message
     self.window.rootViewController = tabBarC;
-
-
+    
     return YES;
 }
 -(void)btnAction{

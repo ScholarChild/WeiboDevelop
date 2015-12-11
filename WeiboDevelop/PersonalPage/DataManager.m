@@ -12,7 +12,7 @@
 + (WBUser *)dataJson
 {
     //
-    WBURLAnalyser *analyser = [WBURLAnalyser new];
+    WBRequestManager *analyser = [WBRequestManager new];
     WBUser * userData = [analyser personalInfoWithUserName:PersonalUserName];
    
     return userData;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Zero. All rights reserved.
 //
 
-#import "WBURLAnalyser.h"
+#import "WBRequestManager.h"
 #import "WBUser.h"
 #import "WBStatus.h"
 #import "WBURL.h"
@@ -16,13 +16,13 @@
 #import "AFNetworking.h"
 
 
-@interface WBURLAnalyser()
+@interface WBRequestManager()
 {
     NSMutableArray* _infoList;
 }
 @end
 
-@implementation WBURLAnalyser
+@implementation WBRequestManager
 #pragma mark 初始化
 - (instancetype)init
 {
@@ -56,7 +56,7 @@
 {
     NSString* request = [NSString stringWithFormat:
                          @"https://api.weibo.com/2/statuses/home_timeline.json?%@&count=%lu",
-                         [self requestKey],count];
+                         [self tokenStr],count];
     return [self statusesWithRequest:request];
 }
 
@@ -64,7 +64,7 @@
 {
     NSString* request = [NSString stringWithFormat:
                          @"https://api.weibo.com/2/statuses/user_timeline.json?%@&screen_name=%@",
-                         [self requestKey],PersonalUserName];
+                         [self tokenStr],PersonalUserName];
     return [self statusesWithRequest:request];
 }
 
@@ -87,7 +87,7 @@
 {
     NSString* requestString =  [NSString stringWithFormat:
                                 @"https://api.weibo.com/2/users/show.json?%@&screen_name=%@",
-                                [self requestKey],userName];
+                                [self tokenStr],userName];
     return [self requestURLFromString:requestString];
 }
 
@@ -95,7 +95,7 @@
 {
     NSString* requestString =  [NSString stringWithFormat:
                                 @"https://api.weibo.com/2/search/topics.json?%@&q=%@",
-                                [self requestKey],keyWord];
+                                [self tokenStr],keyWord];
     return [self requestURLFromString:requestString];
 }
 
@@ -103,7 +103,7 @@
 {
     NSString* requestString =  [NSString stringWithFormat:
                                 @"https://api.weibo.com/2/short_url/expand.json?%@&url_short=%@",
-                                [self requestKey],shortURLString];
+                                [self tokenStr],shortURLString];
     NSURL* shortURL =  [self requestURLFromString:requestString];
     NSDictionary* jsonDic = [self jsonDicWithURL:shortURL];
     NSDictionary* objDic = [[jsonDic  objectForKey:@"urls"] objectAtIndex:0];
@@ -115,15 +115,39 @@
 #pragma mark 异步请求
 
 
-- (void)latestHomeStatusesWithCount:(NSInteger)count didReiceverStatus:(void (^)(WBStatus*))handleStatus
-                             finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
+- (void)homeStatusesWithSinceID:(NSString*)sinceID maxID:(NSString*)maxID
+              didReiceverStatus:(void (^)(WBStatus*))handleStatus
+                         finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
 {
     NSString* request = @"https://api.weibo.com/2/statuses/home_timeline.json";
-    NSMutableDictionary* parametersTmp = [NSMutableDictionary dictionaryWithCapacity:3];
-    [parametersTmp setDictionary:[self tokenDic]];
-    [parametersTmp setObject:[NSNumber numberWithInteger:count] forKey:@"count"];
+    NSMutableDictionary* parametersTmp = [NSMutableDictionary dictionaryWithDictionary:[self tokenDic]];
+    [parametersTmp setObject:sinceID forKey:@"since_id"];
+    [parametersTmp setObject:maxID forKey:@"max_id"];
     NSDictionary* parameters = [NSDictionary dictionaryWithDictionary:parametersTmp];
     
+    [self statusWithRequest:request parameters:parameters didReiceverStatus:handleStatus finish:finishHandle fail:failHandle];
+}
+
+- (void)personalStatusesWithSinceID:(NSString*)sinceID maxID:(NSString*)maxID
+              didReiceverStatus:(void (^)(WBStatus*))handleStatus
+                         finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
+{
+    NSString* request = @"https://api.weibo.com/2/statuses/user_timeline.json";
+    NSMutableDictionary* parametersTmp = [NSMutableDictionary dictionaryWithDictionary:[self tokenDic]];
+    [parametersTmp setObject:sinceID forKey:@"since_id"];
+    [parametersTmp setObject:maxID forKey:@"max_id"];
+    NSDictionary* parameters = [NSDictionary dictionaryWithDictionary:parametersTmp];
+    
+    [self statusWithRequest:request parameters:parameters didReiceverStatus:handleStatus finish:finishHandle fail:failHandle];
+}
+
+
+
+
+- (void)statusWithRequest:(NSString*)request parameters:(NSDictionary*)parameters
+        didReiceverStatus:(void (^)(WBStatus*))handleStatus
+                   finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
+{
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     [manager GET:request parameters:parameters
          success:^(NSURLSessionDataTask* task ,id responseObeject){
@@ -146,22 +170,7 @@
      ];
 }
 
-- (NSDictionary*)tokenDic
-{
-    NSDictionary* tokenDic = @{};
-    BOOL hasToken = (access_token != NULLString);
-    BOOL hasSource = (appKey != NULLString);
-    
-    if (hasToken) {
-        tokenDic = @{@"access_token":access_token};
-    }else if (hasSource) {
-        tokenDic = @{@"source":appKey};
-    }else if (hasSource&&hasToken) {
-        tokenDic = @{@"access_token":access_token,
-                     @"source":appKey};
-    }
-    return tokenDic;
-}
+
 
 
 #pragma mark 内部公用函数
@@ -182,14 +191,34 @@
 
 - (NSDictionary*)jsonDicWithURL:(NSURL*)url
 {
-    NSError *error;
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSDictionary *weiboDic = [NSJSONSerialization JSONObjectWithData:response
-                                                             options:NSJSONReadingMutableLeaves error:&error];
-    NSAssert(error == nil,@"json anaysic fail,some error happen");
+    NSError *error = nil;
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+//    NSAssert1(error == nil,@"json anaysic fail,some error happen,%@",error);
+//    
+//    NSDictionary *weiboDic = [NSJSONSerialization JSONObjectWithData:response
+//                                                             options:NSJSONReadingMutableLeaves error:&error];
     
-    return weiboDic;
+    ////////
+    
+    
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+    NSURLRequest *request = [requestSerializer
+                                    requestBySerializingRequest:[NSURLRequest requestWithURL:url]       withParameters:nil error:&error];
+    if (error != nil) {
+        NSLog(@"%s,\n%@",__func__,error);
+        return nil;
+    }
+    
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    AFHTTPResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [requestOperation setResponseSerializer:responseSerializer];
+    [requestOperation start];
+    [requestOperation waitUntilFinished];
+    
+    NSDictionary *jsonDic = [requestOperation responseObject];
+    return jsonDic;
 }
 
 - (NSArray*)statusesFromDicArray:(NSArray*)dicArr
@@ -202,7 +231,7 @@
     return stuatues;
 }
 
-- (NSString*)requestKey
+- (NSString*)tokenStr
 {
     NSString* key = @"";
     BOOL hasToken = (access_token != NULLString);
@@ -216,6 +245,23 @@
         key = [NSString stringWithFormat:@"access_token=%@&source=%@",access_token,appKey];
     }
     return key;
+}
+
+- (NSDictionary*)tokenDic
+{
+    NSDictionary* tokenDic = @{};
+    BOOL hasToken = (access_token != NULLString);
+    BOOL hasSource = (appKey != NULLString);
+    
+    if (hasToken) {
+        tokenDic = @{@"access_token":access_token};
+    }else if (hasSource) {
+        tokenDic = @{@"source":appKey};
+    }else if (hasSource&&hasToken) {
+        tokenDic = @{@"access_token":access_token,
+                     @"source":appKey};
+    }
+    return tokenDic;
 }
 
 @end

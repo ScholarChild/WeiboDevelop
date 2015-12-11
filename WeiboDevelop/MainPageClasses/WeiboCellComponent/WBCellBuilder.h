@@ -16,10 +16,10 @@
 #import "CellToolBar.h"
 
 
-@interface WBCellPreparer : NSObject
+@interface WBCellBuilder : NSObject
 
 @property (nonatomic,readonly)CGFloat heightOfCell;
-
+@property (nonatomic,retain)WBStatus* status;
 
 - (instancetype)initWithStatus:(WBStatus*)status;
 - (void)constructCell:(WeiboCell*)cell;
