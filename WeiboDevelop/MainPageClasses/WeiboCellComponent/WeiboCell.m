@@ -36,37 +36,6 @@
     [self addSubview:_toolBar];
 }
 
-
-//- (void)setUserInfo:(UserInfoView *)userInfo
-//{
-//    if (_userInfo == userInfo) {
-//        return;
-//    }
-//    [_userInfo removeFromSuperview];
-//    _userInfo = userInfo;
-//    [self addSubview:_userInfo];
-//}
-//- (void)setBody:(BodyView *)body
-//{
-//    if (_body == body) {
-//        return;
-//    }
-//    [_body removeFromSuperview];
-//    _body = body;
-//    [self addSubview:_body];
-//}
-//
-//- (void)setToolBar:(CellToolBar *)toolBar
-//{
-//    if (_toolBar == toolBar) {
-//        return;
-//    }
-//    [_toolBar removeFromSuperview];
-//    _toolBar = toolBar;
-//    [self addSubview:_toolBar];
-//}
-
-
 @end
 
 

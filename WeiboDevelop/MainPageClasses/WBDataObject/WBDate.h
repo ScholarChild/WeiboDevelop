@@ -9,7 +9,7 @@
 #ifndef WeiboMainPage_WBDate_h
 #define WeiboMainPage_WBDate_h
 
-#import "WBURLAnalyser.h"
+#import "WBRequestManager.h"
 
 #import "WBUser.h"
 #import "WBStatus.h"

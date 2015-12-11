@@ -12,7 +12,7 @@
 + (WBUser *)dataJson:(NSString *)name
 {
     //
-    WBURLAnalyser *analyser = [WBURLAnalyser new];
+    WBRequestManager *analyser = [WBRequestManager new];
     WBUser * userData = [analyser personalInfoWithUserName:@"真小寒"];
    
     return userData;
