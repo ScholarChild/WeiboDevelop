@@ -128,14 +128,11 @@
     [self statusWithRequest:request parameters:parameters didReiceverStatus:handleStatus finish:finishHandle fail:failHandle];
 }
 
-- (void)personalStatusesWithSinceID:(NSString*)sinceID maxID:(NSString*)maxID
-              didReiceverStatus:(void (^)(WBStatus*))handleStatus
+- (void)personalStatusesWithDidReiceverStatus:(void (^)(WBStatus*))handleStatus
                          finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
 {
     NSString* request = @"https://api.weibo.com/2/statuses/user_timeline.json";
     NSMutableDictionary* parametersTmp = [NSMutableDictionary dictionaryWithDictionary:[self tokenDic]];
-    [parametersTmp setObject:sinceID forKey:@"since_id"];
-    [parametersTmp setObject:maxID forKey:@"max_id"];
     NSDictionary* parameters = [NSDictionary dictionaryWithDictionary:parametersTmp];
     
     [self statusWithRequest:request parameters:parameters didReiceverStatus:handleStatus finish:finishHandle fail:failHandle];

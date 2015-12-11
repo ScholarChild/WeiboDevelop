@@ -47,11 +47,7 @@
 - (NSArray*)lastestPersonalStatus;
 
 /*!
- * @discussion 返回当前授权用户所有关注的最新公共微博
- *
- * @param sinceID 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），不指定则传入0
- *
- * @param maxID 若指定此参数，则返回ID小于或等于max_id的微博，不指定则传入0
+ * @discussion 返回当前授权用户的个人微博，5条
  *
  * @param handleStatus 请求成功返回时会回调该block处理每个WBStatus对象
  *
@@ -60,9 +56,8 @@
  * @param failHandle 请求失败时回调该block进行错误处理
  *
  */
-- (void)personalStatusesWithSinceID:(NSString*)sinceID maxID:(NSString*)maxID
-                  didReiceverStatus:(void (^)(WBStatus*))handleStatus
-                             finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle;
+- (void)personalStatusesWithDidReiceverStatus:(void (^)(WBStatus*))handleStatus
+                                       finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle;
 
 /*!
  * @discussion 返回当前授权用户的个人信息
