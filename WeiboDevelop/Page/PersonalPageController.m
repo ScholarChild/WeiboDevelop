@@ -20,7 +20,7 @@
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     self.view.backgroundColor = [UIColor lightGrayColor];
     _dataArr = [DataManager getPlistDataWithName:@"HomePageInfo"];
-    userData = [DataManager dataJson:@"真小寒"];
+    userData = [DataManager dataJson];
     _tableview = [[UserInfoTableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
@@ -105,6 +105,7 @@
         personalCenterVC.userData = userData;
         [self.navigationController pushViewController:personalCenterVC animated:YES];
     }
+    
 }
 - (void)addFriend
 {

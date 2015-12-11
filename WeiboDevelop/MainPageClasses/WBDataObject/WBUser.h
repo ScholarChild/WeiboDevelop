@@ -22,6 +22,9 @@
 @property (nonatomic,retain)NSString* avatar_large;//用户头像地址（大图），180×180像素
 @property (nonatomic,retain)NSString* profile_image_url;//用户头像地址（中图），50×50像素
 @property (nonatomic,retain)NSString* avatar_hd;//用户头像地址（高清），高清头像原图
+//@property (nonatomic,retain)NSString* cover_image;
+@property (nonatomic,retain)NSString* cover_image_phone;
+
 
 @property (nonatomic,assign)NSNumber* province;// 用户所在省级ID
 @property (nonatomic,assign)NSNumber* city;// 用户所在城市ID
