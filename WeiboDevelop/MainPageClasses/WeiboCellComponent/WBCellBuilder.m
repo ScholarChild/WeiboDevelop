@@ -6,19 +6,26 @@
 //  Copyright (c) 2015年 Zero. All rights reserved.
 //
 
-#import "WBCellPreparer.h"
+#import "WBCellBuilder.h"
 
-@interface WBCellPreparer()
+@interface WBCellBuilder()
 
-@property (nonatomic,retain)WBStatus* status;
 @property (nonatomic,retain)UserInfoView* userInfo;
 @property (nonatomic,retain)BodyView* body;
 @property (nonatomic,retain)CellToolBar* toolBar;
 
 @end
 
-@implementation WBCellPreparer
+@implementation WBCellBuilder
 
+- (instancetype)initWithStatus:(WBStatus *)status
+{
+    if (self = [super init]) {
+        _status = status;
+        [self calcularHeight];
+    }
+    return self;
+}
 
 - (void)calcularHeight
 {
@@ -47,6 +54,7 @@
     return exBodyHeight;
 }
 
+#pragma mark constructCell
 
 - (void)constructCell:(WeiboCell *)cell
 {
@@ -54,15 +62,7 @@
     self.body = cell.body;
     self.toolBar = cell.toolBar;
     [self prepareFromStatus];
-}
-
-- (instancetype)initWithStatus:(WBStatus *)status
-{
-    if (self = [super init]) {
-        _status = status;
-        [self calcularHeight];
-    }
-    return self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)prepareFromStatus;
@@ -140,5 +140,4 @@
     
     _heightOfCell = cellHeight;
 }
-
 @end

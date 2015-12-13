@@ -21,19 +21,17 @@
 
 + (NSString *)timeIntervalStringForNowSinceDate:(NSDate *)oldDate
 {
+    int const secondOfDay = 86400;
     NSString* timeString;
     NSDate* currentDate = [NSDate date];
-    NSString* dateString = [oldDate descriptionWithLocale:nil];
-    int timeInterval =  (int)[currentDate timeIntervalSinceDate:oldDate];
-    NSString* oldDayString = [dateString substringWithRange:NSMakeRange(8, 2)];
-    NSString* currDayString = [[currentDate descriptionWithLocale:nil] substringWithRange:NSMakeRange(8, 2)];
-    NSInteger dayInterval = [currDayString integerValue] - [oldDayString integerValue];
     
-    if (dayInterval >= 1) {
-        if (dayInterval < 2) {
+    int timeInterval =  (int)[currentDate timeIntervalSinceDate:oldDate];
+    if (timeInterval >= secondOfDay) {
+        NSString* dateString = [oldDate descriptionWithLocale:nil];
+        if (timeInterval < (secondOfDay * 2)) {
             timeString = [NSString stringWithFormat:@"昨天 %@",[dateString substringWithRange:NSMakeRange(11, 5)]];
         }else{
-            timeString = [dateString substringWithRange:NSMakeRange(5, 11)];
+            timeString = [dateString substringWithRange:NSMakeRange(5, 5)];
         }
     }else{
         int hour = timeInterval / 3600;

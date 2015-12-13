@@ -10,7 +10,7 @@
 #import "WBUser.h"
 #import "WBStatus.h"
 
-@interface WBURLAnalyser : NSObject
+@interface WBRequestManager : NSObject
 
 /*!
  * @discussion 返回当前授权用户所有关注的最新公共微博
@@ -23,7 +23,9 @@
 /*!
  * @discussion 返回当前授权用户所有关注的最新公共微博
  *
- * @param count 返回微博的数量，不超过100
+ * @param sinceID 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），不指定则传入0
+ *
+ * @param maxID 若指定此参数，则返回ID小于或等于max_id的微博，不指定则传入0
  *
  * @param handleStatus 请求成功返回时会回调该block处理每个WBStatus对象
  *
@@ -32,8 +34,9 @@
  * @param failHandle 请求失败时回调该block进行错误处理
  *
  */
-- (void)latestHomeStatusesWithCount:(NSInteger)count didReiceverStatus:(void (^)(WBStatus*))handleStatus
-                             finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle;
+- (void)homeStatusesWithSinceID:(NSString*)sinceID maxID:(NSString*)maxID
+              didReiceverStatus:(void (^)(WBStatus*))handleStatus
+                         finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle;
 /*!
  * @discussion 返回当前授权用户的最新个人微博，数量为5条
  *
@@ -42,6 +45,19 @@
  * @result 以WBStatus 为元素的数组
  */
 - (NSArray*)lastestPersonalStatus;
+
+/*!
+ * @discussion 返回当前授权用户的个人微博，5条
+ *
+ * @param handleStatus 请求成功返回时会回调该block处理每个WBStatus对象
+ *
+ * @param finishHandle 请求成功返回并完成处理后，调用此模块进行后续处理
+ *
+ * @param failHandle 请求失败时回调该block进行错误处理
+ *
+ */
+- (void)personalStatusesWithDidReiceverStatus:(void (^)(WBStatus*))handleStatus
+                                       finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle;
 
 /*!
  * @discussion 返回当前授权用户的个人信息

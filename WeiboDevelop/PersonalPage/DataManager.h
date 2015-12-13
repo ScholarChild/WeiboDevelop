@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "WBURLAnalyser.h"
+#import "WBRequestManager.h"
 #import "WBUser.h"
 @interface DataManager : NSObject
 + (WBUser *)dataJson;

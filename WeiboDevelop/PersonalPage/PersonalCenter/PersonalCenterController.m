@@ -5,7 +5,7 @@
 #import "PersonalCenterPhotoCell.h"
 #import "AFNetworking.h"
 #import "WeiboCell.h"
-#import "WBCellPreparer.h"
+#import "WBCellBuilder.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
 @interface PersonalCenterController()<UITableViewDataSource,UITableViewDelegate>
@@ -20,7 +20,7 @@
     UIView *_tabeheaderView;
     
     NSMutableArray* _cellPrepareres;
-    WBURLAnalyser* _manager;
+    WBRequestManager* _manager;
     
     UIRefreshControl *_control;
 }
@@ -30,7 +30,7 @@
 {
     if (self = [super init]) {
         _cellPrepareres = [NSMutableArray new];
-        _manager = [WBURLAnalyser new];
+        _manager = [WBRequestManager new];
     }
     return self;
 }
@@ -77,8 +77,8 @@
 - (void)updateStatusList
 {
     __block NSInteger insertPosition = 0;
-    [_manager latestHomeStatusesWithCount:20 didReiceverStatus:^(WBStatus* status){
-        WBCellPreparer* preparer = [[WBCellPreparer alloc]initWithStatus:status];
+    [_manager personalStatusesWithDidReiceverStatus:^(WBStatus* status){
+        WBCellBuilder* preparer = [[WBCellBuilder alloc]initWithStatus:status];
         [_cellPrepareres insertObject:preparer atIndex:insertPosition];
         insertPosition++;
     } finish:^{
@@ -124,7 +124,7 @@
         if (!cell) {
             cell = [[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
         }
-        WBCellPreparer* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
+        WBCellBuilder* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
         [preparer constructCell:cell];
         
         returnCell = cell;
@@ -174,7 +174,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (pageNum == 0) {
-        WBCellPreparer* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
+        WBCellBuilder* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
         return preparer.heightOfCell;
     }
     if (pageNum == 2) {
