@@ -11,7 +11,7 @@
 #import "CommentToMyTableViewCell.h"
 #define Height self.view.frame.size.height
 #define Width self.view.frame.size.width
-
+#import "AFHTTPSessionManager.h"
 
 
 @interface ToCommentViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -21,17 +21,37 @@
     NSArray* m_arr;
     NSMutableArray* imgArr1;
     NSMutableArray* imgArr2;
+    BOOL Arrnil;
 }
 
 @end
 
 @implementation ToCommentViewController
--(id)initWithNumber:(NSString *)number
+-(id)initWithArr:(NSArray*)arr
 {
     if (self=[super init]) {
+        m_arr=arr;
+        Arrnil=NO;
         
     }
     return self;
+}
+-(void)commentAction{
+    
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/to_me.json?source=1626555808&access_token=%@",access_token ];
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
+        //        CM_ToMy_data* data=[CM_ToMy_data mj_objectWithKeyValues:dataDit];
+        
+        NSArray* C_arr=[responseObeject objectForKey:@"comments"];
+        CM_CommentData* commen=[CM_CommentData new];
+        m_arr=[commen dicCommentData:C_arr];
+        [self data];
+        NSLog(@"评论获取成功");
+    }failure:^(NSURLSessionDataTask* task ,NSError* error){
+        NSLog(@"获取失败");
+    }];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,14 +60,21 @@
     _tableView.dataSource=self;
     _tableView.delegate=self;
     [self.view addSubview:_tableView];
+    imgArr1=[NSMutableArray new];
+    imgArr2=[NSMutableArray new];
+    if (m_arr==nil) {
+        [self commentAction];
+        Arrnil=YES;
+    }
+
     [self data];
 }
 -(void)data{
-    CM_CommentData* data=[[CM_CommentData alloc]init];
-    m_arr=[data dicCommentData];
-    imgArr1=[NSMutableArray new];
-    imgArr2=[NSMutableArray new];
+//    CM_CommentData* data=[[CM_CommentData alloc]init];
+//    m_arr=[data dicCommentData];
     
+  
+
     for (NSDictionary *dic in m_arr) {
         NSString* string=[dic objectForKey:@"comment.user.profile_image_url"];
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:string]];
@@ -57,6 +84,9 @@
         NSData * data1 = [NSData dataWithContentsOfURL:[NSURL URLWithString:string1]];
         UIImage *image1 =[ UIImage imageWithData:data1];
         [imgArr2 addObject:image1];
+    }
+    if (Arrnil) {
+        [_tableView reloadData];
     }
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -86,8 +116,8 @@
     if(!cell){
         cell=[[CommentToMyTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellIndentifier"];
     }
-    NSDictionary*dic=m_arr[indexPath.row];
-    [cell arrayTableViewCell:dic endIma:imgArr1[indexPath.row] endImage:imgArr2[indexPath.row]];
+    NSDictionary*dic=m_arr[indexPath.section];
+    [cell arrayTableViewCell:dic endIma:imgArr1[indexPath.section] endImage:imgArr2[indexPath.section]];
     return cell.heightY;
     
 }

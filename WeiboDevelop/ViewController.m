@@ -1,6 +1,7 @@
  
 #import "ViewController.h"
 #import "MyButton.h"
+#import "ToSubscriptionViewController.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
 @interface ViewController (){
@@ -34,7 +35,7 @@
     [self.view addSubview:self.popView];//可以自定义一些控件加上动画的效果
     
    
- 
+    tag=100300;
     
 }
 
@@ -83,6 +84,9 @@
 }
 #pragma mark 自定义按钮触碰方法
 -(void)myBtnAction:(UIButton*)btn{
+    [self tapX:btn];
+   
+    tag=(int )btn.tag;
     
 }
 
@@ -125,6 +129,7 @@
     [self btnAnimation];
     [UIView setAnimationDidStopSelector:@selector(viewAnimationStop:finish:context:)];
     [UIView commitAnimations];
+     
     //防止重复点击
     [self performSelector:@selector(delayMethod:) withObject:btn afterDelay:1];
 }
@@ -140,6 +145,7 @@
 {
     if ([animationID isEqualToString:@"showBtnImg"]) {
         [self finishView];
+       
     }
  
 //>>>>>>> message
@@ -151,7 +157,14 @@
     UIView* view=(UIView*)[self.view viewWithTag:10001];
     view.frame=CGRectMake(0,Height,Width, 250);//避免出现BUG
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //superController
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (tag==0) {
+            ToSubscriptionViewController* to=[ToSubscriptionViewController new];
+            [to show];
+        }
+    }];
 }
 
 @end

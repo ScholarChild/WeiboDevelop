@@ -119,8 +119,7 @@
                              finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
 {
     NSString* request = @"https://api.weibo.com/2/statuses/home_timeline.json";
-    NSMutableDictionary* parametersTmp = [NSMutableDictionary dictionaryWithCapacity:3];
-    [parametersTmp setDictionary:[self tokenDic]];
+    NSMutableDictionary* parametersTmp = [NSMutableDictionary dictionaryWithDictionary:[self tokenDic]];
     [parametersTmp setObject:[NSNumber numberWithInteger:count] forKey:@"count"];
     NSDictionary* parameters = [NSDictionary dictionaryWithDictionary:parametersTmp];
     

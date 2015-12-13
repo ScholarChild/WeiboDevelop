@@ -14,8 +14,9 @@
 #import "ToSubscriptionViewController.h"
 #import "ToConnet.h"
 #import "SearchViewController.h"
-#import "ToConnet.h"
+#import "CM_CommentData.h"
 #import "FlocksViewController.h"
+#import "AFHTTPSessionManager.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
 @interface MessagePageController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
@@ -26,6 +27,7 @@
     NSIndexPath* index;
     UISearchBar *_searchBar;
     NSArray* arr;
+    NSArray* arrMessage;
 }
 @property(nonatomic,retain)UITableView* tableView;
 @end
@@ -46,8 +48,7 @@
     rightBar.tintColor=[UIColor blackColor];
     self.navigationItem.rightBarButtonItem=rightBar;
     
-//    [self performSelectorOnMainThread:@selector(viewAction) withObject:nil waitUntilDone:YES];
-//    [self performSelector:@selector(date)];
+ 
     
     [self viewAction];//视图加载
 //
@@ -55,9 +56,37 @@
     
     //数据加载
     //待改进
-    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(dateAction) userInfo:nil repeats:NO];
+ 
+    [self dateAction];
+    [self commentAction];
 }
+-(void)commentAction{
+    
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/to_me.json?source=1626555808&access_token=%@",access_token ];
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
+//        CM_ToMy_data* data=[CM_ToMy_data mj_objectWithKeyValues:dataDit];
+        
+        NSArray* C_arr=[responseObeject objectForKey:@"comments"];
+        CM_CommentData* commen=[CM_CommentData new];
+        arrMessage=[commen dicCommentData:C_arr];
 
+        NSLog(@"评论获取成功");
+    }failure:^(NSURLSessionDataTask* task ,NSError* error){
+        NSLog(@"获取失败");
+    }];
+}
+-(void)dateAction{
+    
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/friendships/friends.json?source=1626555808&screen_name=%@&access_token=2.00HGROgCGTrEmB3cc58d85cbIzgk4B",PersonalUserName ];
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
+        arr=[responseObeject objectForKey:@"users"];
+        NSLog(@"获取数据成功");
+    }failure:^(NSURLSessionDataTask* task ,NSError* error){
+        NSLog(@"获取失败");
+    }];
+}
 #pragma mark 当前视图
 -(void)viewAction{
     //搜索框
@@ -76,10 +105,7 @@
     _imgarr=[[NSMutableArray alloc]initWithObjects:@"messagescenter_at.png",@"messagescenter_comments.png",@"messagescenter_good.png",@"messagescenter_subscription.png",@"messagescenter_messagebox.png", nil];
 
 }
--(void)dateAction{
-    arr=[ToConnet allConnet];
-    
-}
+
 #pragma mark -----------------tebleView的代理方法开始----------------------------
 //多少段
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -131,7 +157,7 @@
         [self.navigationController pushViewController:toAt animated:YES];
     }
     if (indexPath.row==1) {
-    ToCommentViewController* toCommet=[ToCommentViewController new];
+    ToCommentViewController* toCommet=[[ToCommentViewController alloc]initWithArr:arrMessage];
     toCommet.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:toCommet animated:YES];
     }

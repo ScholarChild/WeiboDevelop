@@ -9,7 +9,7 @@
 #import "SearchViewController.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
-#import "ToConnet.h"
+
 
 @interface SearchViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchResultsUpdating,UISearchControllerDelegate>
 {
@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
-    [self data];
+    
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 22, Width,Height) style:UITableViewStyleGrouped];
     _tableView.delegate=self;
     _tableView.dataSource=self;
@@ -72,23 +72,14 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationDelegate:self];
-  
     self.view.alpha=0.9;
-  
-    
-    
+
 }
 //这里采用笨方法(用定时器设置进去的时候是点击状态的)待改进
 -(void)timerAction{
     [_searchController.searchBar becomeFirstResponder];
 }
-//获取数据
--(void)data{
-    
-    //获取网络上关注的数据
- 
-  
-}
+
 
 
 #pragma mark ----------------tableView的代理方法开始-------------------------

@@ -55,7 +55,7 @@
 //<<<<<<< HEAD
 //
 //<<<<<<< Updated upstream
-    mainMenu.tabBarItem.image=[UIImage imageNamed:@"tabbar_compose_background_icon_add@2x.png"];
+//    mainMenu.tabBarItem.image=[[UIImage alloc]init];
 //=======
 //    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_more" ofType:@"png" ]];
 //=======
