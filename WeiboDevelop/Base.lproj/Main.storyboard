@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Comment Page Controller-->
         <scene sceneID="tvt-EV-MKr">
             <objects>
-                <viewController id="h9T-uu-w6a" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="h9T-uu-w6a" customClass="CommentPageController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O4B-Od-3lp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

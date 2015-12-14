@@ -15,11 +15,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     HomePageController* home=[HomePageController new];
-    //TabBar按钮的名字
     home.tabBarItem.title=@"主页";
-
-//    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"tabbar_home@2x" ofType:@"png" ]];
-//    imageName的方式会在使用的时候系统会cache，程序员是无法处理cache的，这是由系统自动处理的，对于重复加载的图像，速度会提升很多，这样反而用户体验好。所以如果某张图片需要在应用中使用多次，或者重复引用，使用imageName的方式会更好
+    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"tabbar_home@2x" ofType:@"png" ]];
     home.tabBarItem.image=[UIImage imageNamed:@"tabbar_home@2x.png"];
     home.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_home_selected@2x.png"];
     UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
@@ -31,63 +28,39 @@
     UINavigationController *messageNavi=[[UINavigationController alloc]initWithRootViewController:message];
     
     
-    FindViewController* findView = [FindViewController new];
-    UINavigationController *findNavi = [[UINavigationController alloc] initWithRootViewController:findView];
-    findView.tabBarItem.title=@"发现";
-    findView.tabBarItem.image=[UIImage imageNamed:@"tabbar_discover@2x.png"];
-    findView.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_discover_highlighted@2x.png"];
+    FindViewController* find = [FindViewController new];
+    find.tabBarItem.title=@"发现";
+    find.tabBarItem.image=[UIImage imageNamed:@"tabbar_discover@2x.png"];
+    find.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_discover_highlighted@2x.png"];
+    UINavigationController *findNavi = [[UINavigationController alloc] initWithRootViewController:find];
     
     PersonalPageController* personal=[PersonalPageController new];
-//<<<<<<< Updated upstream
     personal.tabBarItem.title=@"个人信息";
     personal.tabBarItem.image=[UIImage imageNamed:@"tabbar_profile@2x.png"];
     personal.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_profile_highlighted@2x.png"];
-//=======
-//    personal.tabBarItem.title=@"我";
-//    personal.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_selfinfo" ofType:@"png" ]];
-//>>>>>>> Stashed changes
     UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
     
     MainMenuController* mainMenu=[MainMenuController new];
-//<<<<<<< HEAD
-//
-//<<<<<<< Updated upstream
     mainMenu.tabBarItem.image=[UIImage imageNamed:@"tabbar_compose_background_icon_add@2x.png"];
-//=======
-//    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_more" ofType:@"png" ]];
-//=======
-   
-//    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@" " ofType:@"png" ]];
-//>>>>>>> message
-//>>>>>>> Stashed changes
-    
+
     UITabBarController* tabBarC =[UITabBarController new];
-    //    传入数组。数组元素是各个视图控制器对象
    
     tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
-    //    设置被选中的视图控制器
-    tabBarC.selectedViewController=homeNavi;
-    //默认选中
-
     tabBarC.selectedIndex=0;
-    //选中时的颜色
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
-    //背景颜色
-//<<<<<<< HEAD
-//    tabBarC.tabBar.barTintColor=[UIColor whiteColor];
-//    
-//=======
     tabBarC.tabBar.barTintColor=[UIColor blackColor];
     
     UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(self.window.frame.size.width*2/5,0, self.window.frame.size.width/5, 48)];
     [btn setImage:[UIImage imageNamed:@"tabbar_compose_background_icon_add.png"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [tabBarC.tabBar addSubview:btn];
-//>>>>>>> message
-    self.window.rootViewController = tabBarC;
+    
+    UINavigationController* navi = [[UINavigationController alloc]initWithRootViewController:tabBarC];
+    self.window.rootViewController = navi;
     
     return YES;
 }
+
 -(void)btnAction{
     ViewController* view=[[ViewController alloc]init];
     [view setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
