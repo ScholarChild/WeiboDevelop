@@ -12,7 +12,7 @@
 #define Height self.view.frame.size.height
 #define Width self.view.frame.size.width
 #import "AFHTTPSessionManager.h"
-
+#import "ActivityViewAction.h"
 
 @interface ToCommentViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -21,6 +21,7 @@
     NSArray* m_arr;
     NSMutableArray* imgArr1;
     NSMutableArray* imgArr2;
+    ActivityViewAction* _act;
     BOOL Arrnil;
 }
 
@@ -30,15 +31,14 @@
 -(id)initWithArr:(NSArray*)arr
 {
     if (self=[super init]) {
-        m_arr=arr;
+//        m_arr=arr;
         Arrnil=NO;
-        
     }
     return self;
 }
 -(void)commentAction{
     
-    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/to_me.json?source=1626555808&access_token=%@",access_token ];
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/to_me.json?source=%@&access_token=%@",appKey, access_token ];
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
         //        CM_ToMy_data* data=[CM_ToMy_data mj_objectWithKeyValues:dataDit];
@@ -55,19 +55,23 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor=[UIColor whiteColor];
     _tableView=[[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
     _tableView.dataSource=self;
     _tableView.delegate=self;
     [self.view addSubview:_tableView];
     imgArr1=[NSMutableArray new];
     imgArr2=[NSMutableArray new];
+    _act=[[ActivityViewAction alloc]initWithFrame:_tableView.frame];
+    [_act showWithText:@"加载中..."];
     if (m_arr==nil) {
         [self commentAction];
         Arrnil=YES;
     }
+   
+    
+    [self.view addSubview:_act];
 
-    [self data];
 }
 -(void)data{
 //    CM_CommentData* data=[[CM_CommentData alloc]init];
@@ -87,6 +91,7 @@
     }
     if (Arrnil) {
         [_tableView reloadData];
+        [_act hidden];
     }
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

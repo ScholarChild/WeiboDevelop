@@ -56,29 +56,13 @@
     
     //数据加载
     //待改进
- 
     [self dateAction];
-    [self commentAction];
-}
--(void)commentAction{
     
-    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/to_me.json?source=1626555808&access_token=%@",access_token ];
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-    [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
-//        CM_ToMy_data* data=[CM_ToMy_data mj_objectWithKeyValues:dataDit];
-        
-        NSArray* C_arr=[responseObeject objectForKey:@"comments"];
-        CM_CommentData* commen=[CM_CommentData new];
-        arrMessage=[commen dicCommentData:C_arr];
-
-        NSLog(@"评论获取成功");
-    }failure:^(NSURLSessionDataTask* task ,NSError* error){
-        NSLog(@"获取失败");
-    }];
 }
+
 -(void)dateAction{
     
-    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/friendships/friends.json?source=1626555808&screen_name=%@&access_token=2.00HGROgCGTrEmB3cc58d85cbIzgk4B",PersonalUserName ];
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/friendships/friends.json?source=%@&screen_name=%@&access_token=%@",appKey,PersonalUserName,access_token ];
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
         arr=[responseObeject objectForKey:@"users"];
@@ -174,11 +158,7 @@
     [self.navigationController pushViewController:toMess animated:YES];
     }
     
-    if (indexPath.row==4) {
-    ToSubscriptionViewController* toSub=[ToSubscriptionViewController new];
-    toSub.hidesBottomBarWhenPushed=YES;
-    [self.navigationController pushViewController:toSub animated:YES];
-    }
+  
 
 }
 #pragma mark -----------------tebleView的代理方法结束----------------------------

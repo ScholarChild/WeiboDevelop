@@ -14,6 +14,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //创建一个缓存，内存4m，磁盘占用20m
+    NSURLCache *urlCache = [[NSURLCache alloc]initWithMemoryCapacity:4*1024*1024 diskCapacity:20*1024*1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:urlCache];
+    
     HomePageController* home=[HomePageController new];
     //TabBar按钮的名字
     home.tabBarItem.title=@"主页";

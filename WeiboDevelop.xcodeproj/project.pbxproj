@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F071E2C1C1EA1F9007A3DB1 /* ActivityViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F071E2B1C1EA1F9007A3DB1 /* ActivityViewAction.m */; };
 		0F429E851C0E9C1C0003AE0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429E841C0E9C1C0003AE0C /* main.m */; };
 		0F429E881C0E9C1C0003AE0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429E871C0E9C1C0003AE0C /* AppDelegate.m */; };
 		0F429E8B1C0E9C1C0003AE0C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429E8A1C0E9C1C0003AE0C /* ViewController.m */; };
@@ -364,6 +365,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F071E2A1C1EA1F9007A3DB1 /* ActivityViewAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewAction.h; sourceTree = "<group>"; };
+		0F071E2B1C1EA1F9007A3DB1 /* ActivityViewAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewAction.m; sourceTree = "<group>"; };
 		0F429E7F1C0E9C1C0003AE0C /* WeiboDevelop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboDevelop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F429E831C0E9C1C0003AE0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F429E841C0E9C1C0003AE0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1067,6 +1070,8 @@
 				0F429EF71C0E9D8A0003AE0C /* ToAtViewController.m */,
 				0F429EF81C0E9D8A0003AE0C /* ToCommentViewController.h */,
 				0F429EF91C0E9D8A0003AE0C /* ToCommentViewController.m */,
+				0F071E2A1C1EA1F9007A3DB1 /* ActivityViewAction.h */,
+				0F071E2B1C1EA1F9007A3DB1 /* ActivityViewAction.m */,
 				0F429EFA1C0E9D8A0003AE0C /* ToGoodViewController.h */,
 				0F429EFB1C0E9D8A0003AE0C /* ToGoodViewController.m */,
 				0F429EFC1C0E9D8A0003AE0C /* ToMessageboxViewController.h */,
@@ -1920,6 +1925,7 @@
 				0F83821A1C13C6AA00EF8FFA /* AFURLResponseSerialization.m in Sources */,
 				0F429F761C0E9D8A0003AE0C /* ToAtViewController.m in Sources */,
 				0F482EEE1C0ECE7F00299E8C /* PersonalNaviView.m in Sources */,
+				0F071E2C1C1EA1F9007A3DB1 /* ActivityViewAction.m in Sources */,
 				0F429F8F1C0E9D8A0003AE0C /* UIButton+WebCache.m in Sources */,
 				0F429F661C0E9D8A0003AE0C /* WBStatus.m in Sources */,
 				0F429F5C1C0E9D8A0003AE0C /* Find_SearchViewController.m in Sources */,
