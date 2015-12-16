@@ -23,6 +23,7 @@
     NSMutableArray* imgArr2;
     ActivityViewAction* _act;
     BOOL Arrnil;
+    UIRefreshControl*refres;
 }
 
 @end
@@ -53,6 +54,7 @@
     }];
     
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
@@ -68,10 +70,22 @@
         [self commentAction];
         Arrnil=YES;
     }
-   
-    
     [self.view addSubview:_act];
-
+    
+    //下拉刷新
+    refres=[[UIRefreshControl alloc]init];
+    refres.attributedTitle=[[NSAttributedString alloc]initWithString:@"下拉刷新中..."];
+    [refres addTarget:self  action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    
+    [_tableView addSubview:refres];
+}
+-(void)refresh{
+    NSLog(@"刷新修改表");
+    if (refres.refreshing) {
+        refres.attributedTitle=[[NSAttributedString alloc]initWithString:@"刷新成功"];
+        
+        [refres endRefreshing];
+    }
 }
 -(void)data{
 //    CM_CommentData* data=[[CM_CommentData alloc]init];
