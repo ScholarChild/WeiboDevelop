@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface CM_CommentData : NSObject
--(NSArray*)dicCommentData;
+-(NSArray*)dicCommentData:(NSArray* )arr;
 @end
