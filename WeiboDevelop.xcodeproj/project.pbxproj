@@ -358,6 +358,7 @@
 		0FB8B1381C17BAF90057B22C /* tabbar_profile_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B12F1C17BAF90057B22C /* tabbar_profile_highlighted@2x.png */; };
 		0FB8B1391C17BAF90057B22C /* tabbar_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B1301C17BAF90057B22C /* tabbar_profile@2x.png */; };
 		0FB8B13B1C17BC340057B22C /* tabbar_message_center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B13A1C17BC340057B22C /* tabbar_message_center@2x.png */; };
+		0FB8B13D1C17CC6C0057B22C /* btn_gray_backgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B13C1C17CC6C0057B22C /* btn_gray_backgroud.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -844,6 +845,7 @@
 		0FB8B12F1C17BAF90057B22C /* tabbar_profile_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_profile_highlighted@2x.png"; sourceTree = "<group>"; };
 		0FB8B1301C17BAF90057B22C /* tabbar_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_profile@2x.png"; sourceTree = "<group>"; };
 		0FB8B13A1C17BC340057B22C /* tabbar_message_center@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_message_center@2x.png"; sourceTree = "<group>"; };
+		0FB8B13C1C17CC6C0057B22C /* btn_gray_backgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_gray_backgroud.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1220,11 +1222,11 @@
 		0F482EBE1C0ECE7F00299E8C /* PersonalPage */ = {
 			isa = PBXGroup;
 			children = (
+				0F482EC51C0ECE7F00299E8C /* DataManager.h */,
+				0F482EC61C0ECE7F00299E8C /* DataManager.m */,
 				0F482EC71C0ECE7F00299E8C /* PersonalCenter */,
 				0F482EBF1C0ECE7F00299E8C /* addFriends */,
 				0F482EC21C0ECE7F00299E8C /* Cell */,
-				0F482EC51C0ECE7F00299E8C /* DataManager.h */,
-				0F482EC61C0ECE7F00299E8C /* DataManager.m */,
 				0F482EE21C0ECE7F00299E8C /* table */,
 			);
 			path = PersonalPage;
@@ -1270,6 +1272,7 @@
 		0F482ED31C0ECE7F00299E8C /* tmpResource */ = {
 			isa = PBXGroup;
 			children = (
+				0FB8B13C1C17CC6C0057B22C /* btn_gray_backgroud.png */,
 				0FB8B1281C17BAF90057B22C /* tabbar_compose_background_icon_add@2x.png */,
 				0FB8B1291C17BAF90057B22C /* tabbar_compose_background_icon_close@2x.png */,
 				0FB8B12A1C17BAF90057B22C /* tabbar_discover_highlighted@2x.png */,
@@ -1688,6 +1691,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FB8B13D1C17CC6C0057B22C /* btn_gray_backgroud.png in Resources */,
 				0F90B9491C1C21DE00FEA45C /* d_dalian@2x.png in Resources */,
 				0FB8B1361C17BAF90057B22C /* tabbar_home@2x.png in Resources */,
 				0F90B9B61C1C21DE00FEA45C /* f_geili@3x.png in Resources */,

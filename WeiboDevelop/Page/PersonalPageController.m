@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     self.view.backgroundColor = [UIColor lightGrayColor];
     _dataArr = [DataManager getPlistDataWithName:@"HomePageInfo"];
@@ -24,9 +25,9 @@
     _tableview = [[UserInfoTableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
-    
-    [[UIBarButtonItem appearance]setBackButtonBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_return@3x.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)forBarMetrics:UIBarMetricsDefault];
+
+//    [[UIBarButtonItem appearance]setBackButtonBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_return@3x.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)forBarMetrics:UIBarMetricsDefault];
     
     self.title = @"我";
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加好友" style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
