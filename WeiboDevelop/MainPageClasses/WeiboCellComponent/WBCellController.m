@@ -90,7 +90,9 @@
     NSString* statusID = [_status.statusID stringValue];
     [_toolBar setCommendAction:^(NSInteger commitCount){
         CommentPageController* commentPage = [[CommentPageController alloc]initWithNumber:statusID];
+        commentPage.hidesBottomBarWhenPushed=YES;
         [safeSelf.navigationController pushViewController:commentPage animated:YES];
+        
     }];
     
     if (retweet == nil) {

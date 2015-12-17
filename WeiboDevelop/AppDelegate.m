@@ -14,38 +14,36 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //创建一个缓存，内存4m，磁盘占用20m
+    NSURLCache *urlCache = [[NSURLCache alloc]initWithMemoryCapacity:4*1024*1024 diskCapacity:20*1024*1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:urlCache];
+    
     HomePageController* home=[HomePageController new];
     home.tabBarItem.title=@"主页";
     home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"tabbar_home@2x" ofType:@"png" ]];
     home.tabBarItem.image=[UIImage imageNamed:@"tabbar_home@2x.png"];
     home.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_home_selected@2x.png"];
-    UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
 
     MessagePageController* message=[MessagePageController new];
     message.tabBarItem.image= [UIImage imageNamed:@"tabbar_message_center@2x.png"];
     message.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_message_center_selected@2x.png"];
     message.tabBarItem.title=@"消息";
-    UINavigationController *messageNavi=[[UINavigationController alloc]initWithRootViewController:message];
-    
     
     FindViewController* find = [FindViewController new];
     find.tabBarItem.title=@"发现";
     find.tabBarItem.image=[UIImage imageNamed:@"tabbar_discover@2x.png"];
     find.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_discover_highlighted@2x.png"];
-    UINavigationController *findNavi = [[UINavigationController alloc] initWithRootViewController:find];
     
     PersonalPageController* personal=[PersonalPageController new];
     personal.tabBarItem.title=@"个人信息";
     personal.tabBarItem.image=[UIImage imageNamed:@"tabbar_profile@2x.png"];
     personal.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_profile_highlighted@2x.png"];
-    UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
     
     MainMenuController* mainMenu=[MainMenuController new];
-    mainMenu.tabBarItem.image=[UIImage imageNamed:@"tabbar_compose_background_icon_add@2x.png"];
-
+    mainMenu.tabBarItem.image=[UIImage imageNamed:@""];
     UITabBarController* tabBarC =[UITabBarController new];
    
-    tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
+    tabBarC.viewControllers=@[home,message,mainMenu,find,personal];
     tabBarC.selectedIndex=0;
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     tabBarC.tabBar.barTintColor=[UIColor blackColor];
@@ -57,7 +55,6 @@
     
     UINavigationController* navi = [[UINavigationController alloc]initWithRootViewController:tabBarC];
     self.window.rootViewController = navi;
-    
     return YES;
 }
 

@@ -10,4 +10,5 @@
 
 @interface ToSubscriptionViewController : UIViewController
 
+-(void)show;
 @end
