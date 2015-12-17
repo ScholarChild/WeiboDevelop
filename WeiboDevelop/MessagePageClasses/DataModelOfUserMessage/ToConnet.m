@@ -10,10 +10,13 @@
 #import "ToData1.h"
 #import "ToData.h"
 #import "MJExtension.h"
+#import "AFHTTPSessionManager.h"
 @implementation ToConnet
 +(NSArray *)allConnet
 {
     NSString* str=@"https://api.weibo.com/2/friendships/friends.json?source=1626555808&screen_name=%E6%B2%B3%E5%8D%97%E7%BC%98-%E6%9D%A5%E5%A6%82%E6%AD%A4&access_token=2.00HGROgCGTrEmB3cc58d85cbIzgk4B";
+    
+    
     
     NSURL* url=[NSURL URLWithString:str];
     NSURLRequest * request=[[NSURLRequest alloc]initWithURL:url];

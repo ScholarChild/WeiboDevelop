@@ -14,20 +14,22 @@
 #import "ToSubscriptionViewController.h"
 #import "ToConnet.h"
 #import "SearchViewController.h"
-#import "ToConnet.h"
+#import "CM_CommentData.h"
 #import "FlocksViewController.h"
+#import "AFHTTPSessionManager.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
 @interface MessagePageController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
-    UITableView* _tableView;
+    
     NSMutableArray* _imgarr;//储存图片数组
     NSMutableArray* _textarr;//储存文字数组
-    
+    NSIndexPath* index;
     UISearchBar *_searchBar;
     NSArray* arr;
+    NSArray* arrMessage;
 }
-
+@property(nonatomic,retain)UITableView* tableView;
 @end
 
 @implementation MessagePageController
@@ -46,8 +48,7 @@
     rightBar.tintColor=[UIColor blackColor];
     self.navigationItem.rightBarButtonItem=rightBar;
     
-//    [self performSelectorOnMainThread:@selector(viewAction) withObject:nil waitUntilDone:YES];
-//    [self performSelector:@selector(date)];
+ 
     
     [self viewAction];//视图加载
 //
@@ -55,9 +56,21 @@
     
     //数据加载
     //待改进
-    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(dateAction) userInfo:nil repeats:NO];
+    [self dateAction];
+    
 }
 
+-(void)dateAction{
+    
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/friendships/friends.json?source=%@&screen_name=%@&access_token=%@",appKey,PersonalUserName,access_token ];
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
+        arr=[responseObeject objectForKey:@"users"];
+        NSLog(@"获取数据成功");
+    }failure:^(NSURLSessionDataTask* task ,NSError* error){
+        NSLog(@"获取失败");
+    }];
+}
 #pragma mark 当前视图
 -(void)viewAction{
     //搜索框
@@ -76,10 +89,7 @@
     _imgarr=[[NSMutableArray alloc]initWithObjects:@"messagescenter_at.png",@"messagescenter_comments.png",@"messagescenter_good.png",@"messagescenter_subscription.png",@"messagescenter_messagebox.png", nil];
 
 }
--(void)dateAction{
-    arr=[ToConnet allConnet];
-    
-}
+
 #pragma mark -----------------tebleView的代理方法开始----------------------------
 //多少段
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -100,6 +110,8 @@
    
     cell.textLabel.text=[_textarr objectAtIndex:indexPath.row];
     cell.imageView.image=[UIImage imageNamed:[_imgarr objectAtIndex:indexPath.row]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     return cell;
     
 }
@@ -113,19 +125,23 @@
 {
     return 0.1;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   
+   [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+   
+}
 //点击tableView触发
 #pragma mark 待改进
 -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if (indexPath.row==0) {
         ToAtViewController* toAt=[ToAtViewController new];
         toAt.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:toAt animated:YES];
     }
-    
     if (indexPath.row==1) {
-    ToCommentViewController* toCommet=[ToCommentViewController new];
+    ToCommentViewController* toCommet=[[ToCommentViewController alloc]initWithArr:arrMessage];
     toCommet.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:toCommet animated:YES];
     }
@@ -142,16 +158,16 @@
     [self.navigationController pushViewController:toMess animated:YES];
     }
     
-    if (indexPath.row==4) {
-    ToSubscriptionViewController* toSub=[ToSubscriptionViewController new];
-    toSub.hidesBottomBarWhenPushed=YES;
-    [self.navigationController pushViewController:toSub animated:YES];
-    }
+  
+
 }
 #pragma mark -----------------tebleView的代理方法结束----------------------------
-
-
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:index animated:NO];
+    [self.tableView reloadData];
+}
 
 #pragma mark 点击搜索框触发  页面跳转
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -159,9 +175,13 @@
     NSLog(@"开始");
     SearchViewController *controller =[[SearchViewController alloc]initName:arr];
        controller.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
-    [controller.searchController.searchBar becomeFirstResponder];
     
-    [self presentViewController:controller animated:YES completion:nil];
+    [self presentViewController:controller animated:NO completion:^(){
+        [controller animationAction];
+        [UIView commitAnimations];
+        [controller becomAction];
+
+    }];
     return NO;
 }
 
@@ -176,7 +196,17 @@
 -(void)rightAction{
     
 }
-
+//改变视图间切换动画
+- (CATransition *)setCATransition
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    transition.subtype = kCATransitionFade;
+    transition.delegate = self;
+    return transition;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

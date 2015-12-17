@@ -63,8 +63,8 @@
     self.searchBar.delegate = self;
     self.searchBar.searchBarStyle = UISearchBarStyleDefault;
     self.searchDC = [[UISearchController alloc] initWithSearchResultsController:self];
+    
     [self.navigationController.navigationBar addSubview:self.searchBar];
-
     [self initTableView];
 }
 

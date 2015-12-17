@@ -46,18 +46,15 @@
     memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:memberBtn];
     
-
     label = [[UILabel alloc]init];
     [self addSubview:label];
     
-
     attentionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:attentionBtn];
 
     fansBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:fansBtn];
     
-
     descriptionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:descriptionBtn];
 }
@@ -71,19 +68,17 @@
     NSURL *url  = [NSURL URLWithString:userData.cover_image_phone];
         [backgroundImgv sd_setImageWithURL:url];
     }
-    NSLog(@"--%@",userData.cover_image_phone);
-    
 
-    
     userImgV.frame=CGRectMake(0, 0, 70, 70);
     userImgV.layer.cornerRadius= userImgV.frame.size.width/2+0.5;
     userImgV.layer.masksToBounds=YES;
     userImgV.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.4].CGColor;
     userImgV.layer.borderWidth = 2;
     userImgV.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-120);
-    NSData *picData = [NSData dataWithContentsOfURL:[NSURL URLWithString:userData.profile_image_url]];
-    userImgV.image = [UIImage imageWithData:picData];
-    
+//    NSData *picData = [NSData dataWithContentsOfURL:[NSURL URLWithString:userData.profile_image_url]];
+//    userImgV.image = [UIImage imageWithData:picData];
+    NSURL *url  = [NSURL URLWithString:userData.profile_image_url];
+    [userImgV sd_setImageWithURL:url];
     userNameLabel.text = userData.name;
     userNameLabel.textColor = [UIColor whiteColor];
     userNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.0];

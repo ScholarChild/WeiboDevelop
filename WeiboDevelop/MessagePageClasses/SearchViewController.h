@@ -11,4 +11,6 @@
 @interface SearchViewController : UIViewController
 @property (nonatomic, strong) UISearchController *searchController;
 -(id)initName:(NSArray*)arr;
+-(void)becomAction;
+-(void)animationAction;
 @end

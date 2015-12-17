@@ -9,7 +9,7 @@
 #import "SearchViewController.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
-#import "ToConnet.h"
+
 
 @interface SearchViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchResultsUpdating,UISearchControllerDelegate>
 {
@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
-    [self data];
+    
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 22, Width,Height) style:UITableViewStyleGrouped];
     _tableView.delegate=self;
     _tableView.dataSource=self;
@@ -59,21 +59,27 @@
      _searchController.searchBar.returnKeyType=UIReturnKeyDone;//设置键盘返回键样式
     
     //待改进
-    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
-
+//    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
+    self.view.alpha=0.8;
     
+}
+-(void)becomAction;{
+    [_searchController.searchBar becomeFirstResponder];
+
+}
+-(void)animationAction{
+    [UIView beginAnimations:@"ShowView" context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDuration:0.25];
+    [UIView setAnimationDelegate:self];
+    self.view.alpha=0.9;
+
 }
 //这里采用笨方法(用定时器设置进去的时候是点击状态的)待改进
 -(void)timerAction{
-     [_searchController.searchBar becomeFirstResponder];
+    [_searchController.searchBar becomeFirstResponder];
 }
-//获取数据
--(void)data{
-    
-    //获取网络上关注的数据
- 
-  
-}
+
 
 
 #pragma mark ----------------tableView的代理方法开始-------------------------
@@ -187,12 +193,14 @@
 }
 //点击返回按钮
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [searchBar resignFirstResponder];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 //点击取消按钮
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [searchBar resignFirstResponder];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

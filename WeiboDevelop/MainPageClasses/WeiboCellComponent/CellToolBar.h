@@ -16,7 +16,7 @@ typedef void (^clickAction) (NSInteger count);
 - (void)setCommentCount:(NSNumber *)commentCount;
 - (void)setAttitudeCount:(NSNumber *)attitudeCount;
 
-@property (assign)clickAction repostAction;
-@property (assign)clickAction commendAction;
+@property (nonatomic,copy)clickAction repostAction;
+@property (nonatomic,copy)clickAction commendAction;
 
 @end

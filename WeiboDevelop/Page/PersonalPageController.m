@@ -105,6 +105,7 @@
         personalCenterVC.userData = userData;
         [self.navigationController pushViewController:personalCenterVC animated:YES];
     }
+    
 }
 - (void)addFriend
 {

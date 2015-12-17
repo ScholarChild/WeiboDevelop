@@ -6,64 +6,70 @@
 
 #import "MainMenuController.h"
 
-
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
-//add to test 
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //创建一个缓存，内存4m，磁盘占用20m
+    NSURLCache *urlCache = [[NSURLCache alloc]initWithMemoryCapacity:4*1024*1024 diskCapacity:20*1024*1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:urlCache];
+    
     HomePageController* home=[HomePageController new];
-    //TabBar按钮的名字
     home.tabBarItem.title=@"主页";
-    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_home" ofType:@"png" ]];
-    UINavigationController* homeNavi = [[UINavigationController alloc]initWithRootViewController:home];
+    home.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"tabbar_home@2x" ofType:@"png" ]];
+    home.tabBarItem.image=[UIImage imageNamed:@"tabbar_home@2x.png"];
+    home.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_home_selected@2x.png"];
 
-    
     MessagePageController* message=[MessagePageController new];
-    message.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_message" ofType:@"png" ]];
+    message.tabBarItem.image= [UIImage imageNamed:@"tabbar_message_center@2x.png"];
+    message.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_message_center_selected@2x.png"];
     message.tabBarItem.title=@"消息";
-    UINavigationController *messageNavi=[[UINavigationController alloc]initWithRootViewController:message];
     
-    
-    FindViewController* findView = [FindViewController new];
-    UINavigationController *findNavi = [[UINavigationController alloc] initWithRootViewController:findView];
-    findView.tabBarItem.title=@"搜索";
-    findView.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_search_n" ofType:@"png" ]];
+    FindViewController* find = [FindViewController new];
+    find.tabBarItem.title=@"发现";
+    find.tabBarItem.image=[UIImage imageNamed:@"tabbar_discover@2x.png"];
+    find.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_discover_highlighted@2x.png"];
     
     PersonalPageController* personal=[PersonalPageController new];
     personal.tabBarItem.title=@"个人信息";
-    personal.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_selfinfo" ofType:@"png" ]];
-    UINavigationController* personalNavi = [[UINavigationController alloc]initWithRootViewController:personal];
+    personal.tabBarItem.image=[UIImage imageNamed:@"tabbar_profile@2x.png"];
+    personal.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_profile_highlighted@2x.png"];
     
     MainMenuController* mainMenu=[MainMenuController new];
-
-    mainMenu.tabBarItem.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"icon_more" ofType:@"png" ]];
-    
+    mainMenu.tabBarItem.image=[UIImage imageNamed:@""];
     UITabBarController* tabBarC =[UITabBarController new];
-    //    传入数组。数组元素是各个视图控制器对象
    
-    tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
-    //    设置被选中的视图控制器
-    tabBarC.selectedViewController=messageNavi;
-    //默认选中
-
+    tabBarC.viewControllers=@[home,message,mainMenu,find,personal];
     tabBarC.selectedIndex=1;
-    //选中时的颜色
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
-    //背景颜色
-    tabBarC.tabBar.barTintColor=[UIColor whiteColor];
+    tabBarC.tabBar.barTintColor=[UIColor blackColor];
     
-    self.window.rootViewController = tabBarC;
-
-
+    UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(self.window.frame.size.width*2/5,0, self.window.frame.size.width/5, 48)];
+    [btn setImage:[UIImage imageNamed:@"tabbar_compose_background_icon_add.png"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
+    [tabBarC.tabBar addSubview:btn];
+    
+    UINavigationController* navi = [[UINavigationController alloc]initWithRootViewController:tabBarC];
+    self.window.rootViewController = navi;
+    NSLog(@">>>>>>%@",navi);
+    
     return YES;
 }
 
+-(void)btnAction{
+    ViewController* view=[[ViewController alloc]init];
+    [view setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self.window.rootViewController presentViewController:view animated:NO completion:^(){
+        [view animationAction];//播放View动画
+        [UIView commitAnimations];//结束动画
+        [view btnAnimation];
+        [UIView commitAnimations];
+    }];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
