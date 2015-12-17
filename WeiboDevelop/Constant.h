@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-FOUNDATION_EXTERN NSString* const access_token;
-FOUNDATION_EXTERN NSString* const appKey;
-FOUNDATION_EXTERN NSString* const PersonalUserName;
+FOUNDATION_EXTERN NSString* const kAccessToken;
+FOUNDATION_EXTERN NSString* const kAppKey;
+FOUNDATION_EXTERN NSString* const kPersonalUserName;
 FOUNDATION_EXTERN NSString* const NULLString;
 
 FOUNDATION_EXTERN CGFloat const weiboCellviewInterval;

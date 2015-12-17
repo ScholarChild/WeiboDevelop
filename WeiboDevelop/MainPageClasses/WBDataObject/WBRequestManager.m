@@ -74,13 +74,13 @@ static WBRequestManager* _instance;
 {
     NSString* request = [NSString stringWithFormat:
                          @"https://api.weibo.com/2/statuses/user_timeline.json?%@&screen_name=%@",
-                         [self tokenStr],PersonalUserName];
+                         [self tokenStr],kPersonalUserName];
     return [self statusesWithRequest:request];
 }
 
 - (WBUser*)personalInfoOfCurrentUser
 {
-    return [self personalInfoWithUserName:PersonalUserName];
+    return [self personalInfoWithUserName:kPersonalUserName];
 }
 
 
@@ -265,15 +265,15 @@ static WBRequestManager* _instance;
 - (NSString*)tokenStr
 {
     NSString* key = @"";
-    BOOL hasToken = (access_token != NULLString);
-    BOOL hasSource = (appKey != NULLString);
+    BOOL hasToken = (kAccessToken != NULLString);
+    BOOL hasSource = (kAppKey != NULLString);
     
     if (hasToken) {
-        key = [NSString stringWithFormat:@"access_token=%@",access_token];
+        key = [NSString stringWithFormat:@"access_token=%@",kAccessToken];
     }else if (hasSource) {
-        key = [NSString stringWithFormat:@"source=%@",appKey];
+        key = [NSString stringWithFormat:@"source=%@",kAppKey];
     }else if (hasSource&&hasToken) {
-        key = [NSString stringWithFormat:@"access_token=%@&source=%@",access_token,appKey];
+        key = [NSString stringWithFormat:@"access_token=%@&source=%@",kAccessToken,kAppKey];
     }
     return key;
 }
@@ -281,16 +281,16 @@ static WBRequestManager* _instance;
 - (NSDictionary*)tokenDic
 {
     NSDictionary* tokenDic = @{};
-    BOOL hasToken = (access_token != NULLString);
-    BOOL hasSource = (appKey != NULLString);
+    BOOL hasToken = (kAccessToken != NULLString);
+    BOOL hasSource = (kAppKey != NULLString);
     
     if (hasToken) {
-        tokenDic = @{@"access_token":access_token};
+        tokenDic = @{@"access_token":kAccessToken};
     }else if (hasSource) {
-        tokenDic = @{@"source":appKey};
+        tokenDic = @{@"source":kAppKey};
     }else if (hasSource&&hasToken) {
-        tokenDic = @{@"access_token":access_token,
-                     @"source":appKey};
+        tokenDic = @{@"access_token":kAccessToken,
+                     @"source":kAppKey};
     }
     return tokenDic;
 }
