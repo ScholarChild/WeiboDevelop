@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
     [self updateStatusList];
+    
     _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, -44, 375, 667+44) style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
