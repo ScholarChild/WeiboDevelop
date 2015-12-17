@@ -13,7 +13,7 @@
 {
     //
     WBRequestManager *analyser = [WBRequestManager new];
-    WBUser * userData = [analyser personalInfoWithUserName:PersonalUserName];
+    WBUser * userData = [analyser personalInfoWithUserName:kPersonalUserName];
    
     return userData;
 }

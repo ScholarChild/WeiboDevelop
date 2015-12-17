@@ -126,7 +126,7 @@
             cell = [[WBContainCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
         }
         WBCellController* cellController = [_cellControlleres objectAtIndex:[indexPath row]];
-        [cellController constructCell:cell];
+        [cellController constructCell:cell mode:WBContextCellModeDefault];
         
         returnCell = cell;
     }

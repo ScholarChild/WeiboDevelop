@@ -16,7 +16,7 @@
 -(NSArray *)dicComment:(NSString* )number;
 {
     //3903357762941127
-    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/show.json?source=%@&id=%@&access_token=%@",appKey,number,access_token];
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/show.json?source=%@&id=%@&access_token=%@",kAppKey,number,kAccessToken];
     
     NSURL* url=[NSURL URLWithString:str];
     NSURLRequest * request=[[NSURLRequest alloc]initWithURL:url];

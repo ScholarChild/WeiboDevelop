@@ -14,6 +14,7 @@
 @property (nonatomic,retain)UserInfoView* userInfo;
 @property (nonatomic,retain)BodyView* body;
 @property (nonatomic,retain)CellToolBar* toolBar;
+@property (nonatomic,assign)WBContextCellMode mode;
 
 @end
 
@@ -22,7 +23,8 @@
 - (instancetype)initWithStatus:(WBStatus *)status
 {
     if (self = [super init]) {
-        _status = status;
+        self.status = status;
+        self.mode = WBContextCellModeDefault;
         [self calcularHeight];
     }
     return self;
@@ -57,16 +59,16 @@
 
 #pragma mark constructCell
 
-- (void)constructCell:(WBContainCell *)cell
+- (void)constructCell:(WBContainCell *)cell mode:(WBContextCellMode)constructMode
 {
     self.userInfo = cell.userInfo;
     self.body = cell.body;
     self.toolBar = cell.toolBar;
-    [self prepareFromStatus];
+    [self constructFromStatus];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)prepareFromStatus;
+- (void)constructFromStatus;
 {
     [self setDataToView];
     [self layoutSubviews];
@@ -121,6 +123,9 @@
     CGFloat topHeight = 50.0f;
     CGFloat centerHeight = _body.height;
     CGFloat buttomHeight = 30.0f;
+    if (self.mode == WBContextCellModeNoToolBar) {
+        buttomHeight = 0.0f;
+    }
     CGFloat winWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
     CGFloat cellHeight = topHeight + centerHeight + buttomHeight + weiboCellviewInterval;
     

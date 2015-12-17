@@ -106,7 +106,7 @@
     }
     
     WBCellController* cellcontroller = [_cellBuilders objectAtIndex:[indexPath row]];
-    [cellcontroller constructCell:cell];
+    [cellcontroller constructCell:cell mode:WBContextCellModeDefault];
 
     return cell;
 }
@@ -116,6 +116,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_cellBuilders count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    WBCellController* cellcontroller = [_cellBuilders objectAtIndex:[indexPath row]];
+    return cellcontroller.heightOfCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
