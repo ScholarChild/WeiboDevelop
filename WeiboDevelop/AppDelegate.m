@@ -35,6 +35,7 @@
     find.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_discover_highlighted@2x.png"];
     
     PersonalPageController* personal=[PersonalPageController new];
+    
     personal.tabBarItem.title=@"个人信息";
     personal.tabBarItem.image=[UIImage imageNamed:@"tabbar_profile@2x.png"];
     personal.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_profile_highlighted@2x.png"];

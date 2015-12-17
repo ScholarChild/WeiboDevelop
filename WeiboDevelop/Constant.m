@@ -7,7 +7,7 @@
 //
 
 #import "Constant.h"
-#define UserInfo_Mojia123
+#define UserInfo_Zero
 
 
 
@@ -29,10 +29,10 @@ NSString* const access_token = @"2.00HGROgCGTrEmB3cc58d85cbIzgk4B";
 NSString* const appKey = @"1626555808";
 NSString* const PersonalUserName = @"%E6%B2%B3%E5%8D%97%E7%BC%98-%E6%9D%A5%E5%A6%82%E6%AD%A4";
 #endif
-#ifdef UserInfo_ZhenXiaochen
-NSString* const access_token = @"";
-NSString* const appKey = @"";
-NSString* const PersonalUserName = @"";
+#ifdef UserInfo_ZhenXiaohan
+NSString* const access_token = @"2.00MqtPwDa3fwBBeb889a05fd3mjflB";
+NSString* const appKey = @"944891196";
+NSString* const PersonalUserName = @"真小寒";
 
 #endif
 #ifdef UserInfo_CatLoveDog

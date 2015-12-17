@@ -358,13 +358,7 @@
 		0FB8B1381C17BAF90057B22C /* tabbar_profile_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B12F1C17BAF90057B22C /* tabbar_profile_highlighted@2x.png */; };
 		0FB8B1391C17BAF90057B22C /* tabbar_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B1301C17BAF90057B22C /* tabbar_profile@2x.png */; };
 		0FB8B13B1C17BC340057B22C /* tabbar_message_center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B13A1C17BC340057B22C /* tabbar_message_center@2x.png */; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		0FB8B13D1C17CC6C0057B22C /* btn_gray_backgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B13C1C17CC6C0057B22C /* btn_gray_backgroud.png */; };
-=======
-=======
->>>>>>> master
 		0F9854A81C15764300DE0701 /* CM_CommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F98549B1C15764300DE0701 /* CM_CommentData.m */; };
 		0F9854A91C15764300DE0701 /* CM_ToMy_comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F98549D1C15764300DE0701 /* CM_ToMy_comments.m */; };
 		0F9854AA1C15764300DE0701 /* CM_ToMy_data.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F98549F1C15764300DE0701 /* CM_ToMy_data.m */; };
@@ -381,12 +375,6 @@
 		0FA31E161C0FD29D00B279C7 /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E111C0FD29D00B279C7 /* icon_more.png */; };
 		0FA31E171C0FD29D00B279C7 /* icon_search_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E121C0FD29D00B279C7 /* icon_search_n.png */; };
 		0FA31E181C0FD29D00B279C7 /* icon_selfinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E131C0FD29D00B279C7 /* icon_selfinfo.png */; };
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
-=======
->>>>>>> master
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -873,13 +861,7 @@
 		0FB8B12F1C17BAF90057B22C /* tabbar_profile_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_profile_highlighted@2x.png"; sourceTree = "<group>"; };
 		0FB8B1301C17BAF90057B22C /* tabbar_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_profile@2x.png"; sourceTree = "<group>"; };
 		0FB8B13A1C17BC340057B22C /* tabbar_message_center@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_message_center@2x.png"; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		0FB8B13C1C17CC6C0057B22C /* btn_gray_backgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_gray_backgroud.png; sourceTree = "<group>"; };
-=======
-=======
->>>>>>> master
 		0F98549B1C15764300DE0701 /* CM_CommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_CommentData.m; sourceTree = "<group>"; };
 		0F98549C1C15764300DE0701 /* CM_ToMy_comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_ToMy_comments.h; sourceTree = "<group>"; };
 		0F98549D1C15764300DE0701 /* CM_ToMy_comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_ToMy_comments.m; sourceTree = "<group>"; };
@@ -904,12 +886,6 @@
 		0FA31E111C0FD29D00B279C7 /* icon_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more.png; sourceTree = "<group>"; };
 		0FA31E121C0FD29D00B279C7 /* icon_search_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_search_n.png; sourceTree = "<group>"; };
 		0FA31E131C0FD29D00B279C7 /* icon_selfinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_selfinfo.png; sourceTree = "<group>"; };
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
-=======
->>>>>>> master
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1755,11 +1731,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				0FB8B13D1C17CC6C0057B22C /* btn_gray_backgroud.png in Resources */,
-=======
 				0F90B9491C1C21DE00FEA45C /* d_dalian@2x.png in Resources */,
->>>>>>> master
 				0FB8B1361C17BAF90057B22C /* tabbar_home@2x.png in Resources */,
 				0F90B9B61C1C21DE00FEA45C /* f_geili@3x.png in Resources */,
 				0F90B9D51C1C21DE00FEA45C /* h_ye@2x.png in Resources */,
