@@ -6,16 +6,16 @@
 //  Copyright (c) 2015年 Zero. All rights reserved.
 //
 
-#import "WeiboCell.h"
+#import "WBContainCell.h"
 #import "UserInfoView.h"
 #import "CellToolBar.h"
 #import "BodyView.h"
 
-@interface WeiboCell()
+@interface WBContainCell()
 
 @end
 
-@implementation WeiboCell
+@implementation WBContainCell
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

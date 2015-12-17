@@ -15,19 +15,29 @@
 #import "MJExtension.h"
 #import "AFNetworking.h"
 
-
+static WBRequestManager* _instance;
 @interface WBRequestManager()
 {
-    NSMutableArray* _infoList;
+//    NSMutableArray* _infoList;
+    NSMutableSet* _statusObjPool;
 }
 @end
 
 @implementation WBRequestManager
 #pragma mark 初始化
+
++ (instancetype)manager
+{
+    if (!_instance){
+        _instance = [WBRequestManager new];
+    }
+    return _instance;
+}
 - (instancetype)init
 {
     if (self = [super init]) {
         [self setReplaceKey];
+        _statusObjPool = [[NSMutableSet alloc]initWithCapacity:20];
     }
     return self;
 }
@@ -73,6 +83,8 @@
     return [self personalInfoWithUserName:PersonalUserName];
 }
 
+
+
 - (WBUser*)personalInfoWithUserName:(NSString*)userName
 {
     NSURL* request = [self personalRequestWithUserName:userName];
@@ -80,6 +92,20 @@
     WBUser* user = [WBUser mj_objectWithKeyValues:jsonDic];
     return user;
 }
+
+- (WBStatus*)statusWithID:(NSString*)statusID
+{
+    __block WBStatus* reStatus = nil;
+    [_statusObjPool enumerateObjectsUsingBlock:^(id obj, BOOL *stop){
+        WBStatus* status = (WBStatus*)obj;
+        if ([[status.statusID stringValue]isEqualToString:statusID]) {
+            reStatus = status;
+            *stop = YES;
+        }
+    }];
+    return reStatus;
+}
+
 
 #pragma mark 请求构建
 
@@ -138,33 +164,40 @@
     [self statusWithRequest:request parameters:parameters didReiceverStatus:handleStatus finish:finishHandle fail:failHandle];
 }
 
-
-
-
 - (void)statusWithRequest:(NSString*)request parameters:(NSDictionary*)parameters
         didReiceverStatus:(void (^)(WBStatus*))handleStatus
                    finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle
 {
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-    [manager GET:request parameters:parameters
-         success:^(NSURLSessionDataTask* task ,id responseObeject){
-             NSArray* stuatusDataArr = [responseObeject objectForKey:@"statuses"];
-             NSArray* statuses = [self statusesFromDicArray:stuatusDataArr];
-             if (handleStatus) {
-                 for (WBStatus* status in statuses) {
-                     handleStatus(status);
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    dispatch_async(queue, ^(){
+        AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+        [manager GET:request parameters:parameters
+             success:^(NSURLSessionDataTask* task ,id responseObeject){
+                 NSArray* stuatusDataArr = [responseObeject objectForKey:@"statuses"];
+                 NSArray* statuses = [self statusesFromDicArray:stuatusDataArr];
+                 if (handleStatus) {
+                     dispatch_async(dispatch_get_main_queue(), ^(){
+                         for (WBStatus* status in statuses) {
+                             handleStatus(status);
+                         }
+                     });
+
+                 }
+                 if (finishHandle) {
+                     dispatch_async(dispatch_get_main_queue(), ^(){
+                         finishHandle();
+                     });
                  }
              }
-             if (finishHandle) {
-                 finishHandle();
+             failure:^(NSURLSessionDataTask* task ,NSError* error){
+                 if (failHandle) {
+                     dispatch_async(dispatch_get_main_queue(), ^(){
+                         failHandle(error);
+                     });
+                 }
              }
-         }
-         failure:^(NSURLSessionDataTask* task ,NSError* error){
-             if (failHandle) {
-                 failHandle(error);
-             }
-         }
-     ];
+         ];
+    });
 }
 
 
@@ -189,13 +222,13 @@
 - (NSDictionary*)jsonDicWithURL:(NSURL*)url
 {
     NSError *error = nil;
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+//    NSURLRequest *testRequest = [NSURLRequest requestWithURL:url];
+//    NSData *response = [NSURLConnection sendSynchronousRequest:testRequest returningResponse:nil error:&error];
 //    NSAssert1(error == nil,@"json anaysic fail,some error happen,%@",error);
 //    
 //    NSDictionary *weiboDic = [NSJSONSerialization JSONObjectWithData:response
 //                                                             options:NSJSONReadingMutableLeaves error:&error];
-    
+//    
     ////////
     
     
@@ -225,6 +258,7 @@
         WBStatus* aStatus = [WBStatus mj_objectWithKeyValues:stuatusDataDic];
         [stuatues addObject:aStatus];
     }
+    [_statusObjPool addObjectsFromArray:stuatues];
     return stuatues;
 }
 

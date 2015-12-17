@@ -39,8 +39,8 @@
 		0F429F6C1C0E9D8A0003AE0C /* CellToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EDF1C0E9D8A0003AE0C /* CellToolBar.m */; };
 		0F429F6D1C0E9D8A0003AE0C /* ImageContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EE11C0E9D8A0003AE0C /* ImageContext.m */; };
 		0F429F6E1C0E9D8A0003AE0C /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EE41C0E9D8A0003AE0C /* UserInfoView.m */; };
-		0F429F6F1C0E9D8A0003AE0C /* WBCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EE61C0E9D8A0003AE0C /* WBCellBuilder.m */; };
-		0F429F701C0E9D8A0003AE0C /* WeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EE81C0E9D8A0003AE0C /* WeiboCell.m */; };
+		0F429F6F1C0E9D8A0003AE0C /* WBCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EE61C0E9D8A0003AE0C /* WBCellController.m */; };
+		0F429F701C0E9D8A0003AE0C /* WBContainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EE81C0E9D8A0003AE0C /* WBContainCell.m */; };
 		0F429F711C0E9D8A0003AE0C /* ToConnet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EEC1C0E9D8A0003AE0C /* ToConnet.m */; };
 		0F429F721C0E9D8A0003AE0C /* ToData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EEE1C0E9D8A0003AE0C /* ToData.m */; };
 		0F429F731C0E9D8A0003AE0C /* ToData1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F429EF01C0E9D8A0003AE0C /* ToData1.m */; };
@@ -116,6 +116,12 @@
 		0F72ABDB1C1A810800F722C1 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F72ABD11C1A810800F722C1 /* MJPhotoToolbar.m */; };
 		0F72ABDC1C1A810800F722C1 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F72ABD31C1A810800F722C1 /* MJPhotoView.m */; };
 		0F72ABDD1C1A810800F722C1 /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F72ABD51C1A810800F722C1 /* SDWebImageManager+MJ.m */; };
+		0F79CAA71C1D43EC00EDA517 /* CM_Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79CA9B1C1D43EC00EDA517 /* CM_Comment.m */; };
+		0F79CAA81C1D43EC00EDA517 /* CM_comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79CA9D1C1D43EC00EDA517 /* CM_comments.m */; };
+		0F79CAA91C1D43EC00EDA517 /* CM_data.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79CA9F1C1D43EC00EDA517 /* CM_data.m */; };
+		0F79CAAA1C1D43EC00EDA517 /* CM_user.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79CAA11C1D43EC00EDA517 /* CM_user.m */; };
+		0F79CAAB1C1D43EC00EDA517 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79CAA41C1D43EC00EDA517 /* CommentTableViewCell.m */; };
+		0F79CAAC1C1D43EC00EDA517 /* CommentPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79CAA61C1D43EC00EDA517 /* CommentPageController.m */; };
 		0F819DD91C10517400C90920 /* TextAttributeTranster.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F819DD81C10517400C90920 /* TextAttributeTranster.m */; };
 		0F8382131C13C6AA00EF8FFA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8382011C13C6AA00EF8FFA /* AFHTTPRequestOperation.m */; };
 		0F8382141C13C6AA00EF8FFA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8382031C13C6AA00EF8FFA /* AFHTTPRequestOperationManager.m */; };
@@ -432,10 +438,10 @@
 		0F429EE21C0E9D8A0003AE0C /* LayoutHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutHeight.h; sourceTree = "<group>"; };
 		0F429EE31C0E9D8A0003AE0C /* UserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoView.h; sourceTree = "<group>"; };
 		0F429EE41C0E9D8A0003AE0C /* UserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoView.m; sourceTree = "<group>"; };
-		0F429EE51C0E9D8A0003AE0C /* WBCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBCellBuilder.h; sourceTree = "<group>"; };
-		0F429EE61C0E9D8A0003AE0C /* WBCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBCellBuilder.m; sourceTree = "<group>"; };
-		0F429EE71C0E9D8A0003AE0C /* WeiboCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboCell.h; sourceTree = "<group>"; };
-		0F429EE81C0E9D8A0003AE0C /* WeiboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboCell.m; sourceTree = "<group>"; };
+		0F429EE51C0E9D8A0003AE0C /* WBCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBCellController.h; sourceTree = "<group>"; };
+		0F429EE61C0E9D8A0003AE0C /* WBCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBCellController.m; sourceTree = "<group>"; };
+		0F429EE71C0E9D8A0003AE0C /* WBContainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBContainCell.h; sourceTree = "<group>"; };
+		0F429EE81C0E9D8A0003AE0C /* WBContainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBContainCell.m; sourceTree = "<group>"; };
 		0F429EEB1C0E9D8A0003AE0C /* ToConnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToConnet.h; sourceTree = "<group>"; };
 		0F429EEC1C0E9D8A0003AE0C /* ToConnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToConnet.m; sourceTree = "<group>"; };
 		0F429EED1C0E9D8A0003AE0C /* ToData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToData.h; sourceTree = "<group>"; };
@@ -574,6 +580,19 @@
 		0F72ABD31C1A810800F722C1 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
 		0F72ABD41C1A810800F722C1 /* SDWebImageManager+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+MJ.h"; sourceTree = "<group>"; };
 		0F72ABD51C1A810800F722C1 /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
+		0F79CA9A1C1D43EC00EDA517 /* CM_Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_Comment.h; sourceTree = "<group>"; };
+		0F79CA9B1C1D43EC00EDA517 /* CM_Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_Comment.m; sourceTree = "<group>"; };
+		0F79CA9C1C1D43EC00EDA517 /* CM_comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_comments.h; sourceTree = "<group>"; };
+		0F79CA9D1C1D43EC00EDA517 /* CM_comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_comments.m; sourceTree = "<group>"; };
+		0F79CA9E1C1D43EC00EDA517 /* CM_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_data.h; sourceTree = "<group>"; };
+		0F79CA9F1C1D43EC00EDA517 /* CM_data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_data.m; sourceTree = "<group>"; };
+		0F79CAA01C1D43EC00EDA517 /* CM_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_user.h; sourceTree = "<group>"; };
+		0F79CAA11C1D43EC00EDA517 /* CM_user.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_user.m; sourceTree = "<group>"; };
+		0F79CAA21C1D43EC00EDA517 /* CommentCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCellView.h; sourceTree = "<group>"; };
+		0F79CAA31C1D43EC00EDA517 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		0F79CAA41C1D43EC00EDA517 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		0F79CAA51C1D43EC00EDA517 /* CommentPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPageController.h; sourceTree = "<group>"; };
+		0F79CAA61C1D43EC00EDA517 /* CommentPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPageController.m; sourceTree = "<group>"; };
 		0F819DD71C10517400C90920 /* TextAttributeTranster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAttributeTranster.h; sourceTree = "<group>"; };
 		0F819DD81C10517400C90920 /* TextAttributeTranster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAttributeTranster.m; sourceTree = "<group>"; };
 		0F8382001C13C6AA00EF8FFA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -968,6 +987,7 @@
 		0F429EBF1C0E9D8A0003AE0C /* MainPageClasses */ = {
 			isa = PBXGroup;
 			children = (
+				0F79CA981C1D43EC00EDA517 /* CommentPage */,
 				0F429EC51C0E9D8A0003AE0C /* WBDataObject */,
 				0F429EC01C0E9D8A0003AE0C /* CalculaterUtility */,
 				0F429EDB1C0E9D8A0003AE0C /* WeiboCellComponent */,
@@ -1028,10 +1048,10 @@
 				0F429EE21C0E9D8A0003AE0C /* LayoutHeight.h */,
 				0F429EE31C0E9D8A0003AE0C /* UserInfoView.h */,
 				0F429EE41C0E9D8A0003AE0C /* UserInfoView.m */,
-				0F429EE51C0E9D8A0003AE0C /* WBCellBuilder.h */,
-				0F429EE61C0E9D8A0003AE0C /* WBCellBuilder.m */,
-				0F429EE71C0E9D8A0003AE0C /* WeiboCell.h */,
-				0F429EE81C0E9D8A0003AE0C /* WeiboCell.m */,
+				0F429EE51C0E9D8A0003AE0C /* WBCellController.h */,
+				0F429EE61C0E9D8A0003AE0C /* WBCellController.m */,
+				0F429EE71C0E9D8A0003AE0C /* WBContainCell.h */,
+				0F429EE81C0E9D8A0003AE0C /* WBContainCell.m */,
 			);
 			path = WeiboCellComponent;
 			sourceTree = "<group>";
@@ -1307,6 +1327,34 @@
 				0F72ABD51C1A810800F722C1 /* SDWebImageManager+MJ.m */,
 			);
 			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		0F79CA981C1D43EC00EDA517 /* CommentPage */ = {
+			isa = PBXGroup;
+			children = (
+				0F79CA991C1D43EC00EDA517 /* CMDataObject */,
+				0F79CAA31C1D43EC00EDA517 /* CommentTableViewCell.h */,
+				0F79CAA41C1D43EC00EDA517 /* CommentTableViewCell.m */,
+				0F79CAA51C1D43EC00EDA517 /* CommentPageController.h */,
+				0F79CAA61C1D43EC00EDA517 /* CommentPageController.m */,
+			);
+			path = CommentPage;
+			sourceTree = "<group>";
+		};
+		0F79CA991C1D43EC00EDA517 /* CMDataObject */ = {
+			isa = PBXGroup;
+			children = (
+				0F79CA9A1C1D43EC00EDA517 /* CM_Comment.h */,
+				0F79CA9B1C1D43EC00EDA517 /* CM_Comment.m */,
+				0F79CA9C1C1D43EC00EDA517 /* CM_comments.h */,
+				0F79CA9D1C1D43EC00EDA517 /* CM_comments.m */,
+				0F79CA9E1C1D43EC00EDA517 /* CM_data.h */,
+				0F79CA9F1C1D43EC00EDA517 /* CM_data.m */,
+				0F79CAA01C1D43EC00EDA517 /* CM_user.h */,
+				0F79CAA11C1D43EC00EDA517 /* CM_user.m */,
+				0F79CAA21C1D43EC00EDA517 /* CommentCellView.h */,
+			);
+			path = CMDataObject;
 			sourceTree = "<group>";
 		};
 		0F8381FF1C13C6AA00EF8FFA /* AFNetworking */ = {
@@ -1897,6 +1945,7 @@
 			files = (
 				0F429F721C0E9D8A0003AE0C /* ToData.m in Sources */,
 				0F429F811C0E9D8A0003AE0C /* NSObject+MJClass.m in Sources */,
+				0F79CAAA1C1D43EC00EDA517 /* CM_user.m in Sources */,
 				0F429F5B1C0E9D8A0003AE0C /* Find_SearchView.m in Sources */,
 				0F429F921C0E9D8A0003AE0C /* UIImage+WebP.m in Sources */,
 				0F8382181C13C6AA00EF8FFA /* AFURLConnectionOperation.m in Sources */,
@@ -1940,6 +1989,7 @@
 				0F429F891C0E9D8A0003AE0C /* SDWebImageCompat.m in Sources */,
 				0F8382131C13C6AA00EF8FFA /* AFHTTPRequestOperation.m in Sources */,
 				0F429F6D1C0E9D8A0003AE0C /* ImageContext.m in Sources */,
+				0F79CAAB1C1D43EC00EDA517 /* CommentTableViewCell.m in Sources */,
 				0F429F641C0E9D8A0003AE0C /* WBPrivary.m in Sources */,
 				0F429F601C0E9D8A0003AE0C /* ImageSizeDownLoader.m in Sources */,
 				0F429F801C0E9D8A0003AE0C /* MJPropertyType.m in Sources */,
@@ -1949,6 +1999,7 @@
 				0F429F7F1C0E9D8A0003AE0C /* MJPropertyKey.m in Sources */,
 				0F482F341C0F0A7C00299E8C /* PersonalCenterController.m in Sources */,
 				0F482EE71C0ECE7F00299E8C /* AddFriendViewController.m in Sources */,
+				0F79CAA71C1D43EC00EDA517 /* CM_Comment.m in Sources */,
 				0F482EFB1C0ECE7F00299E8C /* UserHeaderView.m in Sources */,
 				0F8382141C13C6AA00EF8FFA /* AFHTTPRequestOperationManager.m in Sources */,
 				0F429F711C0E9D8A0003AE0C /* ToConnet.m in Sources */,
@@ -1975,6 +2026,7 @@
 				0F429F791C0E9D8A0003AE0C /* ToMessageboxViewController.m in Sources */,
 				0F429F751C0E9D8A0003AE0C /* SearchViewController.m in Sources */,
 				0F429F561C0E9D8A0003AE0C /* Constant.m in Sources */,
+				0F79CAAC1C1D43EC00EDA517 /* CommentPageController.m in Sources */,
 				0F72ABD91C1A810800F722C1 /* MJPhotoLoadingView.m in Sources */,
 				0F819DD91C10517400C90920 /* TextAttributeTranster.m in Sources */,
 				0F8382211C13DC3B00EF8FFA /* AFSecurityPolicy.m in Sources */,
@@ -1985,17 +2037,19 @@
 				0F72ABDD1C1A810800F722C1 /* SDWebImageManager+MJ.m in Sources */,
 				0F429F681C0E9D8A0003AE0C /* WBURL.m in Sources */,
 				0F429F911C0E9D8A0003AE0C /* UIImage+MultiFormat.m in Sources */,
-				0F429F701C0E9D8A0003AE0C /* WeiboCell.m in Sources */,
+				0F429F701C0E9D8A0003AE0C /* WBContainCell.m in Sources */,
 				0F429F5D1C0E9D8A0003AE0C /* HotWeiboCatalogueView.m in Sources */,
 				0F429F821C0E9D8A0003AE0C /* NSObject+MJCoding.m in Sources */,
 				0F429F8D1C0E9D8A0003AE0C /* SDWebImageManager.m in Sources */,
 				0F429F8B1C0E9D8A0003AE0C /* SDWebImageDownloader.m in Sources */,
 				0F482EE81C0ECE7F00299E8C /* HomePageTableViewCell.m in Sources */,
+				0F79CAA81C1D43EC00EDA517 /* CM_comments.m in Sources */,
 				0F429F991C0E9D8A0003AE0C /* MainMenuController.m in Sources */,
+				0F79CAA91C1D43EC00EDA517 /* CM_data.m in Sources */,
 				0F429F611C0E9D8A0003AE0C /* WBComment.m in Sources */,
 				0F429F8C1C0E9D8A0003AE0C /* SDWebImageDownloaderOperation.m in Sources */,
 				0F429F861C0E9D8A0003AE0C /* MKAnnotationView+WebCache.m in Sources */,
-				0F429F6F1C0E9D8A0003AE0C /* WBCellBuilder.m in Sources */,
+				0F429F6F1C0E9D8A0003AE0C /* WBCellController.m in Sources */,
 				0F482F371C0F127300299E8C /* PersonalCenterDataManager.m in Sources */,
 				0F72ABD61C1A810800F722C1 /* MJPhoto.m in Sources */,
 				0F8382161C13C6AA00EF8FFA /* AFNetworkReachabilityManager.m in Sources */,

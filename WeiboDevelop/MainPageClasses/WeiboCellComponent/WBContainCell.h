@@ -11,8 +11,8 @@
 #import "CellToolBar.h"
 #import "BodyView.h"
 
-@class WBCellBuilder;
-@interface WeiboCell : UITableViewCell
+@class WBCellController;
+@interface WBContainCell : UITableViewCell
 
 @property(nonatomic,retain)UserInfoView* userInfo;
 @property(nonatomic,retain)BodyView* body;

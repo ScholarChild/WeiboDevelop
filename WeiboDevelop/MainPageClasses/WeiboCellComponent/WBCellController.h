@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WeiboCell.h"
+#import "WBContainCell.h"
 #import "WBStatus.h"
 #import "WBUser.h"
 
@@ -16,12 +16,12 @@
 #import "CellToolBar.h"
 
 
-@interface WBCellBuilder : NSObject
+@interface WBCellController : UIViewController
 
 @property (nonatomic,readonly)CGFloat heightOfCell;
 @property (nonatomic,retain)WBStatus* status;
 
 - (instancetype)initWithStatus:(WBStatus*)status;
-- (void)constructCell:(WeiboCell*)cell;
+- (void)constructCell:(WBContainCell*)cell;
 
 @end

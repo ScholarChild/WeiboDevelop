@@ -4,8 +4,8 @@
 #import "PersonalCenterDataManager.h"
 #import "PersonalCenterPhotoCell.h"
 #import "AFNetworking.h"
-#import "WeiboCell.h"
-#import "WBCellBuilder.h"
+#import "WBContainCell.h"
+#import "WBCellController.h"
 #define Width self.view.frame.size.width
 #define Height self.view.frame.size.height
 @interface PersonalCenterController()<UITableViewDataSource,UITableViewDelegate>
@@ -19,7 +19,7 @@
     NSInteger pageNum;
     UIView *_tabeheaderView;
     
-    NSMutableArray* _cellPrepareres;
+    NSMutableArray* _cellControlleres;
     WBRequestManager* _manager;
     
     UIRefreshControl *_control;
@@ -29,8 +29,8 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        _cellPrepareres = [NSMutableArray new];
-        _manager = [WBRequestManager new];
+        _cellControlleres = [NSMutableArray new];
+        _manager = [WBRequestManager manager];
     }
     return self;
 }
@@ -42,7 +42,7 @@
     _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, -44, 375, 667+44) style:UITableViewStyleGrouped];
     _tableview.delegate = self;
     _tableview.dataSource = self;
-    _dataArr = [NSMutableArray arrayWithObjects:_cellPrepareres, nil];
+    _dataArr = [NSMutableArray arrayWithObjects:_cellControlleres, nil];
     _dataContainer = [NSMutableArray arrayWithObjects:@"",@"",@"", nil];
     pageNum = 0;
     [self.view addSubview:_tableview];
@@ -78,8 +78,9 @@
 {
     __block NSInteger insertPosition = 0;
     [_manager personalStatusesWithDidReiceverStatus:^(WBStatus* status){
-        WBCellBuilder* preparer = [[WBCellBuilder alloc]initWithStatus:status];
-        [_cellPrepareres insertObject:preparer atIndex:insertPosition];
+        WBCellController* cellController = [[WBCellController alloc]initWithStatus:status];
+        [_cellControlleres insertObject:cellController atIndex:insertPosition];
+        [self addChildViewController:cellController];
         insertPosition++;
     } finish:^{
         [_tableview reloadData];
@@ -120,12 +121,12 @@
     id returnCell;
     if (pageNum == 0) {
         NSString* iden = [NSString stringWithFormat:@"iden %lu",([indexPath row] % 6)];
-        WeiboCell* cell = [tableView dequeueReusableCellWithIdentifier:iden];
+        WBContainCell* cell = [tableView dequeueReusableCellWithIdentifier:iden];
         if (!cell) {
-            cell = [[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+            cell = [[WBContainCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
         }
-        WBCellBuilder* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
-        [preparer constructCell:cell];
+        WBCellController* cellController = [_cellControlleres objectAtIndex:[indexPath row]];
+        [cellController constructCell:cell];
         
         returnCell = cell;
     }
@@ -158,7 +159,7 @@
     pageNum = index;
     
     if (index == 0) {
-        _dataArr = [NSMutableArray arrayWithObjects:_cellPrepareres, nil];
+        _dataArr = [NSMutableArray arrayWithObjects:_cellControlleres, nil];
     }
     if (index == 1) {
         _dataArr = [NSMutableArray arrayWithArray:[PersonalCenterDataManager getWBStatusData]];
@@ -174,8 +175,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (pageNum == 0) {
-        WBCellBuilder* preparer = [_cellPrepareres objectAtIndex:[indexPath row]];
-        return preparer.heightOfCell;
+        WBCellController* cellController = [_cellControlleres objectAtIndex:[indexPath row]];
+        return cellController.heightOfCell;
     }
     if (pageNum == 2) {
         return 667-240;

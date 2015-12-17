@@ -15,7 +15,7 @@
 @interface WBStatus : WBDataObject
 
 @property (nonatomic,retain)NSString* created_at;//微博创建时间
-@property (nonatomic,assign)NSString* statusID;//微博ID
+@property (nonatomic,assign)NSNumber* statusID;//微博ID
 @property (nonatomic,assign)NSNumber* mid;//微博MID
 @property (nonatomic,retain)NSString* idstr;//字符串型的微博ID
 @property (nonatomic,retain)NSString* text;//微博信息内容

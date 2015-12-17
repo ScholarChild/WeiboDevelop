@@ -39,7 +39,6 @@ NSString* const PersonalUserName = @"";
 NSString* const access_token = @"";
 NSString* const appKey = @"";
 NSString* const PersonalUserName = @"";
-
 #endif
 
 

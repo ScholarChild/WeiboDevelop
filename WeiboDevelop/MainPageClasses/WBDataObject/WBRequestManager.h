@@ -12,6 +12,9 @@
 
 @interface WBRequestManager : NSObject
 
++ (instancetype)manager;
+
+
 /*!
  * @discussion 返回当前授权用户所有关注的最新公共微博
  *
@@ -58,6 +61,15 @@
  */
 - (void)personalStatusesWithDidReiceverStatus:(void (^)(WBStatus*))handleStatus
                                        finish:(void(^)())finishHandle  fail:(void(^)(NSError*))failHandle;
+/*!
+ * @discussion 返回ID对应的单条微博信息
+ *
+ * @param StatusID 需要获取的微博的微博ID
+ *
+ * @result 包含对应微博信息的 WBStatus 对象
+ */
+- (WBStatus*)statusWithID:(NSString*)statusID;
+
 
 /*!
  * @discussion 返回当前授权用户的个人信息
@@ -75,6 +87,7 @@
  * @result WBUser 存储个人信息的对象
  */
 - (WBUser*)personalInfoWithUserName:(NSString*)userName;
+
 
 /*!
  * @discussion 构建一个访问个人信息的请求URL

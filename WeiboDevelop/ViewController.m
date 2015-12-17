@@ -21,10 +21,6 @@
 {
     self.view.backgroundColor=[UIColor whiteColor];
     [super viewDidLoad];
-//<<<<<<< HEAD
-//    // Do any additional setup after loading the view, typically from a nib.
-//
-//=======
     NSBundle* boule=[NSBundle mainBundle];
     NSString* path=[boule pathForResource:@"tarBar" ofType:@"plist"];
     _arr=[[NSArray alloc]initWithContentsOfFile:path];//从plist文件里获取数据

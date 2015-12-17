@@ -6,9 +6,10 @@
 //  Copyright (c) 2015年 Zero. All rights reserved.
 //
 
-#import "WBCellBuilder.h"
+#import "WBCellController.h"
+#import "CommentPageController.h"
 
-@interface WBCellBuilder()
+@interface WBCellController()
 
 @property (nonatomic,retain)UserInfoView* userInfo;
 @property (nonatomic,retain)BodyView* body;
@@ -16,7 +17,7 @@
 
 @end
 
-@implementation WBCellBuilder
+@implementation WBCellController
 
 - (instancetype)initWithStatus:(WBStatus *)status
 {
@@ -56,7 +57,7 @@
 
 #pragma mark constructCell
 
-- (void)constructCell:(WeiboCell *)cell
+- (void)constructCell:(WBContainCell *)cell
 {
     self.userInfo = cell.userInfo;
     self.body = cell.body;
@@ -85,6 +86,14 @@
     [_toolBar setCommentCount:_status.comments_count];
     [_toolBar setAttitudeCount:_status.attitudes_count];
     
+    __weak typeof(self) safeSelf = self;
+    NSString* statusID = [_status.statusID stringValue];
+    [_toolBar setCommendAction:^(NSInteger commitCount){
+        CommentPageController* commentPage = [[CommentPageController alloc]initWithNumber:statusID];
+        commentPage.hidesBottomBarWhenPushed=YES;
+        [safeSelf.navigationController pushViewController:commentPage animated:YES];
+        
+    }];
     
     if (retweet == nil) {
         NSArray* urlArr = [self URLStringArrayFromURLDicArray:_status.pic_urls];

@@ -130,10 +130,11 @@
 - (void)commend:(UIButton*)commendBtn
 {
     NSInteger commendCount = [commendBtn.titleLabel.text integerValue];
+    NSLog(@">>>>>%@",_commendAction);
+    
     if (self.commendAction) {
         self.commendAction(commendCount);
     }
-    
 }
 
 
