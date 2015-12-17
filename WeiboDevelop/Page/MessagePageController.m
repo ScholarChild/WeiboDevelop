@@ -62,7 +62,7 @@
 
 -(void)dateAction{
     
-    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/friendships/friends.json?source=%@&screen_name=%@&access_token=%@",appKey,PersonalUserName,access_token ];
+    NSString* str = [[NSString stringWithFormat:@"https://api.weibo.com/2/friendships/friends.json?source=%@&screen_name=%@&access_token=%@",kAppKey,kPersonalUserName,kAccessToken] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
         arr=[responseObeject objectForKey:@"users"];

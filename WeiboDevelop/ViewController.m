@@ -143,8 +143,6 @@
         [self finishView];
        
     }
- 
-//>>>>>>> message
 }
 
 #pragma mark 移除遮盖视图

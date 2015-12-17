@@ -39,7 +39,7 @@
 }
 -(void)commentAction{
     
-    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/to_me.json?source=%@&access_token=%@",appKey, access_token ];
+    NSString* str=[NSString stringWithFormat:@"https://api.weibo.com/2/comments/to_me.json?source=%@&access_token=%@",kAppKey, kAccessToken ];
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     [manager GET:str parameters:nil success:^(NSURLSessionDataTask* task ,id responseObeject){
         //        CM_ToMy_data* data=[CM_ToMy_data mj_objectWithKeyValues:dataDit];

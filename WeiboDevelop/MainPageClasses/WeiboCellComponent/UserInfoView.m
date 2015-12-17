@@ -110,7 +110,13 @@
                                                       format:@"E M dd HH:mm:ss Z yyyy"
                                                       locale:@"en_US"];
     NSString* timInterval = [DateTransformer timeIntervalStringForNowSinceDate:createTimeDate];
-    NSString* detailStr = [NSString stringWithFormat:@"%@ 来自 %@",timInterval,_source];
+    
+    NSString* detailStr;
+    if (_source != nil) {
+        detailStr = [NSString stringWithFormat:@"%@ 来自 %@",timInterval,_source];
+    }else {
+        detailStr = timInterval;
+    }
     
     NSDictionary* detailAttribute =
     @{
@@ -125,12 +131,6 @@
     [attributeDetail addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:timeIntervalRange];
     _detailMessage.attributedText = attributeDetail;
     
-    
-    
-    
-    
-    
-//    _detailMessage.text = detailStr;
 }
 
 - (NSString*)sourceNameBySearchSourceXMLString:(NSString*)xmlStr

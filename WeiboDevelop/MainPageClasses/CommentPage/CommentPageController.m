@@ -95,7 +95,7 @@
     if ([indexPath section] == 0) {
         WBContainCell* wbCell =
         [[WBContainCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        [_theWBCellController constructCell:wbCell];
+        [_theWBCellController constructCell:wbCell mode:WBContextCellModeNoToolBar];
         returnCell = wbCell;
     }
     if (indexPath.section==1) {
