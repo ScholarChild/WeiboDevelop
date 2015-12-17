@@ -19,7 +19,7 @@
     if (self = [super init]) {
         _cellBuilders = [NSMutableArray new];
         _manager = [WBRequestManager manager];
-        
+
     }
     return self;
 }
@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    self.modalPresentationCapturesStatusBarAppearance = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
