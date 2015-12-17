@@ -38,6 +38,7 @@
     UINavigationController* findNavi = [[UINavigationController alloc]initWithRootViewController:find];
     
     PersonalPageController* personal=[PersonalPageController new];
+    
     personal.tabBarItem.title=@"个人信息";
     personal.tabBarItem.image=[UIImage imageNamed:@"tabbar_profile@2x.png"];
     personal.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_profile_highlighted@2x.png"];
@@ -48,7 +49,7 @@
     UITabBarController* tabBarC =[UITabBarController new];
    
     tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
-    tabBarC.selectedIndex=3;
+    tabBarC.selectedIndex=4;
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     tabBarC.tabBar.barTintColor=[UIColor blackColor];
     

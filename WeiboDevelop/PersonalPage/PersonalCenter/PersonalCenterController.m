@@ -56,6 +56,17 @@
     [_tabeheaderView addSubview:_naviView];
     _tableview.tableHeaderView = _tabeheaderView;
     
+    
+    UIImage *btnImage = [UIImage imageNamed:@"tabbar_compose_background_icon_return@3x.png"];
+    UIButton *backBtn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn1.frame = CGRectMake(0, 0, 60, 40);
+    [backBtn1 setImage:btnImage forState:UIControlStateNormal];
+    backBtn1.imageEdgeInsets = UIEdgeInsetsMake(0, -25, 0, 0);
+    [backBtn1 addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithCustomView:backBtn1];
+    [self.navigationItem setLeftBarButtonItem:backBtn];
+    
+    
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"touming.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     [self setupRefresh];
@@ -73,7 +84,11 @@
     // 3.加载数据
     [self updateStatusList];
 }
-
+-(void)backBtnAction:(UIButton *)btn
+{
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)updateStatusList
 {
     __block NSInteger insertPosition = 0;
