@@ -49,7 +49,7 @@
     UITabBarController* tabBarC =[UITabBarController new];
    
     tabBarC.viewControllers=@[homeNavi,messageNavi,mainMenu,findNavi,personalNavi];
-    tabBarC.selectedIndex=3;
+    tabBarC.selectedIndex=4;
     tabBarC.tabBar.tintColor=[UIColor orangeColor];
     tabBarC.tabBar.barTintColor=[UIColor blackColor];
     

@@ -359,22 +359,6 @@
 		0FB8B1391C17BAF90057B22C /* tabbar_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B1301C17BAF90057B22C /* tabbar_profile@2x.png */; };
 		0FB8B13B1C17BC340057B22C /* tabbar_message_center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B13A1C17BC340057B22C /* tabbar_message_center@2x.png */; };
 		0FB8B13D1C17CC6C0057B22C /* btn_gray_backgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB8B13C1C17CC6C0057B22C /* btn_gray_backgroud.png */; };
-		0F9854A81C15764300DE0701 /* CM_CommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F98549B1C15764300DE0701 /* CM_CommentData.m */; };
-		0F9854A91C15764300DE0701 /* CM_ToMy_comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F98549D1C15764300DE0701 /* CM_ToMy_comments.m */; };
-		0F9854AA1C15764300DE0701 /* CM_ToMy_data.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F98549F1C15764300DE0701 /* CM_ToMy_data.m */; };
-		0F9854AB1C15764300DE0701 /* CM_ToMy_status.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9854A11C15764300DE0701 /* CM_ToMy_status.m */; };
-		0F9854AC1C15764300DE0701 /* CM_ToMy_stutasUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9854A31C15764300DE0701 /* CM_ToMy_stutasUser.m */; };
-		0F9854AD1C15764300DE0701 /* CM_ToMy_user.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9854A51C15764300DE0701 /* CM_ToMy_user.m */; };
-		0F9854AE1C15764300DE0701 /* CommentToMyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9854A71C15764300DE0701 /* CommentToMyTableViewCell.m */; };
-		0FA31E071C0F0E2400B279C7 /* tarBar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E061C0F0E2400B279C7 /* tarBar.plist */; };
-		0FA31E0A1C0F0E2F00B279C7 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA31E091C0F0E2F00B279C7 /* MyButton.m */; };
-		0FA31E0C1C0F110B00B279C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E0B1C0F110B00B279C7 /* Images.xcassets */; };
-		0FA31E0E1C0FCFEE00B279C7 /* tabbar_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E0D1C0FCFEE00B279C7 /* tabbar_home.png */; };
-		0FA31E141C0FD29D00B279C7 /* icon_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E0F1C0FD29D00B279C7 /* icon_home.png */; };
-		0FA31E151C0FD29D00B279C7 /* icon_message.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E101C0FD29D00B279C7 /* icon_message.png */; };
-		0FA31E161C0FD29D00B279C7 /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E111C0FD29D00B279C7 /* icon_more.png */; };
-		0FA31E171C0FD29D00B279C7 /* icon_search_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E121C0FD29D00B279C7 /* icon_search_n.png */; };
-		0FA31E181C0FD29D00B279C7 /* icon_selfinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA31E131C0FD29D00B279C7 /* icon_selfinfo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -862,30 +846,6 @@
 		0FB8B1301C17BAF90057B22C /* tabbar_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_profile@2x.png"; sourceTree = "<group>"; };
 		0FB8B13A1C17BC340057B22C /* tabbar_message_center@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_message_center@2x.png"; sourceTree = "<group>"; };
 		0FB8B13C1C17CC6C0057B22C /* btn_gray_backgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_gray_backgroud.png; sourceTree = "<group>"; };
-		0F98549B1C15764300DE0701 /* CM_CommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_CommentData.m; sourceTree = "<group>"; };
-		0F98549C1C15764300DE0701 /* CM_ToMy_comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_ToMy_comments.h; sourceTree = "<group>"; };
-		0F98549D1C15764300DE0701 /* CM_ToMy_comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_ToMy_comments.m; sourceTree = "<group>"; };
-		0F98549E1C15764300DE0701 /* CM_ToMy_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_ToMy_data.h; sourceTree = "<group>"; };
-		0F98549F1C15764300DE0701 /* CM_ToMy_data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_ToMy_data.m; sourceTree = "<group>"; };
-		0F9854A01C15764300DE0701 /* CM_ToMy_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_ToMy_status.h; sourceTree = "<group>"; };
-		0F9854A11C15764300DE0701 /* CM_ToMy_status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_ToMy_status.m; sourceTree = "<group>"; };
-		0F9854A21C15764300DE0701 /* CM_ToMy_stutasUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_ToMy_stutasUser.h; sourceTree = "<group>"; };
-		0F9854A31C15764300DE0701 /* CM_ToMy_stutasUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_ToMy_stutasUser.m; sourceTree = "<group>"; };
-		0F9854A41C15764300DE0701 /* CM_ToMy_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CM_ToMy_user.h; sourceTree = "<group>"; };
-		0F9854A51C15764300DE0701 /* CM_ToMy_user.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CM_ToMy_user.m; sourceTree = "<group>"; };
-		0F9854A61C15764300DE0701 /* CommentToMyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentToMyTableViewCell.h; sourceTree = "<group>"; };
-		0F9854A71C15764300DE0701 /* CommentToMyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentToMyTableViewCell.m; sourceTree = "<group>"; };
-		0F9854AF1C15772B00DE0701 /* CM_CommentData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CM_CommentData.h; sourceTree = "<group>"; };
-		0FA31E061C0F0E2400B279C7 /* tarBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tarBar.plist; sourceTree = "<group>"; };
-		0FA31E081C0F0E2F00B279C7 /* MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
-		0FA31E091C0F0E2F00B279C7 /* MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
-		0FA31E0B1C0F110B00B279C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0FA31E0D1C0FCFEE00B279C7 /* tabbar_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_home.png; sourceTree = "<group>"; };
-		0FA31E0F1C0FD29D00B279C7 /* icon_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_home.png; sourceTree = "<group>"; };
-		0FA31E101C0FD29D00B279C7 /* icon_message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_message.png; sourceTree = "<group>"; };
-		0FA31E111C0FD29D00B279C7 /* icon_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more.png; sourceTree = "<group>"; };
-		0FA31E121C0FD29D00B279C7 /* icon_search_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_search_n.png; sourceTree = "<group>"; };
-		0FA31E131C0FD29D00B279C7 /* icon_selfinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_selfinfo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1262,11 +1222,11 @@
 		0F482EBE1C0ECE7F00299E8C /* PersonalPage */ = {
 			isa = PBXGroup;
 			children = (
+				0F482EC51C0ECE7F00299E8C /* DataManager.h */,
+				0F482EC61C0ECE7F00299E8C /* DataManager.m */,
 				0F482EC71C0ECE7F00299E8C /* PersonalCenter */,
 				0F482EBF1C0ECE7F00299E8C /* addFriends */,
 				0F482EC21C0ECE7F00299E8C /* Cell */,
-				0F482EC51C0ECE7F00299E8C /* DataManager.h */,
-				0F482EC61C0ECE7F00299E8C /* DataManager.m */,
 				0F482EE21C0ECE7F00299E8C /* table */,
 			);
 			path = PersonalPage;

@@ -108,12 +108,12 @@
     [fansBtn setTitle:fansText forState:UIControlStateNormal];
     
     NSString *descriptionText;
-    if (userData.descriptionText == nil) {
-        descriptionText = @"编辑简介";
+    if (userData.descriptionText != nil) {
+        descriptionText = userData.descriptionText;
     }
     else
     {
-        descriptionText = userData.descriptionText;
+        descriptionText = @"编辑简介";
     }
     CGRect titleRect = [descriptionText boundingRectWithSize:CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0]} context:nil];
     if (titleRect.size.width > 330) {
