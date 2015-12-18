@@ -10,7 +10,11 @@
 #import "WBUser.h"
 @interface UserHeaderView : UIView
 
+
+@property(nonatomic,assign)CGRect imageRect;
 @property(nonatomic,strong)WBUser *userData;
 
 - (void)initSubview;
+
+- (void)setBackgroundImageFrame:(CGRect)rect;
 @end

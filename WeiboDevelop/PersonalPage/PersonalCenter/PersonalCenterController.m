@@ -14,15 +14,16 @@
     NSMutableArray *_dataArr;
     NSMutableArray *_dataContainer;
     
-    UserHeaderView *_headerView;
+    UserHeaderView *_topView;
     PersonalNaviView *_naviView;
     NSInteger pageNum;
-    UIView *_tabeheaderView;
+    UIView *_headerView;
     
     NSMutableArray* _cellControlleres;
     WBRequestManager* _manager;
     
     UIRefreshControl *_control;
+    UIActivityIndicatorView *_AIV;
 }
 @end
 @implementation PersonalCenterController
@@ -47,14 +48,16 @@
     pageNum = 0;
     [self.view addSubview:_tableview];
     
-    _tabeheaderView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, 240)];
-    _headerView = [[UserHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
-    _headerView.userData = _userData;
-    _naviView = [[PersonalNaviView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headerView.frame), Width, 40)];
+    _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, 240)];
+    _topView = [[UserHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
+    _topView.userData = _userData;
+    _naviView = [[PersonalNaviView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_topView.frame), Width, 40)];
     _naviView.btnDelegate = self;
-    [_tabeheaderView addSubview:_headerView];
-    [_tabeheaderView addSubview:_naviView];
-    _tableview.tableHeaderView = _tabeheaderView;
+    [_headerView addSubview:_topView];
+    [_headerView addSubview:_naviView];
+
+    _tableview.tableHeaderView = _headerView;
+    [_tableview sendSubviewToBack:_headerView];
     
     
     UIImage *btnImage = [UIImage imageNamed:@"tabbar_compose_background_icon_return@3x.png"];
@@ -91,6 +94,14 @@
 }
 - (void)updateStatusList
 {
+    
+//    UIView *view = [[UIView alloc]initWithFrame:_tableview.frame];
+//    view.backgroundColor = [UIColor grayColor];
+//    [view addSubview:_AIV];
+//    _AIV = [[UIActivityIndicatorView alloc]initWithFrame:_tableview.frame];
+//    [self.view addSubview:view];
+//    [_AIV startAnimating];
+    
     __block NSInteger insertPosition = 0;
     [_manager personalStatusesWithDidReiceverStatus:^(WBStatus* status){
         WBCellController* cellController = [[WBCellController alloc]initWithStatus:status];
@@ -106,16 +117,29 @@
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
+    CGRect rect = _topView.imageRect;
+    if (scrollView.contentOffset.y >= -187) {
+        rect.origin.y += scrollView.contentOffset.y*0.5;
+        [_topView setBackgroundImageFrame:rect];
+    }
+    else
+    {
+        rect.origin.y += -95;
+        NSLog(@"---%f",scrollView.contentOffset.y);
+        
+        [_topView setBackgroundImageFrame:rect];
+    }
     if(_tableview.contentOffset.y>=92){
         [_naviView removeFromSuperview];
         [self.view addSubview:_naviView];
         _naviView.frame=CGRectMake(0,64, Width, 40);
         [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     }
-    if(_tableview.contentOffset.y<=92 &&_tableview.contentOffset.y>10){
+    if(_tableview.contentOffset.y <= 92 &&_tableview.contentOffset.y>10){
         [_naviView removeFromSuperview];
-        [_tabeheaderView addSubview:_naviView];
-        _naviView.frame=CGRectMake(0, CGRectGetMaxY(_headerView.frame), Width, 40);
+        [_headerView addSubview:_naviView];
+        _naviView.frame=CGRectMake(0, CGRectGetMaxY(_topView.frame), Width, 40);
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"touming.png"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     }

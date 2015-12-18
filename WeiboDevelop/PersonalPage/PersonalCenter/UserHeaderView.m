@@ -58,9 +58,15 @@
     descriptionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:descriptionBtn];
 }
+- (void)setBackgroundImageFrame:(CGRect)rect
+{
+    backgroundImgv.frame = rect;
+}
 - (void)setUserData:(WBUser *)userData
 {
-    backgroundImgv.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+//    backgroundImgv.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    backgroundImgv.frame =CGRectMake(0, -164, self.frame.size.width, 460);
+    _imageRect = backgroundImgv.frame;
     if (userData.cover_image_phone == nil) {
         backgroundImgv.image = [UIImage imageNamed:@"userBackground.jpg"];
     }
