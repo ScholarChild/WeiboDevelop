@@ -1,11 +1,3 @@
-//
-//  Constant.m
-//  微博开发1
-//
-//  Created by Ibokan on 15/11/28.
-//  Copyright (c) 2015年 Zero. All rights reserved.
-//
-
 #import "Constant.h"
 #define UserInfo_Zero
 

@@ -103,6 +103,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0&&indexPath.row ==0) {
         PersonalCenterController *personalCenterVC = [PersonalCenterController new];
+        personalCenterVC.hidesBottomBarWhenPushed =YES;
         personalCenterVC.userData = userData;
         [self.navigationController pushViewController:personalCenterVC animated:YES];
     }

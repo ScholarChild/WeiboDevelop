@@ -1,10 +1,3 @@
-//
-//  PersonalCenterDataManager.m
-//  WeiboDevelop
-//
-//  Created by Ibokan on 15/12/2.
-//  Copyright (c) 2015年 geek. All rights reserved.
-//
 
 #import "PersonalCenterDataManager.h"
 
