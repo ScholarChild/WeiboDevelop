@@ -61,9 +61,15 @@
 
 - (void)constructCell:(WBContainCell *)cell mode:(WBContextCellMode)constructMode
 {
+    self.mode = constructMode;
     self.userInfo = cell.userInfo;
     self.body = cell.body;
-    self.toolBar = cell.toolBar;
+    
+    if (self.mode == WBContextCellModeNoToolBar) {
+        cell.toolBar = nil;
+    }else{
+        self.toolBar = cell.toolBar;
+    }
     [self constructFromStatus];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }

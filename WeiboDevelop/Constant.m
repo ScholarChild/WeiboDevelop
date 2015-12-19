@@ -7,9 +7,7 @@
 //
 
 #import "Constant.h"
-#define UserInfo_ZhenXiaohan
-
-
+#define UserInfo_Zero
 
 NSString* const NULLString = @"";
 CGFloat const weiboCellviewInterval  = 15.0f;
@@ -18,7 +16,6 @@ CGFloat const weiboCellviewInterval  = 15.0f;
 NSString* const kAccessToken = @"2.007rfWnCfek1CDf0088fefa3TPEInB";
 NSString* const kAppKey = @"2782897073";
 NSString* const kPersonalUserName = @"虚之死灵";
-
 #endif
 
 #ifdef UserInfo_Mojia123
