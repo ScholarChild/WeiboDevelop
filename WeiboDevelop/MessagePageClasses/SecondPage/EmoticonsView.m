@@ -9,6 +9,10 @@
 #import "EmoticonsView.h"
 #define Width  self.frame.size.width
 #define Height self.frame.size.height
+
+#define packageName @"com.sina.default"
+#define bundlePath [[NSBundle mainBundle] pathForResource:@"Emoticons" ofType:@"bundle"]
+
 @interface EmoticonsView(){
     NSArray * _face ;
     
@@ -19,20 +23,14 @@
 -(id)initWithNumber:(int)temp endBlock:(MyBlock)block
 {
     if (self=[super init]) {
-        
-        NSBundle* boule=[NSBundle mainBundle];
-        NSString* path=[boule pathForResource:@"comEn" ofType:@"plist"];
-        NSDictionary * dic=[[NSDictionary alloc]initWithContentsOfFile:path];
+        NSString* infoDicPath = [NSString stringWithFormat:@"%@/%@/%@",bundlePath,packageName,@"info.plist"];
+        NSDictionary * dic=[[NSDictionary alloc]initWithContentsOfFile:infoDicPath];
         self.block=block;
         //获取plist中的数据
         _face = [dic objectForKey:@"emoticons"];
         
         [self numberOne:temp];
-        
-            
-       
     }
-        
     return self;
 }
 -(void)numberOne:(int)tem{
@@ -41,7 +39,9 @@
     for(int i=0;i<3;i++){
         for (int j =0; j<7; j++) {
             UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(50*j+20,50*i+20, 30, 30)];
-            UIImage* img=[UIImage imageNamed:_face[i*7+j+tem*20][@"png"]];
+            NSString* imgName = [NSString stringWithFormat:@"%@/%@/%@",
+                                 bundlePath,packageName,_face[i*7+j+tem*20][@"png"]];
+            UIImage* img=[UIImage imageNamed:imgName];
             [btn setImage:img forState:UIControlStateNormal];
             [btn setImage:img forState:UIControlStateHighlighted];
             [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -49,13 +49,10 @@
             [self addSubview:btn];
         }
     }
-
 }
 -(void)btnAction:(UIButton* )btn{
     if (self.block) {
         self.block(_face[btn.tag][@"chs"]);
-       
     }
-    
 }
 @end

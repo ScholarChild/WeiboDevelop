@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "WBDate.h"
+#import "EmoticonTransfer.h"
+#import "NSObject+UnicodeDestribution.h"
 
 @interface WeiboDevelopTests : XCTestCase
 
@@ -27,24 +29,26 @@
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-    NSLog(@"%@",[UIFont familyNames]);
-    NSLog(@"name of system font :%@",[UIFont fontNamesForFamilyName:@"Helvetica Neue"]);
-    
-    
-    
-    
-    
-
-
+    EmoticonTransfer* transfer = [EmoticonTransfer shareTransfer];
+    NSArray* groupNames = [transfer getAllImageEmoticonGroupName];
+    for (NSString* groupName in groupNames) {
+        NSDictionary* group = [transfer getImagaEmoticonListWithGroupName:groupName];
+        NSArray* allCode = [group allKeys];
+        NSLog(@"-------------------");
+        for (NSString* code in allCode) {
+            NSString* imageName = [transfer imageEmojiNamewithCode:code];
+            UIImage* image = [UIImage imageNamed:imageName];
+            NSLog(@"%@",image);
+        }
+    }
+    NSLog(@"-------------------");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
+//- (void)testPerformanceExample {
+//    // This is an example of a performance test case.
+//    [self measureBlock:^{
+//        // Put the code you want to measure the time of here.
+//    }];
+//}
 
 @end

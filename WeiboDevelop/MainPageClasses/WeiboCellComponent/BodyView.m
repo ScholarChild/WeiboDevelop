@@ -8,7 +8,7 @@
 
 #import "BodyView.h"
 #import "WBRequestManager.h"
-#import "TextAttributeTranster.h"
+#import "TextAttributeTransfer.h"
 
 
 @interface BodyView()<UITextViewDelegate>
@@ -76,8 +76,7 @@
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
 {
-//    NSLog(@"url:%@ ,range:%@",URL,[NSValue valueWithRange:characterRange]);
-    
+    NSLog(@"url:%@ ,range:%@",URL,[NSValue valueWithRange:characterRange]);
     return NO;
 }
 
@@ -118,14 +117,8 @@
 
 - (void)setBodyText:(NSString*)text
 {
-    
-    _textView.attributedText = [[[TextAttributeTranster alloc]initWithString:text] attrubuteText];
+    _textView.attributedText = [[[TextAttributeTransfer alloc]initWithString:text fontSize:17.0f] attrubuteText];
 }
-
-
-
-
-
 - (void)setExBody:(UIView<LayoutHeight> *)exBody
 {
     if (_exBody) {

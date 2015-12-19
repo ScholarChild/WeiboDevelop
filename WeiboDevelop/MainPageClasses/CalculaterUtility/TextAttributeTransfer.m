@@ -6,24 +6,31 @@
 //  Copyright (c) 2015年 geek. All rights reserved.
 //
 
-#import "TextAttributeTranster.h"
+#import "TextAttributeTransfer.h"
 #import "WBRequestManager.h"
-@interface TextAttributeTranster()
+#import "EmoticonTransfer.h"
+#import "NSObject+UnicodeDestribution.h"
+
+@interface TextAttributeTransfer()
+{
+    CGFloat _fontSize;
+}
 
 @property (retain) NSMutableAttributedString* tmpAttributeText;
-@property (retain) NSString* searchText;
+@property (retain) NSMutableString* searchText;
 
 @end
 
 
 
-@implementation TextAttributeTranster
+@implementation TextAttributeTransfer
 
-- (instancetype)initWithString:(NSString *)string
+- (instancetype)initWithString:(NSString* )string fontSize:(CGFloat)size;
 {
     if (self = [super init]) {
-        _searchText = string;
+        _searchText = [[NSMutableString alloc]initWithString:string];
         _tmpAttributeText = [[NSMutableAttributedString alloc]initWithString:string];
+        _fontSize = size;
     }
     return self;
 }
@@ -37,6 +44,7 @@
 
 - (void)transformAttrubute
 {
+    [self transEmojiCode];
     [self transTopic];
     [self transUserName];
     [self transShortURL];
@@ -55,7 +63,7 @@
     
     
     NSDictionary* textDefaultAttribute = @{
-                                           NSFontAttributeName : [UIFont systemFontOfSize:17.0f],
+                                           NSFontAttributeName : [UIFont systemFontOfSize:_fontSize],
                                            NSParagraphStyleAttributeName : paragraphStyle
                                            };
     
@@ -71,10 +79,10 @@
         NSTextCheckingResult* lastResult = [transRangeArr lastObject];
         NSRange transRange = lastResult.range;
         NSString* shortURL = [_searchText substringWithRange:transRange];
-        NSURL* linkURL = [[WBRequestManager new] longURLFromShortURLString:shortURL];
+        NSURL* linkURL = [NSURL URLWithString:shortURL];
         [_tmpAttributeText addAttribute:NSLinkAttributeName value:linkURL range:transRange];
         [_tmpAttributeText replaceCharactersInRange:transRange withString:@"网页链接"];
-        _searchText = [_searchText stringByReplacingCharactersInRange:transRange withString:@"网页链接"];
+        [_searchText replaceCharactersInRange:transRange withString:@"网页链接"];
         [transRangeArr removeObject:lastResult];
     }
 }
@@ -106,6 +114,26 @@
     }
 }
 
+- (void)transEmojiCode
+{
+    EmoticonTransfer* transfer = [EmoticonTransfer shareTransfer];
+    NSArray* tmpArr = [self rangValuesInTextWithRegular:@"\\[[^\\]]+\\]"];
+    NSMutableArray* transRangeArr = [NSMutableArray arrayWithArray:tmpArr];
+    while ([transRangeArr count] > 0) {
+        NSTextCheckingResult* lastResult = [transRangeArr lastObject];
+        NSRange transRange = lastResult.range;
+        NSString* transWord = [_searchText substringWithRange:transRange];
+        
+        NSString* emojiImageName = [transfer imageEmojiNamewithCode:transWord];
+        NSTextAttachment *emojiAttachment = [[NSTextAttachment alloc] init];
+        emojiAttachment.image = [UIImage imageNamed:emojiImageName];
+        emojiAttachment.bounds = CGRectMake(0, 0, _fontSize, _fontSize);
+        NSAttributedString *emojiAttrStr = [NSAttributedString attributedStringWithAttachment:emojiAttachment];
+        [_tmpAttributeText replaceCharactersInRange:transRange withAttributedString:emojiAttrStr];
+        [_searchText replaceCharactersInRange:transRange withString:@"x"];
+        [transRangeArr removeObject:lastResult];
+    }
+}
 
 - (NSArray*)rangValuesInTextWithRegular:(NSString*)regular
 {

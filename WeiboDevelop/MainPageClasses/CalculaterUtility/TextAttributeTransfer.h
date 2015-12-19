@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TextAttributeTranster : NSObject
+@interface TextAttributeTransfer : NSObject
 
 @property (readonly)NSAttributedString* attrubuteText;
 
-- (instancetype)initWithString:(NSString* )string;
+- (instancetype)initWithString:(NSString* )string fontSize:(CGFloat)size;
 
 @end
